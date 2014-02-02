@@ -1,4 +1,28 @@
+Dual Licensed: CC-BY or MIT
+
+CC-BY
+-----
+
+### EN ###
+
+http://creativecommons.org/licenses/by/4.0/
+
+Attribution (BY) — You must give appropriate credit, provide a link to the license, 
+and indicate if changes were made. You may do so in any reasonable manner, 
+but not in any way that suggests the licensor endorses you or your use.
+
+### PL ###
+
+http://creativecommons.org/licenses/by/4.0/deed.pl
+
+Uznanie autorstwa (BY) — Należy odpowiednio oznaczyć autorstwo utworu, podać odnośnik 
+do licencji i wskazać zmiany, jeśli takie zostały dokonane. Można tego dokonać 
+w dowolny rozsądny sposób, o ile nie sugeruje się udzielenia przez licencjodawcę 
+aprobaty dla siebie lub swojego sposobu wykorzystania licencjonowanego utworu.
+
+
 The MIT License (MIT)
+---------------------
 
 Copyright (c) 2014 Nux
 
