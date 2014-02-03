@@ -55,6 +55,7 @@ Przygotowanie umożliwia szybkie przeprowadzenie próbnego głosowania i dobrani
 1. Operator wprowadza kolejne profile osób - wówczas system:
 	1. Filtruje dane - wyświetla identyfikatory osób na podstawie wprowadzonego profilu.
 	2. W wypadku mniej niż 2 osób pasujących do profilu, system zaproponuje inne osoby (według przyjętych maksymalnych odchyleń).
+	3. Możliwość ponownego losowania profilu w wypadku braku osób spełniających wylosowane kryteria.
 3. Operator zaznaczy wylosowaną osobę - wówczas system:
 	1. Odrzuca osoby z tej samej dzielnicy z głównej puli.
 	2. Pokazuje inne osoby z tej samej dzielnicy spełniające te same kryteria (do losowania osób zastępujących).
@@ -69,4 +70,4 @@ Do publicznej wiadomości podawana jest lista imion i nazwisk posortowana alfabe
 
 ### Krok 3. Losowanie grupy rezerwowej ###
 
-Z punktu widzenia systemu jedną różnicą jest kwestia dzielnic. Operator podaje losuje i wpisuje profile z uwzględnieniem dzielnicy. System umożliwia zatem także przefiltrowanie od razu do wybranej dzielnicy. 
+Z punktu widzenia systemu jedną różnicą jest kwestia dzielnic. Operator losuje i wpisuje profile z uwzględnieniem dzielnicy. System umożliwia zatem także przefiltrowanie od razu do wybranej dzielnicy. 
