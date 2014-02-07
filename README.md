@@ -19,7 +19,7 @@ Założenie podstawowe:
 * System musi zwrócić (na koniec) listę z następującymi danymi:
 	* dane identyfikacyjne: identyfikator w systemie ankiet (znany tylko użytkownikowi).
 	* dane kontaktowe: imię, nazwisko, e-mail lub telefon, ew. adres (dane te będą ukryte dla operatora losowania).
-	* dane różnicujące (profilowe): dzielnica, płeć, grupa wiekowa, wykształcenie, dzieci (ma/nie ma).
+	* dane różnicujące (profilowe): dzielnica, płeć, rok urodzenia (lub wiek), wykształcenie, dzieci (ma/nie ma).
 
 ### Losowanie - przebieg i założenia ###
 
@@ -47,7 +47,7 @@ Przygotowanie umożliwia szybkie przeprowadzenie próbnego głosowania i dobrani
 * Operator wprowadza maksymalne odchylenia dla każdego kryterium.
 * Przykładowe kryteria wyboru odchyleń od teoretycznego rozkładu:
 	* Jeśli zgłosi się mało osób z dziećmi, to dopuszczana jest możliwość rezygnacji z tego kryterium.
-	* Jeśli rozkład wiekowy zgłoszonych będzie znacząco inny niż teoretyczny, to dopuszczany będzie wybór osoby z sąsiedniej grupy wiekowej.
+	* Jeśli rozkład wiekowy zgłoszonych będzie znacząco inny niż teoretyczny, to dopuszczany będzie wybór osoby +/- 5 lat poza granice danej grupy wiekowej.
 * System wykonuje 3 losowania testowe, które mają wykazać, na ile sprawdzi się procedura przy zadanych odchyleniach.
 * Operator decyduje czy przeprowadzić właściwe losowanie przy zadanych kryteriach.
 
