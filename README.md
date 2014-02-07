@@ -17,7 +17,8 @@ Założenie podstawowe:
 * System musi nadawać danej osobie unikatowy numer.
 * System powinien - w miarę możliwości - wysyłać ten unikatowy numer do ankietowanej osoby (dodatkowy punkt kontroli nad prawidłowością przebiegu).
 * System musi zwrócić (na koniec) listę z następującymi danymi:
-	* dane kontaktowe: imię, nazwisko, e-mail lub telefon, ew. adres.
+	* dane identyfikacyjne: identyfikator w systemie ankiet (znany tylko użytkownikowi).
+	* dane kontaktowe: imię, nazwisko, e-mail lub telefon, ew. adres (dane te będą ukryte dla operatora losowania).
 	* dane różnicujące (profilowe): dzielnica, płeć, grupa wiekowa, wykształcenie, dzieci (ma/nie ma).
 
 ### Losowanie - przebieg i założenia ###
@@ -54,7 +55,7 @@ Przygotowanie umożliwia szybkie przeprowadzenie próbnego głosowania i dobrani
 
 1. Operator wprowadza kolejne profile osób - wówczas system:
 	1. Filtruje dane - wyświetla identyfikatory osób na podstawie wprowadzonego profilu.
-	2. W wypadku mniej niż 2 osób pasujących do profilu, system zaproponuje inne osoby (według przyjętych maksymalnych odchyleń).
+	2. W wypadku mniej niż 2 osób pasujących do profilu, system zaproponuje inne osoby (według przyjętych maksymalnych odchyleń). Lista będzie podzielona według kolejnych odchyleń (osobno odchylenie dla mniej ważnego kryterium, osobno drugiego, osobno dla obu jednocześnie).
 	3. Możliwość ponownego losowania profilu w wypadku braku osób spełniających wylosowane kryteria.
 3. Operator zaznaczy wylosowaną osobę - wówczas system:
 	1. Odrzuca osoby z tej samej dzielnicy z głównej puli.
@@ -64,7 +65,7 @@ Przygotowanie umożliwia szybkie przeprowadzenie próbnego głosowania i dobrani
 5. System umożliwia zaznaczenie kolejnych osób do grupy zastępczej.
 6. Przed wprowadzeniem następnego profilu system pokazuje ile osób należy jeszcze wybrać z każdej grupy.
 
-Dane kontaktowe są widoczne dopiero na koniec i tylko dla operatora. Jedynie dana osoba może zweryfikować kiedy została wylosowana (zna swój identyfikator). Nad prawidłowością samego losowania mogą także czuwać osoby odpowiedzialne za ankietowanie (np. przedstawiciel UM).
+Dane kontaktowe są widoczne dopiero na koniec i tylko dla operatora. Jedynie dana osoba może zweryfikować kiedy została wylosowana (zna swój identyfikator).
 
 Do publicznej wiadomości podawana jest lista imion i nazwisk posortowana alfabetycznie.
 

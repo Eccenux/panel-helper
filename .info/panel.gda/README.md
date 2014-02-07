@@ -1,9 +1,6 @@
 Panel obywatelski w Gdańsku
 ===========================
 
-W wypadku Gdańska ankietami zajmie się Urząd Miasta.
-
-
 * Szczegóły dotyczące panelu w dokumencie "Panel w sprawie zasad - koncepcja".
 * Wstępna wersja ankiety w dokumencie "Ankieta do panelu". 
 
