@@ -46,12 +46,20 @@ abstract class dbBaseClass
 	/**
 	 * Alised names of columns that are to be excluded when inserting records.
 	 *
-	 * @note For tables that have automatically incremented ids you should you should add the name of this id.
+	 * @note For tables that have automatically incremented ids you should add the name of this id column here.
 	 *
-	 * @see pf_insRekord()
+	 * @see pf_insRecord()
 	 * @var array
 	 */
 	protected $pv_insertExcludedCols = array();
+
+	/**
+	 * Default SQL fragment for ordering records in pf_getRecords
+	 *
+	 * @warning This SHOULD be set in a descendant class, if pf_getRecords is not overwritten.
+	 * @var string
+	 */
+	protected $pv_defaultOrderSql;
 
 	/**
 	 * Array for tranlsating column aliases to actual names
@@ -583,6 +591,27 @@ abstract class dbBaseClass
 
 	// <editor-fold defaultstate="collapsed" desc="High level SQL operations">
 	/**
+	 * Extra operations on a record to be run in `pf_insRecord`.
+	 *
+	 * It can be overwritten by a descendant class to avoid re-implementing whole `pf_insRecord`.
+	 *
+	 * @param array $pv_record The record.
+	 */
+	protected function pf_insRecordExtraParse(&$pv_record)
+	{
+	}
+	/**
+	 * Extra operations on a record to be run in `pf_setRecords`.
+	 *
+	 * It can be overwritten by a descendant class to avoid re-implementing whole `pf_setRecords`.
+	 *
+	 * @param array $pv_record The record.
+	 */
+	protected function pf_setRecordExtraParse(&$pv_record)
+	{
+	}
+
+	/**
 	 * Returns records in format based on templates that are defined in {@link $pv_sqlStatsTpls}
 	 *
 	 * @note This is just a simplification that allows to quickly get and dump values in a varity of formats.
@@ -667,12 +696,17 @@ abstract class dbBaseClass
 	 * @return int 0 upon error
 	 * @throws Exception If \a pv_tableName was not set.
 	 */
-	public function pf_insRekord($pv_record)
+	public function pf_insRecord($pv_record)
 	{
 		if (empty($this->pv_tableName))
 		{
 			throw new Exception("Tabel name is empty");
 		}
+
+		//
+		// Pre-preparation
+		//
+		$this->pf_insRecordExtraParse($pv_record);
 
 		//
 		// Prepare record
@@ -687,11 +721,152 @@ abstract class dbBaseClass
 		$pv_affected_rows = $this->pf_runModificationSQL($sql);
 		if ($pv_affected_rows==0)
 		{
-			$this->msg = 'Error while inserting record!';
+			$this->msg = 'DB error while inserting record!';
 			return 0;
 		}
 
 		return 1;	// OK :)
+	}
+
+	/**
+	 * Standard deletion of records (rows) based on given constraints.
+	 *
+	 * @param array $pv_constraints See description in {@link pf_getColumnValueArray()}
+	 * @param bool $pv_areConstraintsPrecise [optional] Use instead of adding LIKE operator for every value.
+	 * @return int 0 upon error or no records matched.
+	 * @throws Exception If \a pv_tableName was not set.
+	 */
+	public function pf_delRecords($pv_constraints=array(), $pv_areConstraintsPrecise=true)
+	{
+		if (empty($this->pv_tableName))
+		{
+			throw new Exception("Table name is empty");
+		}
+
+		//
+		// Prepare
+		//
+		$pv_where_sql = $this->pf_getWhereSQL($pv_constraints, array(), $pv_areConstraintsPrecise);
+
+		//
+		// Execute
+		//
+		$sql = "DELETE
+			FROM {$this->pv_tableName}
+			$pv_where_sql"
+		;
+		$pv_affected_rows = $this->pf_runModificationSQL($sql);
+
+		//
+		// Return
+		//
+		if ($pv_affected_rows===false)
+		{
+			$this->msg = 'DB error while deleting record(s)!';
+			return 0;
+		}
+
+		return 1;	// OK :)
+	}
+
+	/**
+	 * Standard update method for existing records (rows) based on given constraints.
+	 *
+	 * @param array $pv_record New (modified) values.
+	 * 		Note! Record SHOULD contain only the values (columns) that:
+	 * 		a) can be modified
+	 * 		b) are to be modified
+	 * 		If you must you can also exclude columns using \a $pv_excludedColumns.
+	 * @param array $pv_constraints See description in {@link pf_getColumnValueArray()}
+	 * @param array $pv_excludedColumns [optional] An array of columns (aliased) to be excluded in the update.
+	 * @param bool $pv_areConstraintsPrecise [optional] Use instead of adding LIKE operator for every value.
+	 * @return int 0 upon error or no records matched.
+	 * @throws Exception If \a pv_tableName was not set.
+	 */
+	public function pf_setRecords($pv_record, $pv_constraints=array(), $pv_excludedColumns=array(), $pv_areConstraintsPrecise=true)
+	{
+		if (empty($this->pv_tableName))
+		{
+			throw new Exception("Table name is empty");
+		}
+
+		//
+		// Pre-preparation
+		//
+		$this->pf_setRecordExtraParse($pv_record);
+
+		//
+		// Prepare
+		//
+		$pv_where_sql = $this->pf_getWhereSQL($pv_constraints, array(), $pv_areConstraintsPrecise);
+		$pv_set_sql = $this->pf_getSetSQL($pv_record, $pv_excludedColumns);
+
+		//
+		// Execute
+		//
+		$sql = "UPDATE {$this->pv_tableName}
+			$pv_set_sql
+			$pv_where_sql"
+		;
+		$pv_affected_rows = $this->pf_runModificationSQL($sql);
+
+		//
+		// Return
+		//
+		if ($pv_affected_rows===false)
+		{
+			$this->msg = 'DB error while updating record(s)!';
+			return 0;
+		}
+
+		return 1;	// OlKul :)
+	}
+
+	/**
+	 * Standard get method for existing records (rows) based on given constraints.
+	 *
+	 * @param array $pv_array Return array with records (rows).
+	 * @param array $pv_constraints See description in {@link pf_getColumnValueArray()}
+	 * @param array $pv_columns [optional] An array of columns (aliased) to be retrived.
+	 *	Only those defined for the record are available.
+	 *	If empty all of them are retrived.
+	 * @param bool $pv_areConstraintsPrecise [optional] Use instead of adding LIKE operator for every value.
+	 * @return int 0 upon error or no records matched.
+	 * @throws Exception If \a pv_tableName was not set.
+	 */
+	public function pf_getRecords(&$pv_array, $pv_constraints=array(), $pv_columns=array(), $pv_areConstraintsPrecise=true)
+	{
+		if (empty($this->pv_tableName))
+		{
+			throw new Exception("Table name is empty");
+		}
+		$pv_array = array();
+
+		//
+		// Prepare
+		//
+		$pv_where_sql = $this->pf_getWhereSQL($pv_constraints, array(), $pv_areConstraintsPrecise);
+		$pv_order_sql = empty($this->pv_defaultOrderSql) ? "" : $this->pv_defaultOrderSql;
+		if (empty($pv_columns))
+		{
+			$pv_columns = array_keys($this->pv_aliasNames2colNames);
+		}
+		$pv_columns_sql = $this->pf_getColumnsSQLFromAliasList($pv_columns);
+
+		//
+		// Execute
+		//
+		$sql = "SELECT $pv_columns_sql
+			FROM {$this->pv_tableName}
+			$pv_where_sql
+			$pv_order_sql"
+		;
+		$this->pf_getArrayOfRecords($pv_array, $sql);
+
+		//
+		// Return
+		//
+		return !empty($pv_array) ? 1 : 0;
 	}
 	// </editor-fold>
 
