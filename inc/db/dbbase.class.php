@@ -4,8 +4,10 @@
  *
  * @warning It's assumed that database connection is estabilished before any read/write methods are used.
  *
- * @note "High level SQL operations" contains methods that should be overwritten in descendant classes
- *  if more operations should be performed on records before building final SQL statement.
+ * @note In a descendant class in most cases you just need to setup some attributes/properties and use high level operations.
+ * @note Override "High level SQL operations" if need more operations be performed on records before building final SQL statement.
+ *
+ * @note If you need to use this class for a different DBMS you may want to split the class and re-implement "Basic SQL operations" for each DBMS.
  *
  * Format of common parametrs of methods:
  * <pre>
@@ -16,6 +18,15 @@
  * 	);
  * 	$record = array ()
  * </pre>
+ *
+ * Author's note...
+ * Yes, the library is double licensed and free (see below).
+ * In various forms it's with me almost from the start of my carrier, even abandoned quite a few times...
+ * I'm actually kind of sentimental about it :-). Still this haven't been released to public before 2014.
+ *
+ * @copyright (c) 2005-2014, Maciej Nux Jaros
+ * @license http://creativecommons.org/licenses/by/4.0/ CC-BY
+ * @license http://opensource.org/licenses/MIT MIT
  */
 abstract class dbBaseClass
 {
@@ -56,7 +67,7 @@ abstract class dbBaseClass
 	/**
 	 * Default SQL fragment for ordering records in pf_getRecords
 	 *
-	 * @warning This SHOULD be set in a descendant class, if pf_getRecords is not overwritten.
+	 * @warning This SHOULD be set in a descendant class, if pf_getRecords is not overriden.
 	 * @var string
 	 */
 	protected $pv_defaultOrderSql;
@@ -226,7 +237,7 @@ abstract class dbBaseClass
 	}
 	// </editor-fold>
 
-	// <editor-fold defaultstate="" desc="SQL fragments builders">
+	// <editor-fold defaultstate="collapsed" desc="SQL fragments builders">
 	/**
 	 * Transforms alias=>value array into SQL fragments ready for WHERE clause.
 	 *
@@ -593,8 +604,8 @@ abstract class dbBaseClass
 	/**
 	 * Extra operations on a record to be run in `pf_insRecord`.
 	 *
-	 * It can be overwritten by a descendant class to avoid re-implementing whole `pf_insRecord`.
-	 *
+	 * It can be overriden by a descendant class to avoid re-implementing whole `pf_insRecord`.
+	 * 
 	 * @param array $pv_record The record.
 	 */
 	protected function pf_insRecordExtraParse(&$pv_record)
@@ -603,7 +614,7 @@ abstract class dbBaseClass
 	/**
 	 * Extra operations on a record to be run in `pf_setRecords`.
 	 *
-	 * It can be overwritten by a descendant class to avoid re-implementing whole `pf_setRecords`.
+	 * It can be overriden by a descendant class to avoid re-implementing whole `pf_setRecords`.
 	 *
 	 * @param array $pv_record The record.
 	 */
