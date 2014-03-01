@@ -1,9 +1,17 @@
 <?php
 	require_once ('./inc/dbConnect.php');
 	require_once ('./inc/db/profile.php');
+	require_once ('./inc/db/personal.php');
 
 	$dbProfile = new dbProfile();
+	$dbPersonal = new dbPersonal();
+	/**
+	 * Simple&in-exact test
+	 *
 	$dbProfile->pf_getRecords($pv_array, array('dzielnica' => 'Wrzeszcz Dolny'));
+	var_export($pv_array);
+	$dbPersonal->pf_getRecords($pv_array, array('imie' => '%ac%'), array(), false);
+	var_export($pv_array);
 	/**
 	 * Get/set test
 	 *
