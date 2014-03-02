@@ -1,0 +1,86 @@
+/*
+	Colors.
+
+	Gradients editor:
+	http://www.colorzilla.com/gradient-editor/
+*/
+
+html
+{
+	background-color: #eef;
+}
+
+/* content */
+#container #content
+{
+	background-color:white;
+}
+
+/* header & footer */
+#header
+{
+	border-bottom: 1px solid #ddd;
+	background-color:#fefcea;
+}
+#header a
+{
+	color: #333;
+}
+#footer
+{
+	border-top: 1px solid #ccc;
+	color: #414E8E;
+
+	background: #d0d7db; /* Old browsers */
+	background: -moz-linear-gradient(top,  #d0d7db 0%, #f4f9f9 75%, #dae2e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d0d7db), color-stop(75%,#f4f9f9), color-stop(100%,#dae2e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #d0d7db 0%,#f4f9f9 75%,#dae2e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #d0d7db 0%,#f4f9f9 75%,#dae2e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #d0d7db 0%,#f4f9f9 75%,#dae2e5 100%); /* IE10+ */
+	background: linear-gradient(top,  #d0d7db 0%,#f4f9f9 75%,#dae2e5 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d0d7db', endColorstr='#dae2e5',GradientType=0 ); /* IE6-9 */
+}
+
+/* menu */
+#menu a
+{
+	color:#1B5971;
+}
+body
+{
+	background-color:white;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E5E5E5),
+		color-stop(1, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E5E5E5 0%, #FFFFFF 100%);
+	background-image: -moz-linear-gradient(bottom, #E5E5E5 0%, #FFFFFF 100%);
+	background-image: -webkit-linear-gradient(bottom, #E5E5E5 0%, #FFFFFF 100%);
+	background-image: -ms-linear-gradient(bottom, #E5E5E5 0%, #FFFFFF 100%);
+	background-image: linear-gradient(to bottom, #E5E5E5 0%, #FFFFFF 100%);
+}
+
+/* ticks */
+#footer #ticks
+{
+	color: #9a9;
+}
+
+/* tables */
+#content table
+,#content table td
+,#content table th
+{
+	border:1px solid #363;
+}
+#content table
+{
+	background-color:#fff;
+}
+#content table th
+{
+	background-color:#f0f8f0;
+}

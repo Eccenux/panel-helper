@@ -7,7 +7,7 @@
 	$dbPersonal = new dbPersonal();
 	/**
 	 * Simple&in-exact test
-	 *
+	 */
 	$dbProfile->pf_getRecords($pv_array, array('dzielnica' => 'Wrzeszcz Dolny'));
 	var_export($pv_array);
 	$dbPersonal->pf_getRecords($pv_array, array('imie' => '%ac%'), array(), false);
