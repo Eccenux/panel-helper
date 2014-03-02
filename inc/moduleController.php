@@ -23,6 +23,12 @@ class ModuleController
 	 */
 	public $moduleDir;
 	/**
+	 * Path to public directory of the module.
+	 * @readonly
+	 * @var string
+	 */
+	public $modulePublicDir;
+	/**
 	 * Main controller file path.
 	 * @readonly
 	 * @var string
@@ -40,6 +46,16 @@ class ModuleController
 	public $tpl;
 
 	/**
+	 * Get URL for this module for given action.
+	 * @param string $action
+	 * @param array $extraParams
+	 */
+	public function getActionUrl($action, $extraParams=array())
+	{
+		return MainMenu::getModuleUrl($this->moduleName, $action, $extraParams);
+	}
+
+	/**
 	 * @param string $moduleName Module name.
 	 * @param string $action Action within module.
 	 */
@@ -48,6 +64,7 @@ class ModuleController
 		$this->moduleName = $moduleName;
 		$this->moduleDir = './modules/'.$moduleName.'/';
 		$this->controllerPath = './modules/'.$moduleName.'/controller.php';
+		$this->modulePublicDir = './modules_public/'.$moduleName.'/';
 		$this->action = $action;
 		$this->tpl = new ModuleTemplate($this->moduleDir);
 	}
