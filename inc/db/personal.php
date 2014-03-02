@@ -22,6 +22,7 @@ class dbPersonal extends dbBaseClass
 	protected $pv_aliasNames2colNames = array (
 		'id' => 'id',
 		'dt' => 'dt',
+		'ankieta_id' => 'ankieta_id',
 		
 		'imie' => 'imie',
 		'nazwisko' => 'nazwisko',

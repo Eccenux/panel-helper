@@ -22,6 +22,7 @@ class dbProfile extends dbBaseClass
 	protected $pv_aliasNames2colNames = array (
 		'id' => 'id',
 		'dt' => 'dt',
+		'ankieta_id' => 'ankieta_id',
 		
 		'ulica' => 'ulica',
 		'dzielnica' => 'dzielnica',
