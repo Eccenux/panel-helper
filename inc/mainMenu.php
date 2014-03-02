@@ -58,14 +58,19 @@ class MainMenu implements Iterator
 	 * Url helper.
 	 * @param string $moduleName
 	 * @param string $moduleAction
+	 * @param array $extraParams
 	 * @return string
 	 */
-	private function getModuleUrl($moduleName, $moduleAction='')
+	public static function getModuleUrl($moduleName, $moduleAction='', $extraParams=array())
 	{
 		$url = "?mod={$moduleName}";
 		if (!empty($moduleAction))
 		{
 			$url .= "&amp;a={$moduleAction}";
+		}
+		foreach($extraParams as $k=>$v)
+		{
+			$url .= "&amp;$k=$v";
 		}
 		return $url;
 	}
