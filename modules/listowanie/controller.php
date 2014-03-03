@@ -26,10 +26,18 @@
 		foreach ($profiles as $item) {
 			$ids[] = $item['id'];
 		}
-		$dbPersonal->pf_getRecords($tplData['personal'], array('id'=>array('IN', $ids)), array('nazwisko_imie', 'e_mail', 'nr_tel'));
 
-		$pv_controller->tpl->file = 'list.tpl.php';
-		$pv_controller->tpl->data = $tplData;
+		if (empty($ids))
+		{
+			$pv_controller->tpl->message = 'Brak osób w tej grupie.';
+		}
+		else
+		{
+			$dbPersonal->pf_getRecords($tplData['personal'], array('id'=>array('IN', $ids)), array('nazwisko_imie', 'e_mail', 'nr_tel'));
+
+			$pv_controller->tpl->file = 'list.tpl.php';
+			$pv_controller->tpl->data = $tplData;
+		}
 	}
 
 	//

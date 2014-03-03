@@ -7,7 +7,15 @@
 	//
 	// Przetwarzanie danych
 	//
-	$pv_controller->tpl->file = 'controller.summary.tpl.php';
+	switch ($pv_controller->action)
+	{
+		case 'auth-fail':
+			$pv_controller->tpl->file = 'auth-fail.tpl.php';
+		break;
+		default:
+			$pv_controller->tpl->file = 'controller.summary.tpl.php';
+		break;
+	}
 
 	//
 	// Wyświetlanie template

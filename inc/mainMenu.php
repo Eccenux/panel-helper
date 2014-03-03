@@ -102,4 +102,29 @@ class MainMenu implements Iterator
 			}
 		}
 	}
+
+	/**
+	 * Check if given user name is authorized to view the module.
+	 *
+	 * @note This does NOT check if user is logged in or anything like that. This just checks settings.
+	 */
+	public function authCheck($moduleName, $userName)
+	{
+		if (!isset($this->items[$moduleName]))
+		{
+			return true;
+		}
+		$menuItem = $this->items[$moduleName];
+		if (is_null($menuItem->users))
+		{
+			return true;
+		}
+		$users = explode(',', $menuItem->users);
+		if (in_array($userName, $users))
+		{
+			return true;
+		}
+		return false;
+	}
+
 }

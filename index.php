@@ -47,8 +47,14 @@
 	//
 	// Setup current module
 	//
+	// simple HTTP auth
+	$userName = empty($_SERVER['PHP_AUTH_USER']) ? 'anon' : $_SERVER['PHP_AUTH_USER'];
+	if (!$pv_mainMenu->authCheck($moduleName, $userName))
+	{
+		$moduleName = '_main';
+		$moduleAction = 'auth-fail';
+	}
 	// set current
-	//! @todo Auth. controll (fallback to main?)
 	if (!in_array($moduleName, $pv_modules))
 	{
 		$moduleName = '_main';

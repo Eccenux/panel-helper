@@ -31,7 +31,12 @@ class MenuItem
 	 */
 	public $url = null;
 	/**
-	 * [optional,todo] Users allowed to use this module/action
+	 * [optional] Users allowed to use this module/action
+	 *
+	 * Use 'anon' or keep `null` to allow anonymous access.
+	 * To be more exact `null` means any authorized user OR anon can access module.
+	 * Setting to 'anon' would mean only anonymous access is allowed.
+	 *
 	 * @var string
 	 */
 	public $users = null;
