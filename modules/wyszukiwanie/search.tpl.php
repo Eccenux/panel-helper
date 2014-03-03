@@ -51,6 +51,30 @@
 			do: <input type="number" name="wiek_do" min="16" max="100"
 					   value="<?=$tplData['prev']['wiek_do']?>"
 					   >
+
+			albo wybierz:
+			<span class="wiek presets">
+				<button>16-24</button>
+				<button>25-39</button>
+				<button>40-64</button>
+				<button>65+</button>
+				<button>ignoruj</button>
+			</span>
+			<script>
+				$('.wiek.presets button').click(
+					function (e) {
+						var text = $(this).text();
+						$('[name=wiek_od],[name=wiek_do]').val('');
+						text.replace(/^[0-9]+/, function (number){
+							$('[name=wiek_od]').val(number);
+						});
+						text.replace(/[^0-9]([0-9]+)/, function (a, number){
+							$('[name=wiek_do]').val(number);
+						});
+						e.preventDefault();
+					}
+				);
+			</script>
 		</div>
 	</div>
 	<div>
