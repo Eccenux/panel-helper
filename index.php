@@ -14,6 +14,7 @@
 	 *		and receives a $pv_controller of type ModuleController
 	 */
 	define('NOT_HACKING_RILI', true);
+	date_default_timezone_set('Europe/Paris');
 
 	require_once './inc/menuItem.php';
 	require_once './inc/mainMenu.php';

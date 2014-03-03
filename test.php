@@ -6,8 +6,13 @@
 	$dbProfile = new dbProfile();
 	$dbPersonal = new dbPersonal();
 	/**
-	 * Simple&in-exact test
+	 * "Stat"
 	 */
+	$dbProfile->pf_getStats($tplData['dzielnice'], 'dzielnice');
+	var_export($tplData['dzielnice']);
+	/**
+	 * Simple&in-exact test
+	 *
 	$dbProfile->pf_getRecords($pv_array, array('dzielnica' => 'Wrzeszcz Dolny'));
 	var_export($pv_array);
 	$dbPersonal->pf_getRecords($pv_array, array('imie' => '%ac%'), array(), false);

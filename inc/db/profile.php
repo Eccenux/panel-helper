@@ -28,9 +28,25 @@ class dbProfile extends dbBaseClass
 		'dzielnica' => 'dzielnica',
 		'plec' => 'plec',
 		'rok' => 'rok',
+		'wiek' => '2014 - rok',
 		'wyksztalcenie' => 'wyksztalcenie',
 		'dzieci' => 'dzieci',
 	);
+	/**
+	 * "Szablony" SQL do statystyk.
+	 *
+	 * @see dbBaseClass->pf_getStats
+	 * @var array
+	 */
+	protected $pv_sqlStatsTpls = array (
+		// Zbiorcze podsumowanie
+		'dzielnice' =>
+			'SELECT dzielnica
+			FROM profile
+			GROUP BY dzielnica',
+		'wyksztalcenie' =>
+			'SELECT wyksztalcenie
+			FROM profile
+			GROUP BY wyksztalcenie',
+	);
 }
-
-?>

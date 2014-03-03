@@ -75,7 +75,7 @@ class ModuleTemplate
 	 * @param array $columnExtraTransformationArray może wyglądać np. tak:
 	 *		array('id' => function($value){ return parseEmails($value); }),
 	 */
-	function printArray($rows, $columnToAliasArray = array(), $columnExtraTransformationArray = array())
+	public static function printArray($rows, $columnToAliasArray = array(), $columnExtraTransformationArray = array())
 	{
 		if (empty($rows))
 		{
