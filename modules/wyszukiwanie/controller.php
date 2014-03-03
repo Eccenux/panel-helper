@@ -10,8 +10,13 @@
 	//
 	$tplData = array();
 	// wypełnienie pól wyboru
-	$dbProfile->pf_getStats($tplData['dzielnice'], 'dzielnice');
-	$dbProfile->pf_getStats($tplData['wyksztalcenie'], 'wyksztalcenie');
+	$pv_ograniczeniaStats = array();
+	if (!empty($pv_controller->action))
+	{
+		$pv_ograniczeniaStats['grupa'] = $pv_controller->action;
+	}
+	$dbProfile->pf_getStats($tplData['dzielnice'], 'dzielnice', $pv_ograniczeniaStats);
+	$dbProfile->pf_getStats($tplData['wyksztalcenie'], 'wyksztalcenie', $pv_ograniczeniaStats);
 
 	$tplData['prev'] = array();
 	$pv_choices = array('dzielnica', 'plec', 'wyksztalcenie', 'dzieci', 'wiek_od', 'wiek_do');

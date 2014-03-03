@@ -45,11 +45,13 @@ class dbProfile extends dbBaseClass
 		'dzielnice' =>
 			'SELECT dzielnica, count(dzielnica) as licznik
 			FROM profile
+			WHERE {pv_constraints|(1)}
 			GROUP BY dzielnica
 			ORDER BY 1, 2',
 		'wyksztalcenie' =>
 			'SELECT wyksztalcenie, count(wyksztalcenie) as licznik
 			FROM profile
+			WHERE {pv_constraints|(1)}
 			GROUP BY wyksztalcenie
 			ORDER BY 2, 1',
 	);
