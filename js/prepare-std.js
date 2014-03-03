@@ -10,7 +10,7 @@
 		$(".buttonset,[data-type='buttonset']").buttonset();
 		$('[type="radio"],[type="checkbox"],[type="submit"]').button();
 		// select
-		$('select').selectmenu();
+		//$('select').selectmenu();
 	});
 }(jQuery))
 /*
