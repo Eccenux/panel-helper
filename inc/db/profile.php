@@ -23,6 +23,7 @@ class dbProfile extends dbBaseClass
 		'id' => 'id',
 		'dt' => 'dt',
 		'ankieta_id' => 'ankieta_id',
+		'grupa' => 'grupa',
 		
 		'ulica' => 'ulica',
 		'dzielnica' => 'dzielnica',
@@ -32,8 +33,9 @@ class dbProfile extends dbBaseClass
 		'wyksztalcenie' => 'wyksztalcenie',
 		'dzieci' => 'dzieci',
 	);
+
 	/**
-	 * "Szablony" SQL do statystyk.
+	 * "Szablony" SQL do statystyk/szybkich zapytań.
 	 *
 	 * @see dbBaseClass->pf_getStats
 	 * @var array
@@ -50,5 +52,13 @@ class dbProfile extends dbBaseClass
 			FROM profile
 			GROUP BY wyksztalcenie
 			ORDER BY 2, 1',
+	);
+
+	/**
+	 * Grupy/statusy
+	 * @var array
+	 */
+	public static $pv_grupy = array (
+		'w puli', 'grupa główna', 'zastępcza', 'rezerwowa'
 	);
 }
