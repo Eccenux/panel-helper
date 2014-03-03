@@ -22,7 +22,8 @@
 		<div>
 			<select name="dzielnica">
 			<? foreach ($tplData['dzielnice'] as $row) { ?>
-				<option><?=$row['dzielnica']?></option>
+				<option <?=($tplData['prev']['dzielnica']==$row['dzielnica']) ? 'selected' : ''?>
+					><?=$row['dzielnica']?></option>
 			<? } ?>
 			</select>
 		</div>
@@ -30,23 +31,35 @@
 	<div>
 		<label>Płeć</label>
 		<div class="buttonset">
-			<input type="radio" name="plec" id="plec_m" value="mężczyzna"><label for="plec_m">mężczyzna</label>
-			<input type="radio" name="plec" id="plec_k" value="kobieta"  ><label for="plec_k">kobieta  </label>
-			<input type="radio" name="plec" id="plec_i" value="" checked ><label for="plec_i">ignoruj  </label>
+			<input type="radio" name="plec" id="plec_m" value="mężczyzna"
+				   <?=($tplData['prev']['plec']=='mężczyzna') ? 'checked' : ''?>
+				   ><label for="plec_m">mężczyzna</label>
+			<input type="radio" name="plec" id="plec_k" value="kobieta"
+				   <?=($tplData['prev']['plec']=='kobieta') ? 'checked' : ''?>
+				   ><label for="plec_k">kobieta  </label>
+			<input type="radio" name="plec" id="plec_i" value=""
+				   <?=(empty($tplData['prev']['plec'])) ? 'checked' : ''?>
+				   ><label for="plec_i">ignoruj  </label>
 		</div>
 	</div>
 	<div>
 		<label>Wiek</label>
 		<div>
-			od: <input type="number" name="wiek_od" min="16" max="100">
-			do: <input type="number" name="wiek_do" min="16" max="100">
+			od: <input type="number" name="wiek_od" min="16" max="100"
+					   value="<?=$tplData['prev']['wiek_od']?>"
+					   >
+			do: <input type="number" name="wiek_do" min="16" max="100"
+					   value="<?=$tplData['prev']['wiek_do']?>"
+					   >
 		</div>
 	</div>
 	<div>
 		<label>Wykształcenie</label>
 		<div class="buttonset">
 		<? foreach ($tplData['wyksztalcenie'] as $i=>$row) { ?>
-			<input id="wyksztalcenie_<?=$i?>" type="checkbox" name="wyksztalcenie" value="<?=$row['wyksztalcenie']?>">
+			<input id="wyksztalcenie_<?=$i?>" type="checkbox" name="wyksztalcenie[]" value="<?=$row['wyksztalcenie']?>"
+					   <?=in_array($row['wyksztalcenie'], $tplData['prev']['wyksztalcenie']) ? 'checked' : ''?>
+				   >
 			<label for="wyksztalcenie_<?=$i?>"><?
 			switch ($row['wyksztalcenie'])
 			{
@@ -63,9 +76,15 @@
 	<div>
 		<label>Dzieci</label>
 		<div class="buttonset">
-			<input type="radio" name="dzieci" id="dzieci_m" value="mam"     ><label for="dzieci_m">ma</label>
-			<input type="radio" name="dzieci" id="dzieci_n" value="nie mam" ><label for="dzieci_n">nie ma</label>
-			<input type="radio" name="dzieci" id="dzieci_i" value="" checked><label for="dzieci_i">ignoruj</label>
+			<input type="radio" name="dzieci" id="dzieci_m" value="mam"
+				   <?=($tplData['prev']['dzieci']=='mam') ? 'checked' : ''?>
+				   ><label for="dzieci_m">ma</label>
+			<input type="radio" name="dzieci" id="dzieci_n" value="nie mam"
+				   <?=($tplData['prev']['dzieci']=='nie mam') ? 'checked' : ''?>
+				   ><label for="dzieci_n">nie ma</label>
+			<input type="radio" name="dzieci" id="dzieci_i" value=""
+				   <?=(empty($tplData['prev']['dzieci'])) ? 'checked' : ''?>
+				   ><label for="dzieci_i">ignoruj</label>
 		</div>
 	</div>
 	<input type="submit" name="search" value="Szukaj" />
