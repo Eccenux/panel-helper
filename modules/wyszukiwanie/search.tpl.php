@@ -29,7 +29,7 @@
 			<select name="dzielnica">
 			<? foreach ($tplData['dzielnice'] as $row) { ?>
 				<option <?=($tplData['prev']['dzielnica']==$row['dzielnica']) ? 'selected' : ''?>
-					><?=$row['dzielnica']?></option>
+					value="<?=$row['dzielnica']?>"><?=$row['dzielnica']?> (<?=$row['licznik']?>)</option>
 			<? } ?>
 			</select>
 		</div>
@@ -100,7 +100,7 @@
 				 default:
 					echo $row['wyksztalcenie'];
 				 break;
-			} ?></label>
+			} ?> (<?=$row['licznik']?>)</label>
 		<? } ?>
 		</div>
 	</div>

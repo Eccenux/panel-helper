@@ -41,12 +41,14 @@ class dbProfile extends dbBaseClass
 	protected $pv_sqlStatsTpls = array (
 		// Zbiorcze podsumowanie
 		'dzielnice' =>
-			'SELECT dzielnica
+			'SELECT dzielnica, count(dzielnica) as licznik
 			FROM profile
-			GROUP BY dzielnica',
+			GROUP BY dzielnica
+			ORDER BY 2, 1',
 		'wyksztalcenie' =>
-			'SELECT wyksztalcenie
+			'SELECT wyksztalcenie, count(wyksztalcenie) as licznik
 			FROM profile
-			GROUP BY wyksztalcenie',
+			GROUP BY wyksztalcenie
+			ORDER BY 2, 1',
 	);
 }
