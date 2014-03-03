@@ -35,7 +35,11 @@
 				$pv_ograniczenia[$name] = $_POST[$name];
 			}
 		}
-		// extra transform
+		// extra ograniczenia
+		if (!empty($pv_controller->action))
+		{
+			$pv_ograniczenia['grupa'] = $pv_controller->action;
+		}
 		if (!empty($_POST['wyksztalcenie']))
 		{
 			$pv_ograniczenia['wyksztalcenie'] = array('IN', $_POST['wyksztalcenie']);
@@ -47,7 +51,9 @@
 			if (!empty($_POST['wiek_do'])) $pv_ograniczenia['rok '] = array('>=', $rok - intval($_POST['wiek_do']));
 		}
 		// get
-		$dbProfile->pf_getRecords($tplData['profiles'], $pv_ograniczenia, array('ankieta_id', 'dzielnica', 'plec', 'wiek', 'wyksztalcenie', 'dzieci'));
+		$dbProfile->pf_getRecords($tplData['profiles'], $pv_ograniczenia, 
+			array('id', 'ankieta_id', 'dzielnica', 'plec', 'wiek', 'wyksztalcenie', 'dzieci', 'grupa')
+		);
 	}
 	// wiek -> rok
 

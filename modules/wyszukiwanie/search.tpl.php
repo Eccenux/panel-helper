@@ -124,12 +124,52 @@
 
 <div style="margin-top: 2em">
 <?php
+	// quick&evil ;-)
+	$grupaSelectorIndex = 1;
+	function grupaSelector($current, $profileId)
+	{
+		global $grupaSelectorIndex;
+		$html = '<div class="buttonset grupa-selectors">';
+		$current = empty($current) ? 'w puli' : $current;
+		foreach (dbProfile::$pv_grupy as $g)
+		{
+			$grupaSelectorIndex++;
+			$html .= '<input type="radio" name="grupa-selector['.$profileId.']" id="grupa-selector-'.$grupaSelectorIndex.'" value="'.$g.'" '
+				.($g==$current ? 'checked' : '')
+				.'><label for="grupa-selector-'.$grupaSelectorIndex.'">'.$g.'</label>'
+			;
+		}
+		$html .= '</div>';
+		return $html;
+	}
 	if (!empty($tplData['profiles']))
 	{
 		foreach($tplData['profiles'] as $i=>&$row) {
 			$row = array('l.p.'=>$i+1) + $row;
+			$row['grupa'] = grupaSelector($row['grupa'], $row['id']);
+			unset($row['id']);
 		}
 		ModuleTemplate::printArray($tplData['profiles']);
 	}
 ?>
+<script>
+	// quick&evil
+	var grupaSelectorUrl = '<?=MainMenu::getModuleUrl('edit', 'grupa')?>'.replace(/&amp;/g, '&');
+	$('.grupa-selectors input').click(
+		function (e) {
+			var profileId = $(this).attr('name').replace(/[^0-9]+([0-9]+).*/, '$1');
+			$.ajax(grupaSelectorUrl, {'data':{
+				'grupa' : $(this).val(),
+				'display' : 'raw',
+				'id': profileId
+			}})
+			.done(function(data) {
+				if (console && console.log) {
+					console.log("Info:", data, "Id:", profileId);
+				}
+			});
+			e.preventDefault();
+		}
+	);
+</script>
 </div>

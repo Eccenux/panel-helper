@@ -54,10 +54,14 @@ class MenuItem
 	/**
 	 * Add (append) submenu item.
 	 * @param type $action Action name.
-	 * @param type $title Title.
+	 * @param type $title Title (if empty then the same as action).
 	 */
-	public function addSubItem($action, $title)
+	public function addSubItem($action, $title='')
 	{
+		if (empty($title))
+		{
+			$title = $action;
+		}
 		$this->submenu[] = array (
 			'action' => $action,
 			'title' => $title,
