@@ -44,7 +44,7 @@ class dbProfile extends dbBaseClass
 			'SELECT dzielnica, count(dzielnica) as licznik
 			FROM profile
 			GROUP BY dzielnica
-			ORDER BY 2, 1',
+			ORDER BY 1, 2',
 		'wyksztalcenie' =>
 			'SELECT wyksztalcenie, count(wyksztalcenie) as licznik
 			FROM profile

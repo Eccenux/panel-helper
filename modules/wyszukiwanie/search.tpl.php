@@ -27,10 +27,11 @@
 		<label>Dzielnica</label>
 		<div>
 			<select name="dzielnica">
-			<? foreach ($tplData['dzielnice'] as $row) { ?>
-				<option <?=($tplData['prev']['dzielnica']==$row['dzielnica']) ? 'selected' : ''?>
-					value="<?=$row['dzielnica']?>"><?=$row['dzielnica']?> (<?=$row['licznik']?>)</option>
-			<? } ?>
+				<option value="">dowolna (&mdash;)</option>
+				<? foreach ($tplData['dzielnice'] as $row) { ?>
+					<option <?=($tplData['prev']['dzielnica']==$row['dzielnica']) ? 'selected' : ''?>
+						value="<?=$row['dzielnica']?>"><?=$row['dzielnica']?> (<?=$row['licznik']?>)</option>
+				<? } ?>
 			</select>
 		</div>
 	</div>
@@ -125,6 +126,9 @@
 <?php
 	if (!empty($tplData['profiles']))
 	{
+		foreach($tplData['profiles'] as $i=>&$row) {
+			$row = array('l.p.'=>$i+1) + $row;
+		}
 		ModuleTemplate::printArray($tplData['profiles']);
 	}
 ?>
