@@ -1,19 +1,25 @@
 <style type="text/css">
 	form#search > div {
+		display: table-row;
 		margin:1em 1em 1em 0;
 	}
 	form#search > div > div {
-		display: inline-block;
+		display: table-cell;
+		padding: .5em;
 	}
 	form#search > div > label {
 		font-weight:bold;
-		display: inline-block;
+		display: table-cell;
 		width: 120px;
 		text-align: right;
+		vertical-align: top;
+		padding: 1em .5em;
+		box-sizing: border-box;
 	}
 	form#search [name="search"] {
-		margin-left: 120px;
-		margin-top: 1em;
+		margin-left: 127px;
+		margin-top: 1.5em;
+		padding: .5em 3em;
 	}
 </style>
 <form id="search" method="post" action="">
@@ -51,7 +57,7 @@
 			do: <input type="number" name="wiek_do" min="16" max="100"
 					   value="<?=$tplData['prev']['wiek_do']?>"
 					   >
-
+			<p style="margin:.5em 0 0 0">
 			albo wybierz:
 			<span class="wiek presets">
 				<button>16-24</button>
@@ -75,6 +81,7 @@
 					}
 				);
 			</script>
+			</p>
 		</div>
 	</div>
 	<div>

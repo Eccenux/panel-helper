@@ -1,4 +1,7 @@
 <h2>System wspomagający losowanie</h2>
+
+<p style="color:#b81900">Uwaga! Poniższy opis NIE jest aktualny.</p>
+
 <p>Elementy wspomagania, czyli przebieg losowania z punktu widzenia kolejnych kroków wykonywanych przez operatora systemu wspomagania losowania - <em>Panel Helper</em>.</p>
 <h3>Krok 1. Przygotowanie do losowania</h3>
 <p>Przygotowanie umożliwia szybkie przeprowadzenie próbnego głosowania i dobranie odpowiednich parametrów, żeby wybór był w ogóle możliwy. Gdyby losowanie następowało ze wszystkich (większości) mieszkańców, to ten krok byłby zbędny.</p>
