@@ -17,6 +17,12 @@ class dbPersonal extends dbBaseClass
 
 	/**
 	 * @see dbBaseClass
+	 * @var string
+	 */
+	protected $pv_defaultOrderSql = 'ORDER BY nazwisko, imie';
+
+	/**
+	 * @see dbBaseClass
 	 * @var array
 	 */
 	protected $pv_aliasNames2colNames = array (
@@ -24,6 +30,7 @@ class dbPersonal extends dbBaseClass
 		'dt' => 'dt',
 		'ankieta_id' => 'ankieta_id',
 		
+		'nazwisko_imie' => 'CONCAT(nazwisko, \', \', imie)',
 		'imie' => 'imie',
 		'nazwisko' => 'nazwisko',
 		'nr_tel' => 'nr_tel',
