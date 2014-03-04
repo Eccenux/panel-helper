@@ -54,6 +54,44 @@ class dbProfile extends dbBaseClass
 			WHERE {pv_constraints|(1)}
 			GROUP BY wyksztalcenie
 			ORDER BY 2, 1',
+		'plec' =>
+			'SELECT plec as `płeć`, count(plec) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)}
+			GROUP BY plec
+			ORDER BY 2, 1',
+		'wiek' =>
+			'
+			(
+			SELECT \'16-24\' as wiek, count(*) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)} AND (2014 - rok <= 24)
+			)
+			UNION
+			(
+			SELECT \'25-39\', count(*) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)} AND (2014 - rok >=25 AND 2014 - rok <= 39)
+			)
+			UNION
+			(
+			SELECT \'40-64\', count(*) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)} AND (2014 - rok >=40 AND 2014 - rok <= 64)
+			)
+			UNION
+			(
+			SELECT \'65+\', count(*) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)} AND (2014 - rok >=65)
+			)
+		',
+		'dzieci' =>
+			'SELECT dzieci, count(dzieci) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)}
+			GROUP BY dzieci
+			ORDER BY 2, 1',
 	);
 
 	/**
