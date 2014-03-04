@@ -629,7 +629,7 @@ abstract class dbBaseClass
 	 *
 	 * @param array $pv_array Result array of records (rows).
 	 * @param string $pv_tplname Name of the stats template (vide {@link $pv_sqlStatsTpls})
-	 * @param array $pv_constraints Constraints for one or more fields that are prepared and injected in the SQL.
+	 * @param array $pv_constraints Constraints for one or more fields that are prepared and injected in the SQL. See description in {@link pf_getColumnValueArray()}
 	 *		Note! Constraints can be used only if a marker is added in the template:
 	 *		"{pv_constraints}"
 	 *		or
@@ -660,7 +660,7 @@ abstract class dbBaseClass
 		//
 		// Constraints
 		//
-		$pv_constraints_pattern = '#\{pv_constraints(\|([\s\S]+?))?\}#';
+		$pv_constraints_pattern = '#\{(?:pv_constraints|pv_ograniczenia)(\|([\s\S]+?))?\}#';
 		$pv_matched = array();
 		if (preg_match($pv_constraints_pattern, $pv_sql, $pv_matched))
 		{
