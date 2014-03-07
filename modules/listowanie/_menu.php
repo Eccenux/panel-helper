@@ -7,7 +7,7 @@
 	require_once ('./inc/db/profile.php');
 	foreach (dbProfile::$pv_grupy as $grupa)
 	{
-		if ($grupa == 'w puli')
+		if ($grupa == 'w puli' || $grupa == 'robocza')
 		{
 			continue;
 		}
