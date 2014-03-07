@@ -1,13 +1,14 @@
 <div id="dane_kontaktowe_container">
 	<?php
 			foreach($tplData['personal'] as $i=>&$row) {
-				$row['dane kontaktowe'] = "<span class='dane' style='display:none'>{$row['e_mail']}, {$row['nr_tel']}</span>";
-				unset($row['e_mail']);
-				unset($row['nr_tel']);
+				$row['e_mail'] = "<span class='dane' style='display:none'>{$row['e_mail']}</span>";
+				$row['nr_tel'] = "<span class='dane' style='display:none'>{$row['nr_tel']}</span>";
 			}
 			ModuleTemplate::printArray($tplData['personal'],
 					array(
 						'nazwisko_imie'=>'nazwisko, imię',
+						'e_mail'=>'e-mail',
+						'nr_tel'=>'telefon',
 					)
 			);
 	?>
