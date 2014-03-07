@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="197.81757"
+     inkscape:cx="101.03186"
      inkscape:cy="1014.0831"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -52,6 +52,16 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:none"
+       id="rect3009"
+       width="128"
+       height="128"
+       x="145.19009"
+       y="3.647897"
+       inkscape:export-filename="logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <path
        style="fill:#1a1a1a;stroke:#000000;stroke-width:0.53862107px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 48.91293,7.9827836 9.4515503,27.713472 48.837881,47.444166 29.18224,27.713472 z"
@@ -75,8 +85,9 @@
     <g
        id="g3187"
        inkscape:export-filename="logo.png"
-       inkscape:export-xdpi="49.709999"
-       inkscape:export-ydpi="49.709999">
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       transform="matrix(0.83942004,0,0,0.83942004,33.798017,14.240541)">
       <g
          transform="translate(-15.765048,-16.158086)"
          id="g3151">
