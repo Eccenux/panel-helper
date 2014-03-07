@@ -262,8 +262,14 @@ abstract class dbBaseClass
 	 *	array('<=', '10') is understood as: `column <= '10'`
 	 *	etc...
 	 *  </pre>
-	 *	For the 'IN' operator the value will be treated as a simple CSV (separates made of a comma only) or an array.<br>
-	 *	Characters allowed for operators are: [<>=!] and [RLIKE], [IN], IS, IS NOT (last to will ignore value and assume it to be NULL)
+	 *	For the 'IN' operator the value will be treated as a simple CSV (separates made of a comma only) or an array.
+	 *  <pre>
+	 *  Example (both have same effect):
+	 *	array('IN', '1,2,3')
+	 *	array('IN', array(1,2,3))
+	 *  NOTE! In both cases the values are preparaed acording to standard rules (i.e. escaped or cast to int).
+	 *  </pre>
+	 *	Characters allowed for operators are: [<>=!] and [RLIKE], IN, NOT IN, IS, IS NOT (last to will ignore value and assume it to be NULL)
 	 * @param array $pv_excludedColumns [optional] An array of columns (aliased) to be excluded in the results.
 	 * @param bool $pv_areConstraintsPrecise [optional] Use instead os adding LIKE operator for every value.
 	 *	When false it's like setting "LIKE" as a default operator (otherwise equality is default).
@@ -286,7 +292,7 @@ abstract class dbBaseClass
 				if (is_array($pv_val))
 				{
 					// skip if incorrect
-					if (!isset($pv_val[0]) || !isset($pv_val[1]) || !preg_match('#^([<>=!RLIKEN ]+|IS|IS NOT)$#', $pv_val[0]))
+					if (!isset($pv_val[0]) || !isset($pv_val[1]) || !preg_match('#^([<>=!RLIKE ]+|IN|NOT IN|IS|IS NOT)$#', $pv_val[0]))
 					{
 						continue;
 					}
@@ -294,7 +300,7 @@ abstract class dbBaseClass
 					$pv_val = $pv_val[1];
 				}
 				// prepare
-				if ($pv_sign == 'IN')
+				if ($pv_sign == 'IN' || $pv_sign == 'NOT IN')
 				{
 					$pv_val = $this->pf_prepareArrayValue ($pv_key, $pv_val);
 				}
@@ -306,7 +312,7 @@ abstract class dbBaseClass
 				// set
 				if ($pv_areConstraintsPrecise)
 				{
-					if ($pv_sign == 'IN')
+					if ($pv_sign == 'IN' || $pv_sign == 'NOT IN')
 					{
 						$pv_ret_arr[] = $pv_column.' '.$pv_sign.' ('.$pv_val.')';
 					}
