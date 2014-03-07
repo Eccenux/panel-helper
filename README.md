@@ -1,7 +1,7 @@
 Panel Helper
 ============
 
-Dokumentacja techniczna do systemu pomocniczego wyłaniania panelu obywatelskiego - zaczynamy od Gdańska.
+Panel Helper, to system pomocniczy do wyłaniania panelu obywatelskiego - zaczynamy od Gdańska.
 
 Założenia
 ---------
@@ -9,7 +9,7 @@ Założenia
 Założenie podstawowe:
 
 * System ma zapewniać rozłożenie głosów zgodne z rzeczywistości, a jednocześnie pozwolić na uniknięcie stronniczości wyboru.
-* Ankiety i zbieranie danych to osobny system. Można użyć nawet ankiet dostępnych w ramach Google Docs. Wstępną analizę rozkładu danych można wykonać wówczas bezpośrednio za pomocą [GoogleFormAnalysis](https://github.com/Eccenux/GoogleFormAnalysis).
+* Ankiety i zbieranie danych to osobny system. Można użyć nawet ankiet dostępnych w ramach Google Docs. Natomiast analizę rozkładu statystycznego można wykonać za pomocą [GoogleFormAnalysis](https://github.com/Eccenux/GoogleFormAnalysis).
 * System ma wspierać losowanie, ale nie może go zastąpić. W szczególności samo losowanie jest oparte o rzut fizycznymi kostkami.
 
 ### Ankiety i zbieranie danych ###
@@ -41,34 +41,45 @@ Elementy wspomagania, czyli przebieg losowania z punktu widzenia kolejnych krok�
 
 Przygotowanie umożliwia szybkie przeprowadzenie próbnego głosowania i dobranie odpowiednich parametrów, żeby wybór był w ogóle możliwy. Gdyby losowanie następowało ze wszystkich (większości) mieszkańców, to ten krok byłby zbędny.
 
-* System prezentuje dwie wizualizacje (dla porównania):
+1. System prezentuje dwie wizualizacje (dla porównania):
 	* Teoretycznego rozkładu (opracowanego na podstawie statystyk).
-	* Generowanie rzeczywistego rozkładu (ankietowanych).
-* Operator wprowadza maksymalne odchylenia dla każdego kryterium.
-* Przykładowe kryteria wyboru odchyleń od teoretycznego rozkładu:
+	* Rzeczywistego rozkładu (z danych profilowych z ankiet).
+2. Operator wprowadza maksymalne odchylenia dla każdego kryterium.
+3. Przykładowe kryteria wyboru odchyleń od teoretycznego rozkładu:
 	* Jeśli zgłosi się mało osób z dziećmi, to dopuszczana jest możliwość rezygnacji z tego kryterium.
 	* Jeśli rozkład wiekowy zgłoszonych będzie znacząco inny niż teoretyczny, to dopuszczany będzie wybór osoby +/- 5 lat poza granice danej grupy wiekowej.
-* System wykonuje 3 losowania testowe, które mają wykazać, na ile sprawdzi się procedura przy zadanych odchyleniach.
-* Operator decyduje czy przeprowadzić właściwe losowanie przy zadanych kryteriach.
+4. System wykonuje 3 losowania testowe, które mają wykazać, na ile sprawdzi się procedura przy zadanych odchyleniach.
+5. Operator decyduje czy przeprowadzić właściwe losowanie przy zadanych kryteriach.
+
+Jedynie punkt 1 z powyższych jest obecnie zrealizowany (ze względu małą liczbę zgłoszeń). Operator nie musi też z góry wprowadzać odchyleń.
 
 ### Krok 2. Losowanie grupy głównej i zastępczej ###
 
-1. Operator wprowadza kolejne profile osób - wówczas system:
-	1. Filtruje dane - wyświetla identyfikatory osób na podstawie wprowadzonego profilu.
-	2. W wypadku mniej niż 2 osób pasujących do profilu, system zaproponuje inne osoby (według przyjętych maksymalnych odchyleń). Lista będzie podzielona według kolejnych odchyleń (osobno odchylenie dla mniej ważnego kryterium, osobno drugiego, osobno dla obu jednocześnie).
-	3. Możliwość ponownego losowania profilu w wypadku braku osób spełniających wylosowane kryteria.
-3. Operator zaznaczy wylosowaną osobę - wówczas system:
-	1. Odrzuca osoby z tej samej dzielnicy z głównej puli.
-	2. Pokazuje inne osoby z tej samej dzielnicy spełniające te same kryteria (do losowania osób zastępujących).
-	3. W wypadku mniej niż 2 osób pasujących do profilu, system zaproponuje inne osoby (według przyjętych maksymalnych odchyleń).
-4. Operator zaznaczy wylosowaną osobę zastępującą.
-5. System umożliwia zaznaczenie kolejnych osób do grupy zastępczej.
-6. Przed wprowadzeniem następnego profilu system pokazuje ile osób należy jeszcze wybrać z każdej grupy.
+1. Operator wprowadza profil jako kryteria wyszukiwania. Operator ma swobodę rezygnacji z dowolnych kryteriów (ignorowania ich).
+2. Wyświetlane są wszystkie dopasowane profile.
+3. Operator może zmienić kryteria lub ponownie wylosować profil w wypadku zbyt małej liczby osób do przeprowadzenia losowania.
+4. Operator przenosi wylosowaną osobę do grupy głównej.
+5. Z tej samej listy losowana jest przynajmniej 1 osoba do grupy zastępczej.
+6. Jeśli dzielnica jest wyczerpana, to pozostałe osoby można przenieść do grupy roboczej.
 
 Dane kontaktowe są widoczne dopiero na koniec i tylko dla operatora. Jedynie dana osoba może zweryfikować kiedy została wylosowana (zna swój identyfikator).
-
-Do publicznej wiadomości podawana jest lista imion i nazwisk posortowana alfabetycznie.
 
 ### Krok 3. Losowanie grupy rezerwowej ###
 
 Z punktu widzenia systemu jedną różnicą jest kwestia dzielnic. Operator losuje i wpisuje profile z uwzględnieniem dzielnicy. System umożliwia zatem także przefiltrowanie od razu do wybranej dzielnicy. 
+
+### Krok 4. Wyniki ###
+
+1. System jest przełączany w tryb wyników. Blokowana jest możliwość zmiany grupy i staje się możliwe wyświetlenie listy wylosowanych.
+2. Do publicznej wiadomości podawana jest lista imion i nazwisk posortowana alfabetycznie.
+3. Operator ma możliwość podejrzenia danych kontaktowych tych osób, aby powiadomić ich i upewnić się, że będą na spotkaniach. 
+4. Istnieje możliwość wyświetlenia statystyk dla poszczególnych grup (sprawdzenia ostatecznego rozkładu).
+
+Plany na przyszłość
+-------------------
+
+1. Możliwość zmiany trybu z losowania na wyniki przez administratora.
+2. Możliwość zmiany grupy dla wielu osób jednocześnie (aby przenieść masowo do grupy roboczej).
+3. Możliwość resetowania stanu przez administratora (przeniesienie wszystkich puli).
+4. Śledzenie zmian grupy w historii zmian i wyświetlanie tej historii w celu sprawdzenia prawidłowości losowania.
+5. Automatyczna symulacja losowania przy określonych odchyleniach.
