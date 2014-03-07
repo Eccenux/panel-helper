@@ -4,11 +4,11 @@
 	$pv_menuItem->order = 3;
 	if ($configHelper->panel_stage == 'draw')
 	{
-		$pv_menuItem->users = '[locked]';
+		$pv_menuItem->users = 'admin';
 	}
 	else
 	{
-		$pv_menuItem->users = 'anon,admin,maciej.j';
+		$pv_menuItem->users = 'anon,admin,maciej.j,marcin.g';
 	}
 	
 	require_once ('./inc/db/profile.php');
