@@ -9,11 +9,24 @@
 	// Przetwarzanie danych
 	//
 	$tplData = array();
+
+	// dane użytkownika
+	$tplData['prev'] = array();
+	$pv_choices = array('grupa');
+	foreach ($pv_choices as $choice)
+	{
+		$tplData['prev'][$choice] = (!empty($_POST[$choice])) ? $_POST[$choice] : '';
+	}
+	if (empty($tplData['prev']['grupa']))
+	{
+		$tplData['prev']['grupa'] = array();
+	}
+
 	// filtrowanie po grupie
 	$pv_ograniczeniaStats = array();
-	if (!empty($pv_controller->action))
+	if (!empty($tplData['prev']['grupa']))
 	{
-		$pv_ograniczeniaStats['grupa'] = $pv_controller->action;
+		$pv_ograniczeniaStats['grupa'] = array('IN', $tplData['prev']['grupa']);
 	}
 	// statystyki
 	$tplData['stats'] = array();
