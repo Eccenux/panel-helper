@@ -5,6 +5,11 @@
 	require_once ('./inc/db/profile.php');
 	$dbProfile = new dbProfile();
 
+	if ($configHelper->panel_stage != 'draw')
+	{
+		$pv_controller->action = 'end';
+	}
+
 	//
 	// Przetwarzanie danych
 	//
@@ -25,6 +30,9 @@
 			{
 				$pv_controller->tpl->message = 'Błąd!';
 			}
+		break;
+		case 'end':
+				$pv_controller->tpl->message = 'Losowanie zakończone';
 		break;
 		default:
 				$pv_controller->tpl->message = 'Nie używaj bezpośrednio';

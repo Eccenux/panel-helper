@@ -2,7 +2,14 @@
 	/* @var $pv_menuItem MenuItem */
 	$pv_menuItem->title = 'Listowanie';
 	$pv_menuItem->order = 3;
-	$pv_menuItem->users = 'anon,maciej.j,operator';
+	if ($configHelper->panel_stage == 'draw')
+	{
+		$pv_menuItem->users = '[locked]';
+	}
+	else
+	{
+		$pv_menuItem->users = 'anon,admin,maciej.j';
+	}
 	
 	require_once ('./inc/db/profile.php');
 	foreach (dbProfile::$pv_grupy as $grupa)
