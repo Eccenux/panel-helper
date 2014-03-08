@@ -36,7 +36,15 @@
 	$dbProfile->pf_getStats($tplData['stats']['wiek'], 'wiek', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['dzieci'], 'dzieci', $pv_ograniczeniaStats);
 
-	$pv_controller->tpl->file = 'stats.tpl.php';
+	switch ($pv_controller->action)
+	{
+		case 'wykresy':
+			$pv_controller->tpl->file = 'charts.tpl.php';
+		break;
+		default:
+			$pv_controller->tpl->file = 'stats.tpl.php';
+		break;
+	}
 	$pv_controller->tpl->data = $tplData;
 
 	//
