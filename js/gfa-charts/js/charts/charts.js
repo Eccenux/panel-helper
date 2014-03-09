@@ -162,6 +162,11 @@ window.charts = (function(AmCharts, colorGenerator){
 			chart.startDuration = 0;
 			chart.rotate = true;
 
+			// value-axis
+			var valueAxis = new AmCharts.ValueAxis();
+			valueAxis.minimum = 0;
+			chart.addValueAxis(valueAxis);
+
 			// column graph
 			var graph = new AmCharts.AmGraph();
 			graph.type = "column";
