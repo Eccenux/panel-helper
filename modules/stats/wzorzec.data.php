@@ -44,12 +44,12 @@ $pv_wzorzecData = array(
 	),
 	"dzieci" => array(
 		array (
-			"title" => "nie mam",
-			"value" => 16,
-		),
-		array (
 			"title" => "mam",
 			"value" => 24,
+		),
+		array (
+			"title" => "nie mam",
+			"value" => 16,
 		),
 	),
 );

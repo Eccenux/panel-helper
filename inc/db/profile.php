@@ -53,13 +53,13 @@ class dbProfile extends dbBaseClass
 			FROM profile
 			WHERE {pv_constraints|(1)}
 			GROUP BY wyksztalcenie
-			ORDER BY 2, 1',
+			ORDER BY 1, 2',
 		'plec' =>
 			'SELECT plec as `płeć`, count(plec) as licznik
 			FROM profile
 			WHERE {pv_constraints|(1)}
 			GROUP BY plec
-			ORDER BY 2, 1',
+			ORDER BY 1, 2',
 		'wiek' =>
 			'
 			(
@@ -91,7 +91,7 @@ class dbProfile extends dbBaseClass
 			FROM profile
 			WHERE {pv_constraints|(1)}
 			GROUP BY dzieci
-			ORDER BY 2, 1',
+			ORDER BY 1, 2',
 	);
 
 	/**
