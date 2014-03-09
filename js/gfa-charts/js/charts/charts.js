@@ -151,8 +151,9 @@ window.charts = (function(AmCharts, colorGenerator){
 		 *
 		 * @param {Array} chartData [{title:"...", value:123}, ...]
 		 * @param {String} containerId Container for the chart.
+		 * @param {Number} maximum Optional, forced maximum on value axis.
 		 */
-		this.bar = function(chartData, containerId) {
+		this.bar = function(chartData, containerId, maximum) {
 			// SERIAL CHART
 			var chart = new AmCharts.AmSerialChart();
 			chart.pathToImages = "js/charts/amcharts/images/";
@@ -160,11 +161,15 @@ window.charts = (function(AmCharts, colorGenerator){
 			chart.categoryField = "title";
 			chart.colorField = "color";
 			chart.startDuration = 0;
-			chart.rotate = true;
+			chart.rotate = true;https://www.youtube.com/watch?v=Z8OuzzFFWoU#t=51
+
 
 			// value-axis
 			var valueAxis = new AmCharts.ValueAxis();
 			valueAxis.minimum = 0;
+			if (typeof(maximum) == 'number') {
+				valueAxis.maximum = maximum;
+			}
 			chart.addValueAxis(valueAxis);
 
 			// column graph
