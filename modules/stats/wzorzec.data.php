@@ -16,12 +16,12 @@ $pv_wzorzecData = array(
 	),
 	"plec" => array(
 		array (
-			"title" => "mężczyzna",
-			"value" => 19,
-		),
-		array (
 			"title" => "kobieta",
 			"value" => 21,
+		),
+		array (
+			"title" => "mężczyzna",
+			"value" => 19,
 		),
 	),
 	"wiek" => array(
