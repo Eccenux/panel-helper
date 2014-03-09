@@ -2,6 +2,44 @@
 	$currentRoot = dirname(__FILE__);
 	require_once $currentRoot.'/filter.tpl.php';
 	require_once $currentRoot.'/wzorzec.data.php';
+	$pv_max = array();
+	if (!function_exists('array_column')) {
+		function array_column($input, $columnKey, $indexKey = null) {
+			$result = array();
+
+			if (null === $indexKey) {
+				if (null === $columnKey) {
+					// trigger_error('What are you doing? Use array_values() instead!', E_USER_NOTICE);
+					$result = array_values($input);
+				}
+				else {
+					foreach ($input as $row) {
+						if (isset($row[$columnKey])) {
+							$result[] = $row[$columnKey];
+						}
+					}
+				}
+			}
+			else {
+				if (null === $columnKey) {
+					foreach ($input as $row) {
+						if (isset($row[$indexKey])) {
+							$result[$row[$indexKey]] = $row;
+						}
+					}
+				}
+				else {
+					foreach ($input as $row) {
+						if (isset($row[$indexKey]) && isset($row[$columnKey])) {
+							$result[$row[$indexKey]] = $row[$columnKey];
+						}
+					}
+				}
+			}
+
+			return $result;
+		}
+	}
 ?>
 
 <!-- base libraries -->
@@ -24,6 +62,7 @@
 		{
 			if ($statName != 'dzielnice')
 			{
+				$pv_max[$statName] = max(array_column($stats, 'licznik'));
 				echo "<div id='chart-container-$statName' style='float:left; width:270px; height:200px;'></div>";
 			}
 			if (empty($stats)) {
@@ -39,6 +78,8 @@
 	<?php
 		foreach($pv_wzorzecData as $statName=>$stats)
 		{
+			$pv_max_tmp = max(array_column($stats, 'value'));
+			$pv_max[$statName] = max($pv_max[$statName], $pv_max_tmp);
 			echo "<div id='chart-container-wzorzec-$statName' style='float:left; width:270px; height:200px;'></div>";
 		}
 	?>
@@ -63,14 +104,14 @@
 			}
 			else
 			{
-				echo "\ncharts.bar(chartData, 'chart-container-$statName');";
+				echo "\ncharts.bar(chartData, 'chart-container-$statName', {$pv_max[$statName]});";
 			}
 		}
 	?>
 	<?php
 		foreach($pv_wzorzecData as $statName=>$chartData) {
 			echo "\nchartData = ". json_encode($chartData);
-			echo "\ncharts.bar(chartData, 'chart-container-wzorzec-$statName');";
+			echo "\ncharts.bar(chartData, 'chart-container-wzorzec-$statName', {$pv_max[$statName]});";
 		}
 	?>
 </script>
