@@ -60,7 +60,7 @@
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats)
 		{
-			if ($statName != 'dzielnice')
+			if ($statName != 'miejsce')
 			{
 				$pv_max[$statName] = max(array_column($stats, 'licznik'));
 				echo "<div id='chart-container-$statName' style='float:left; width:270px; height:200px;'></div>";
@@ -71,7 +71,7 @@
 		}
 	?>
 	<br clear="all" />
-	<div id='chart-container-dzielnice' style='width:550px; height:600px;'></div>
+	<div id='chart-container-miejsce' style='width:550px; height:600px;'></div>
 </div>
 <div style='float:left; width:570px; margin-left: 2em;'>
 	<h2>Ogólne dane statystyczne</h2>
@@ -98,7 +98,7 @@
 				$chartData[] = array('title'=>$s[0], 'value'=>$s[1]);
 			}
 			echo "\nchartData = ". json_encode($chartData);
-			if ($statName == 'dzielnice')
+			if ($statName == 'miejsce')
 			{
 				echo "\ncharts.bar(chartData, 'chart-container-$statName');";
 			}

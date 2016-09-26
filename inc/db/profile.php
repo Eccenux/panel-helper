@@ -25,13 +25,11 @@ class dbProfile extends dbBaseClass
 		'ankieta_id' => 'ankieta_id',
 		'grupa' => 'grupa',
 		
-		'ulica' => 'ulica',
-		'dzielnica' => 'dzielnica',
+		'miejsce' => 'miejsce',
 		'plec' => 'plec',
 		'rok' => 'rok',
-		'wiek' => '2014 - rok',
+		'wiek' => '2016 - rok',
 		'wyksztalcenie' => 'wyksztalcenie',
-		'dzieci' => 'dzieci',
 	);
 
 	/**
@@ -42,11 +40,11 @@ class dbProfile extends dbBaseClass
 	 */
 	protected $pv_sqlStatsTpls = array (
 		// Zbiorcze podsumowanie
-		'dzielnice' =>
-			'SELECT dzielnica, count(dzielnica) as licznik
+		'miejsce' =>
+			'SELECT miejsce, count(miejsce) as licznik
 			FROM profile
 			WHERE {pv_constraints|(1)}
-			GROUP BY dzielnica
+			GROUP BY miejsce
 			ORDER BY 1, 2',
 		'wyksztalcenie' =>
 			'SELECT wyksztalcenie, count(wyksztalcenie) as licznik
@@ -85,13 +83,7 @@ class dbProfile extends dbBaseClass
 			FROM profile
 			WHERE {pv_constraints|(1)} AND (2014 - rok >=65)
 			)
-		',
-		'dzieci' =>
-			'SELECT dzieci, count(dzieci) as licznik
-			FROM profile
-			WHERE {pv_constraints|(1)}
-			GROUP BY dzieci
-			ORDER BY 1, 2',
+		'
 	);
 
 	/**

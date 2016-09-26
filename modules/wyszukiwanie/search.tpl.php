@@ -24,13 +24,13 @@
 </style>
 <form id="search" method="post" action="">
 	<div>
-		<label>Dzielnica</label>
+		<label>Miejsce zamieszkania</label>
 		<div>
-			<select name="dzielnica">
+			<select name="miejsce">
 				<option value="">dowolna (&mdash;)</option>
-				<? foreach ($tplData['dzielnice'] as $row) { ?>
-					<option <?=($tplData['prev']['dzielnica']==$row['dzielnica']) ? 'selected' : ''?>
-						value="<?=$row['dzielnica']?>"><?=$row['dzielnica']?> (<?=$row['licznik']?>)</option>
+				<? foreach ($tplData['miejsce'] as $row) { ?>
+					<option <?=($tplData['prev']['miejsce']==$row['miejsce']) ? 'selected' : ''?>
+						value="<?=$row['miejsce']?>"><?=$row['miejsce']?> (<?=$row['licznik']?>)</option>
 				<? } ?>
 			</select>
 		</div>
@@ -103,20 +103,6 @@
 				 break;
 			} ?> (<?=$row['licznik']?>)</label>
 		<? } ?>
-		</div>
-	</div>
-	<div>
-		<label>Dzieci</label>
-		<div class="buttonset">
-			<input type="radio" name="dzieci" id="dzieci_m" value="mam"
-				   <?=($tplData['prev']['dzieci']=='mam') ? 'checked' : ''?>
-				   ><label for="dzieci_m">ma</label>
-			<input type="radio" name="dzieci" id="dzieci_n" value="nie mam"
-				   <?=($tplData['prev']['dzieci']=='nie mam') ? 'checked' : ''?>
-				   ><label for="dzieci_n">nie ma</label>
-			<input type="radio" name="dzieci" id="dzieci_i" value=""
-				   <?=(empty($tplData['prev']['dzieci'])) ? 'checked' : ''?>
-				   ><label for="dzieci_i">ignoruj</label>
 		</div>
 	</div>
 	<input type="submit" name="search" value="Szukaj" />

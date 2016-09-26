@@ -25,11 +25,11 @@
 <li>Operator może zmienić kryteria lub ponownie wylosować profil w wypadku zbyt małej liczby osób do przeprowadzenia losowania.</li>
 <li>Operator przenosi wylosowaną osobę do grupy głównej.</li>
 <li>Z tej samej listy losowana jest przynajmniej 1 osoba do grupy zastępczej.</li>
-<li>Jeśli dzielnica jest wyczerpana, to pozostałe osoby można przenieść do grupy roboczej.</li>
+<li>Jeśli rodzaj miejsca zamieszkania jest wyczerpany, to pozostałe osoby można przenieść do grupy roboczej.</li>
 </ol>
 <p>Dane kontaktowe są widoczne dopiero na koniec i tylko dla operatora. Jedynie dana osoba może zweryfikować kiedy została wylosowana (zna swój identyfikator).</p>
 <h3 id="krok-3-losowanie-grupy-rezerwowej">Krok 3. Losowanie grupy rezerwowej</h3>
-<p>Z punktu widzenia systemu jedną różnicą jest kwestia dzielnic. Operator losuje i wpisuje profile z uwzględnieniem dzielnicy. System umożliwia zatem także przefiltrowanie od razu do wybranej dzielnicy. </p>
+<p>Z punktu widzenia systemu jedną różnicą jest kwestia rodzaju miejsca zamieszkania. Operator losuje i wpisuje profile z uwzględnieniem miesjsca zamieszkania. System umożliwia zatem także przefiltrowanie od razu do wybranego miejsca zamieszkania. </p>
 <h3 id="krok-4-wyniki">Krok 4. Wyniki</h3>
 <ol>
 <li>System jest przełączany w tryb wyników. Blokowana jest możliwość zmiany grupy i staje się możliwe wyświetlenie listy wylosowanych.</li>

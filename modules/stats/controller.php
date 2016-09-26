@@ -30,11 +30,10 @@
 	}
 	// statystyki
 	$tplData['stats'] = array();
-	$dbProfile->pf_getStats($tplData['stats']['dzielnice'], 'dzielnice', $pv_ograniczeniaStats);
+	$dbProfile->pf_getStats($tplData['stats']['miejsce'], 'miejsce', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['wyksztalcenie'], 'wyksztalcenie', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['plec'], 'plec', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['wiek'], 'wiek', $pv_ograniczeniaStats);
-	$dbProfile->pf_getStats($tplData['stats']['dzieci'], 'dzieci', $pv_ograniczeniaStats);
 
 	switch ($pv_controller->action)
 	{

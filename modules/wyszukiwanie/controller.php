@@ -15,11 +15,11 @@
 	{
 		$pv_ograniczeniaStats['grupa'] = $pv_controller->action;
 	}
-	$dbProfile->pf_getStats($tplData['dzielnice'], 'dzielnice', $pv_ograniczeniaStats);
+	$dbProfile->pf_getStats($tplData['miejsce'], 'miejsce', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['wyksztalcenie'], 'wyksztalcenie', $pv_ograniczeniaStats);
 
 	$tplData['prev'] = array();
-	$pv_choices = array('dzielnica', 'plec', 'wyksztalcenie', 'dzieci', 'wiek_od', 'wiek_do');
+	$pv_choices = array('miejsce', 'plec', 'wyksztalcenie', 'wiek_od', 'wiek_do');
 	foreach ($pv_choices as $choice)
 	{
 		$tplData['prev'][$choice] = (!empty($_POST[$choice])) ? $_POST[$choice] : '';
@@ -31,7 +31,7 @@
 
 	if (!empty($_POST['search']))
 	{
-		$pv_allow = array('dzielnica', 'plec', 'dzieci');
+		$pv_allow = array('miejsce', 'plec');
 		$pv_ograniczenia = array();
 		foreach ($pv_allow as $name)
 		{
@@ -57,7 +57,7 @@
 		}
 		// get
 		$dbProfile->pf_getRecords($tplData['profiles'], $pv_ograniczenia, 
-			array('id', 'ankieta_id', 'dzielnica', 'plec', 'wiek', 'wyksztalcenie', 'dzieci', 'grupa')
+			array('id', 'ankieta_id', 'miejsce', 'plec', 'wiek', 'wyksztalcenie', 'grupa')
 		);
 	}
 	// wiek -> rok
