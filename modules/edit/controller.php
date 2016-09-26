@@ -32,10 +32,12 @@
 			}
 		break;
 		case 'end':
-				$pv_controller->tpl->message = 'Losowanie zakończone';
+			$pv_controller->tpl->setResponseCode(403);
+			$pv_controller->tpl->message = 'Losowanie zakończone';
 		break;
 		default:
-				$pv_controller->tpl->message = 'Nie używaj bezpośrednio';
+			$pv_controller->tpl->setResponseCode(403);
+			$pv_controller->tpl->message = 'Nie używaj bezpośrednio';
 		break;
 	}
 
