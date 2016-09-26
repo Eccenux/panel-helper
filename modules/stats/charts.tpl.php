@@ -1,4 +1,8 @@
 <?php
+	// stat that should have chart below others
+	// (use for large chart or less important stat or something like that)
+	$bottomStat = 'miejsce';
+
 	$currentRoot = dirname(__FILE__);
 	require_once $currentRoot.'/filter.tpl.php';
 	require_once $currentRoot.'/wzorzec.data.php';
@@ -60,9 +64,9 @@
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats)
 		{
-			if ($statName != 'miejsce')
+			$pv_max[$statName] = max(array_column($stats, 'licznik'));
+			if ($statName != $bottomStat)
 			{
-				$pv_max[$statName] = max(array_column($stats, 'licznik'));
 				echo "<div id='chart-container-$statName' style='float:left; width:270px; height:200px;'></div>";
 			}
 			if (empty($stats)) {
@@ -71,7 +75,7 @@
 		}
 	?>
 	<br clear="all" />
-	<div id='chart-container-miejsce' style='width:550px; height:600px;'></div>
+	<div id='chart-container-<?=$bottomStat?>' style='width:550px; height:600px;'></div>
 </div>
 <div style='float:left; width:570px; margin-left: 2em;'>
 	<h2>Ogólne dane statystyczne</h2>
@@ -80,10 +84,14 @@
 		{
 			$pv_max_tmp = max(array_column($stats, 'value'));
 			$pv_max[$statName] = max($pv_max[$statName], $pv_max_tmp);
-			echo "<div id='chart-container-wzorzec-$statName' style='float:left; width:270px; height:200px;'></div>";
+			if ($statName != $bottomStat)
+			{
+				echo "<div id='chart-container-wzorzec-$statName' style='float:left; width:270px; height:200px;'></div>";
+			}
 		}
 	?>
 	<br clear="all" />
+	<div id='chart-container-wzorzec-<?=$bottomStat?>' style='width:550px; height:600px;'></div>
 </div>
 <br clear="all" />
 
@@ -98,14 +106,7 @@
 				$chartData[] = array('title'=>$s[0], 'value'=>$s[1]);
 			}
 			echo "\nchartData = ". json_encode($chartData);
-			if ($statName == 'miejsce')
-			{
-				echo "\ncharts.bar(chartData, 'chart-container-$statName');";
-			}
-			else
-			{
-				echo "\ncharts.bar(chartData, 'chart-container-$statName', {$pv_max[$statName]});";
-			}
+			echo "\ncharts.bar(chartData, 'chart-container-$statName', {$pv_max[$statName]});";
 		}
 	?>
 	<?php
