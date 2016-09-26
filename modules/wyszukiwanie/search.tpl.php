@@ -155,7 +155,9 @@
 				}
 			})
 			.fail(function(ajaxCall) {
-				console.warn(arguments);
+				if (console && console.warn) {
+					console.warn(arguments);
+				}
 				alert("Błąd!\n\n" + ajaxCall.responseText);
 			})
 			;
