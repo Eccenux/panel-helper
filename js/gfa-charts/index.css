@@ -67,8 +67,11 @@ ul.summary-grid > li > span {
 /*
 	groups
 */
+.questions-group {
+	display: flex;
+	flex-wrap: wrap;
+}
 .questions-group [class^=question-] {
-	float : left;
 	box-sizing: border-box;
 	padding-right: 2em;
 }
