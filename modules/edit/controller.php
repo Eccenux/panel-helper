@@ -29,7 +29,8 @@
 			}
 			else
 			{
-				$pv_controller->tpl->message = 'Błąd!';
+				$pv_controller->tpl->setResponseCode(500);
+				$pv_controller->tpl->message = 'Nie udało się zapisać danych!';
 			}
 		break;
 		case 'end':
