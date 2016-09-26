@@ -8,6 +8,13 @@
 var questionsData =
 [
 	{
+		title:"Miejsce zamieszkania"
+		, type: 'select-one'
+		, other: false
+		, options:
+			['Warszawa','miasto','wie\u015b']
+	},
+	{
 		title:"Płeć"
 		, type: 'select-one'
 		, other: false
@@ -33,13 +40,5 @@ var questionsData =
 		["podstawowe"
 		,"średnie"
 		,"wyższe"]
-	},
-	{
-		title:"Dzieci"
-		, type: 'select-one'
-		, other: false
-		, options:
-		["mam"
-		,"nie mam"]
 	}
 ];

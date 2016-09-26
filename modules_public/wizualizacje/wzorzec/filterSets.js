@@ -4,8 +4,7 @@
 var filterSets = {
 	"ogólne" : {
 		questionsGrouppedOrder : [
-			[ 'Płeć', 'Wiek' ],
-			[ 'Wykształcenie', 'Dzieci' ]
+			[ 'Płeć', 'Wiek', 'Wykształcenie', 'Miejsce zamieszkania' ]
 		]
 	}
 };
