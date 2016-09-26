@@ -20,6 +20,7 @@
 			$id = empty($_GET['id']) ? '' : $_GET['id'];
 			if (empty($id))
 			{
+				$pv_controller->tpl->setResponseCode(400);
 				$pv_controller->tpl->message = 'Brak identyfikatora!';
 			}
 			if ($dbProfile->pf_setRecords(array('grupa' => $grupa), array('id' => $id)))
