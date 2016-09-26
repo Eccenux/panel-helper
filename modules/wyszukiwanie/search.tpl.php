@@ -153,7 +153,12 @@
 				if (console && console.log) {
 					console.log("Info:", data, "Id:", profileId);
 				}
-			});
+			})
+			.fail(function(ajaxCall) {
+				console.warn(arguments);
+				alert("Błąd!\n\n" + ajaxCall.responseText);
+			})
+			;
 			e.preventDefault();
 		}
 	);
