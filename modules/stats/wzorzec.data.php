@@ -3,53 +3,57 @@ $pv_wzorzecData = array(
 	"wyksztalcenie" => array(
 		array (
 			"title" => "p",
-			"value" => 20,
+			"value" => 4,
 		),
 		array (
 			"title" => "ś",
-			"value" => 13,
+			"value" => 5,
 		),
 		array (
 			"title" => "w",
-			"value" => 7,
+			"value" => 6,
 		)
 	),
 	"plec" => array(
 		array (
 			"title" => "kobieta",
-			"value" => 21,
+			"value" => 8,
 		),
 		array (
 			"title" => "mężczyzna",
-			"value" => 19,
+			"value" => 7,
 		),
 	),
 	"wiek" => array(
 		array (
 			"title" => "16-24",
-			"value" => 4,
+			"value" => 1,
 		),
 		array (
 			"title" => "25-39",
-			"value" => 12,
+			"value" => 5,
 		),
 		array (
 			"title" => "40-64",
-			"value" => 17,
+			"value" => 6,
 		),
 		array (
 			"title" => "65+",
-			"value" => 7,
+			"value" => 3,
 		)
 	),
-	"dzieci" => array(
+	"miejsce" => array(
 		array (
-			"title" => "mam",
-			"value" => 24,
+			"title" => "Warszawa",
+			"value" => 5,
 		),
 		array (
-			"title" => "nie mam",
-			"value" => 16,
+			"title" => "miasto",
+			"value" => 5,
 		),
+		array (
+			"title" => "wieś",
+			"value" => 5,
+		)
 	),
 );
