@@ -12,7 +12,7 @@ class ConfigHelper
 		switch ($key)
 		{
 			case 'panel_stage':
-				return constant('PANEL_STAGE') == 'draw' ? 'draw' : 'results';
+				return (defined('PANEL_STAGE') && constant('PANEL_STAGE') == 'draw') ? 'draw' : 'results';
 		}
 		return null;
 	}
