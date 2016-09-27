@@ -69,11 +69,6 @@
 	$pv_controller = new ModuleController($moduleName, $moduleAction);
 
 	//
-	// Register visit
-	//
-	VisitLogger::register(array($moduleName, $moduleAction));
-
-	//
 	// Render current module
 	//
 	ob_start();
@@ -82,6 +77,11 @@
 		include($pv_controller->controllerPath);
 	}
 	$pv_page_content = ob_get_clean();
+
+	//
+	// Register visit
+	//
+	VisitLogger::register(array($moduleName, $pv_controller->action));
 
 	//
 	// Raw display mode
