@@ -6,7 +6,7 @@
 		# draw -- searching and editing is accessible.
 		# results -- listing is unlocked, but editing is locked.
 	*/
-	define ('PANEL_STAGE', 'tests');
+	define ('PANEL_STAGE', 'results');
 
 	if ($_SERVER['HTTP_HOST'] != 'localhost') {
 		define ('REQUIRE_SECURE_CONNECTION', true);
