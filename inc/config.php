@@ -8,6 +8,14 @@
 	*/
 	define ('PANEL_STAGE', 'results');
 
+	define ('AUTH_GROUP_OPS', 'admin,maciej.j,marcin.g');
+
 	if ($_SERVER['HTTP_HOST'] != 'localhost') {
 		define ('REQUIRE_SECURE_CONNECTION', true);
 	}
+
+	// fake user while testing
+	if ($_SERVER['HTTP_HOST'] == 'localhost') {
+		$_SERVER['PHP_AUTH_USER'] = 'admin';
+	}
+

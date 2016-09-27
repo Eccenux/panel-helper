@@ -33,6 +33,8 @@
 	}
 	$moduleName = !isset($_GET['mod']) ? '' : $_GET['mod'];
 	$moduleAction = empty($_GET['a']) ? '' : $_GET['a'];
+	// simple HTTP auth
+	$userName = empty($_SERVER['PHP_AUTH_USER']) ? 'anon' : $_SERVER['PHP_AUTH_USER'];
 
 	//
 	// Main menu and names of modules
@@ -43,14 +45,12 @@
 	{
 		$pv_menuItem = new MenuItem($mname);
 		@include('./modules/'.$mname.'/_menu.php');
-		$pv_mainMenu->addItem($pv_menuItem);
+		$pv_mainMenu->addItem($pv_menuItem, $userName);
 	}
 
 	//
 	// Setup current module
 	//
-	// simple HTTP auth
-	$userName = empty($_SERVER['PHP_AUTH_USER']) ? 'anon' : $_SERVER['PHP_AUTH_USER'];
 	if (!$pv_mainMenu->authCheck($moduleName, $userName))
 	{
 		$moduleName = '_main';

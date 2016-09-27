@@ -72,4 +72,23 @@ class MenuItem
 			'title' => $title,
 		);
 	}
+
+	/**
+	 * Check if given user name is authorized to view the menu/module.
+	 *
+	 * @note This does NOT check if user is logged in or anything like that. This just checks settings.
+	 */
+	public function authCheck($userName)
+	{
+		if (is_null($this->users))
+		{
+			return true;
+		}
+		$users = explode(',', $this->users);
+		if (in_array($userName, $users))
+		{
+			return true;
+		}
+		return false;
+	}
 }
