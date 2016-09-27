@@ -41,6 +41,7 @@
 	<div id="container">
 		<div id="header">
 			<div id="logo"></div><p><a href="index.php"><?=$pv_page_title?></a></p>
+			<div id="stage"><?=($configHelper->panel_stage == 'draw') ? 'Etap losowania' : 'Etap wyników' ?></div>
 		</div>
 		<div id="menu">
 			<?=$pv_mainMenu?>
