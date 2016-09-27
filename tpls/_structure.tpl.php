@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-    <? $pv_page_title = htmlspecialchars(empty($pv_page_title) ? 'Panel Helper' : $pv_page_title . ' &bull; Panel Helper');?>
+    <? $pv_page_title = empty($pv_page_title) ? 'Panel Helper' : htmlspecialchars($pv_page_title) . ' &bull; Panel Helper';?>
     <title><?=$pv_page_title?></title>
 	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css">
