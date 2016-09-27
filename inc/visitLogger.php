@@ -42,6 +42,15 @@ class VisitLogger
 	}
 
 	/**
+	 * Less strict URL encoding.
+	 *
+	 * Only makes sure strings are usable, don't obfucate string...
+	 */
+	private static function lightUrlEncode($str)
+	{
+		return preg_replace('#\s#', '%20', $str);
+	}
+	/**
 	 * Encode GET/POST request table.
 	 * @param array $table
 	 */
@@ -53,10 +62,13 @@ class VisitLogger
 		$queryString = "?";
 		foreach ($table as $key => $value)
 		{
+			if (!is_string($value)) {
+				$value = json_encode($value);
+			}
 			if (strlen($value) > self::MAX_REQUEST_VALUE) {
 				$value = substr($value, 0, self::MAX_REQUEST_VALUE - 1) . "…";
 			}
-			$queryString .= rawurlencode($key)."=".rawurlencode($value)."&";
+			$queryString .= self::lightUrlEncode($key)."=".self::lightUrlEncode($value)."&";
 		}
 		return rtrim($queryString, "&");
 	}
