@@ -68,6 +68,9 @@ class MainMenu implements Iterator
 
 	/**
 	 * Get raw (non-html encoded) module URL.
+	 * 
+	 * @note values will be URL-encoded.
+	 *
 	 * @param string $moduleName
 	 * @param string $moduleAction
 	 * @param array $extraParams
@@ -78,11 +81,11 @@ class MainMenu implements Iterator
 		$url = "?mod={$moduleName}";
 		if (!empty($moduleAction))
 		{
-			$url .= "&a={$moduleAction}";
+			$url .= "&a=". rawurlencode($moduleAction);
 		}
 		foreach($extraParams as $k=>$v)
 		{
-			$url .= "&$k=$v";
+			$url .= "&". rawurlencode($k) ."=". rawurlencode($v);
 		}
 		return $url;
 	}
