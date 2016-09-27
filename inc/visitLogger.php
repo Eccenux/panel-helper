@@ -65,7 +65,7 @@ class VisitLogger
 	 * Gather visit data.
 	 * @return array
 	 */
-	public static function gatherData()
+	public static function gatherData($extraData=array())
 	{
 		$data = array();
 		// dt
@@ -78,6 +78,11 @@ class VisitLogger
 		$data[] = self::baseUrl();
 		// script
 		$data[] = $_SERVER["SCRIPT_NAME"];
+		// extra visit info
+		foreach ($extraData as $value)
+		{
+			$data[] = $value;
+		}
 		// GET/POST
 		$data[] = 'GET'.self::encodeRequest($_GET);
 		$data[] = 'POST'.self::encodeRequest($_POST);
@@ -86,10 +91,12 @@ class VisitLogger
 
 	/**
 	 * Register the visit.
+	 *
+	 * @param array $extraData Additional vist data. E.g. module choosen, fail reason...
 	 */
-	public static function register()
+	public static function register($extraData=array())
 	{
-		$info = implode(self::SEPARATOR, self::gatherData());
+		$info = implode(self::SEPARATOR, self::gatherData($extraData));
 		file_put_contents(self::FILE_PATH, $info."\n", FILE_APPEND);
 	}
 }

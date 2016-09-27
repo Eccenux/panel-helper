@@ -24,11 +24,6 @@
 	require_once './inc/visitLogger.php';
 
 	//
-	// Register visit
-	//
-	VisitLogger::register();
-
-	//
 	// Display mode and other params
 	//
 	$isJustContentMode = false;
@@ -72,6 +67,11 @@
 		$moduleName = '_main';
 	}
 	$pv_controller = new ModuleController($moduleName, $moduleAction);
+
+	//
+	// Register visit
+	//
+	VisitLogger::register(array($moduleName, $moduleAction));
 
 	//
 	// Render current module
