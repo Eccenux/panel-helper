@@ -6,9 +6,9 @@
 	{
 		$pv_menuItem->users = 'admin';
 	}
-	else
+	else if ($configHelper->panel_stage != 'tests')
 	{
-		$pv_menuItem->users = 'anon,admin,maciej.j,marcin.g';
+		$pv_menuItem->users = 'admin,maciej.j,marcin.g';
 	}
 	
 	require_once ('./inc/db/profile.php');

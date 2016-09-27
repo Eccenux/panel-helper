@@ -5,7 +5,7 @@
 	require_once ('./inc/db/profile.php');
 	$dbProfile = new dbProfile();
 
-	if ($configHelper->panel_stage != 'draw')
+	if ($configHelper->panel_stage != 'draw' && $configHelper->panel_stage != 'tests')
 	{
 		$pv_controller->action = 'end';
 	}
