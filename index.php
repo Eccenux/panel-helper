@@ -21,6 +21,13 @@
 	require_once './inc/mainMenu.php';
 	require_once './inc/moduleController.php';
 	require_once './inc/dirHelper.php';
+	require_once './inc/visitLogger.php';
+
+	//
+	// Register visit
+	//
+	$visitLogger = new VisitLogger();
+	$visitLogger->register();
 
 	//
 	// Display mode and other params
@@ -44,7 +51,7 @@
 		@include('./modules/'.$mname.'/_menu.php');
 		$pv_mainMenu->addItem($pv_menuItem);
 	}
-	
+
 	//
 	// Setup current module
 	//
