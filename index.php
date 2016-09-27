@@ -26,8 +26,7 @@
 	//
 	// Register visit
 	//
-	$visitLogger = new VisitLogger();
-	$visitLogger->register();
+	VisitLogger::register();
 
 	//
 	// Display mode and other params
@@ -59,6 +58,11 @@
 	$userName = empty($_SERVER['PHP_AUTH_USER']) ? 'anon' : $_SERVER['PHP_AUTH_USER'];
 	if (!$pv_mainMenu->authCheck($moduleName, $userName))
 	{
+		$moduleName = '_main';
+		$moduleAction = 'auth-fail';
+	}
+	// require HTTPS
+	if ($configHelper->require_secure_connection && !VisitLogger::isSecure()) {
 		$moduleName = '_main';
 		$moduleAction = 'auth-fail';
 	}

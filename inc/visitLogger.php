@@ -17,7 +17,7 @@ class VisitLogger
 	private static function baseUrl($use_forwarded_host = false )
 	{
 		$s = $_SERVER;
-		$ssl      = ( ! empty( $s['HTTPS'] ) && $s['HTTPS'] == 'on' );
+		$ssl      = self::isSecure();
 		$sp       = strtolower( $s['SERVER_PROTOCOL'] );
 		$protocol = substr( $sp, 0, strpos( $sp, '/' ) ) . ( ( $ssl ) ? 's' : '' );
 		$port     = $s['SERVER_PORT'];
@@ -28,6 +28,17 @@ class VisitLogger
 		;
 		$host     = isset( $host ) ? $host : $s['SERVER_NAME'] . $port;
 		return $protocol . '://' . $host;
+	}
+
+	/**
+	 * Check is HTTPS is used.
+	 * @return boolean
+	 */
+	public static function isSecure()
+	{
+		$s = $_SERVER;
+		$ssl      = ( ! empty( $s['HTTPS'] ) && $s['HTTPS'] == 'on' );
+		return $ssl;
 	}
 
 	/**
