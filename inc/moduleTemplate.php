@@ -80,6 +80,20 @@ class ModuleTemplate
 	}
 
 	/**
+	 * Set HTTP response status code.
+	 *
+	 * @param type $httpStatusCode Status to set.
+	 */
+	public function getResponseCode()
+	{
+		if (!function_exists('http_response_code')) {
+			return self::http_response_code_compat();
+		} else {
+			return http_response_code();
+		}
+	}
+
+	/**
 	 * Replacement for `http_response_code`.
 	 *
 	 * `http_response_code` is availbale from PHP 5.4.

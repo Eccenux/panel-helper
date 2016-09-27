@@ -56,6 +56,16 @@ class ModuleController
 	}
 
 	/**
+	 * Get raw (non-html encoded) URL for this module for given action.
+	 * @param string $action
+	 * @param array $extraParams
+	 */
+	public function getRawActionUrl($action, $extraParams=array())
+	{
+		return MainMenu::getRawModuleUrl($this->moduleName, $action, $extraParams);
+	}
+
+	/**
 	 * @param string $moduleName Module name.
 	 * @param string $action Action within module.
 	 */

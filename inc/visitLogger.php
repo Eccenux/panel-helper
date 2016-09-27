@@ -63,9 +63,11 @@ class VisitLogger
 
 	/**
 	 * Gather visit data.
+	 * 
+	 * @param ModuleController $controller The controller.
 	 * @return array
 	 */
-	public static function gatherData($extraData=array())
+	public static function gatherData($controller)
 	{
 		$data = array();
 		// dt
@@ -78,11 +80,10 @@ class VisitLogger
 		$data[] = self::baseUrl();
 		// script
 		$data[] = $_SERVER["SCRIPT_NAME"];
-		// extra visit info
-		foreach ($extraData as $value)
-		{
-			$data[] = $value;
-		}
+		// response code
+		$data[] = $controller->tpl->getResponseCode();
+		// module info
+		$data[] = 'MODULE'.$controller->getRawActionUrl($controller->action);
 		// GET/POST
 		$data[] = 'GET'.self::encodeRequest($_GET);
 		$data[] = 'POST'.self::encodeRequest($_POST);
@@ -92,11 +93,11 @@ class VisitLogger
 	/**
 	 * Register the visit.
 	 *
-	 * @param array $extraData Additional vist data. E.g. module choosen, fail reason...
+	 * @param ModuleController $controller The controller.
 	 */
-	public static function register($extraData=array())
+	public static function register($controller)
 	{
-		$info = implode(self::SEPARATOR, self::gatherData($extraData));
+		$info = implode(self::SEPARATOR, self::gatherData($controller));
 		file_put_contents(self::FILE_PATH, $info."\n", FILE_APPEND);
 	}
 }

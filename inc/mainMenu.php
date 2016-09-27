@@ -55,7 +55,7 @@ class MainMenu implements Iterator
 	}
 
 	/**
-	 * Url helper.
+	 * Get html encoded module URL.
 	 * @param string $moduleName
 	 * @param string $moduleAction
 	 * @param array $extraParams
@@ -63,14 +63,26 @@ class MainMenu implements Iterator
 	 */
 	public static function getModuleUrl($moduleName, $moduleAction='', $extraParams=array())
 	{
+		return htmlspecialchars(self::getRawModuleUrl($moduleName, $moduleAction, $extraParams));
+	}
+
+	/**
+	 * Get raw (non-html encoded) module URL.
+	 * @param string $moduleName
+	 * @param string $moduleAction
+	 * @param array $extraParams
+	 * @return string
+	 */
+	public static function getRawModuleUrl($moduleName, $moduleAction='', $extraParams=array())
+	{
 		$url = "?mod={$moduleName}";
 		if (!empty($moduleAction))
 		{
-			$url .= "&amp;a={$moduleAction}";
+			$url .= "&a={$moduleAction}";
 		}
 		foreach($extraParams as $k=>$v)
 		{
-			$url .= "&amp;$k=$v";
+			$url .= "&$k=$v";
 		}
 		return $url;
 	}

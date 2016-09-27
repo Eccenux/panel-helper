@@ -81,7 +81,7 @@
 	//
 	// Register visit
 	//
-	VisitLogger::register(array($moduleName, $pv_controller->action));
+	VisitLogger::register($pv_controller);
 
 	//
 	// Raw display mode
