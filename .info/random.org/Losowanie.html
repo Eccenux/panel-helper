@@ -42,9 +42,20 @@ randomApi.drawIntegers(1, 6, 2, false);
 	"jsonrpc":"2.0",
 	"result":
 		{
-			// dane odpowiedzi
+			// główne dane odpowiedzi
 			"random":
-				{"method":"generateSignedIntegers","hashedApiKey":"Ebk1QE+s8lM4/lPNsigqJ82Bw5Kq/Ik8+hmXmnatfCb0YPEEBcdoO93I7L4XfAFNn+poZQiQqD5xOxnYynl8MQ==","n":2,"min":1,"max":6,"replacement":false,"base":10,"data":[4,1],"completionTime":"2016-10-04 18:05:35Z","serialNumber":1}
+				{
+					"method":"generateSignedIntegers"
+					,"hashedApiKey":"Ebk1QE+s8lM4/lPNsigqJ82Bw5Kq/Ik8+hmXmnatfCb0YPEEBcdoO93I7L4XfAFNn+poZQiQqD5xOxnYynl8MQ=="
+					,"n":2
+					,"min":1
+					,"max":6
+					,"replacement":false
+					,"base":10
+					,"data":[4,1]
+					,"completionTime":"2016-10-04 18:05:35Z"
+					,"serialNumber":1
+				}
 			// cyfrowy podpis
 			, "signature": 
 				"1F6cvs7ZWAQwzo3rq6PgocA8btWbU4gEiqoxtDnGLojKbL906l0ZOdrKHYtot/H7JgU4myL5lEnnlwvhple1mah4L18lcmB0ZpqYvXqSlFQ3W8/uXTC/zujDnWR5k5vg5B2tSHAzbHILpXJGnnKvMREeewuR5nsaDph4xE3woQbiN6G21U957Po5L/x/bSpFC6wvz7u221rVK3nV8ThPhYF7Pp8vHO7GmJ6YtpJGYHNhJO4OWjB6rzmvL9kOVSQSHhqNqyX3EQ9nPyWG6E3JUOcRszDfI8muDFeCzc5a0mdD481xkfs9EsRwVnhOWFSIFwGxZN56333gS1I59DbgZlDenz7uiiy7DQFLX+xJrcl2p1meFAvq1q4mLkqQ2OefyzvdxDnyQtjcrw5KrMEg+SXtpHVLHv+BGcQmI+IDsZw07biWC+fZj55l8FVDGK4RK5IBPUHjjYp8769QvhImMzusKbNEsFwS6+I55e8AkwkYllIu0bWyjn/wgvDYbnRzpS9Tgs3b9p/TXn0I2JDaAK4Cx/HoKvvvUSre4mCZ5NIrGbv6zCvZARnd1fUoQ1yX42HgU1UzW8oNVoxi5XrZlBXPW476QhW1lVuaenuun/EOAo8xQA3gyv/yoZyDZSPFeJPks/kzFHYRGommcp9Z01/f+bKHIgL9fwHWrVE5tms="
@@ -62,9 +73,18 @@ randomApi.drawIntegers(1, 6, 2, false);
 <form action='https://api.random.org/verify' method='post' target="_blank">
   <input type='hidden' name='format' value='json' />
   <label>Wartość `random` odpowiedzi</label>
-  <textarea name="random" style="width: 50%"
-  >{"method":"generateSignedIntegers","hashedApiKey":"Ebk1QE+s8lM4/lPNsigqJ82Bw5Kq/Ik8+hmXmnatfCb0YPEEBcdoO93I7L4XfAFNn+poZQiQqD5xOxnYynl8MQ==","n":2,"min":1,"max":6,"replacement":false,"base":10,"data":[4,1],"completionTime":"2016-10-04 18:05:35Z","serialNumber":1}
-  </textarea>
+  <textarea name="random" style="width: 50%">{
+	"method":"generateSignedIntegers"
+	,"hashedApiKey":"Ebk1QE+s8lM4/lPNsigqJ82Bw5Kq/Ik8+hmXmnatfCb0YPEEBcdoO93I7L4XfAFNn+poZQiQqD5xOxnYynl8MQ=="
+	,"n":2
+	,"min":1
+	,"max":6
+	,"replacement":false
+	,"base":10
+	,"data":[4,1]
+	,"completionTime":"2016-10-04 18:05:35Z"
+	,"serialNumber":1
+}</textarea>
   <label>Wartość `signature` odpowiedzi</label>
   <textarea name="signature" style="width: 50%"
   >1F6cvs7ZWAQwzo3rq6PgocA8btWbU4gEiqoxtDnGLojKbL906l0ZOdrKHYtot/H7JgU4myL5lEnnlwvhple1mah4L18lcmB0ZpqYvXqSlFQ3W8/uXTC/zujDnWR5k5vg5B2tSHAzbHILpXJGnnKvMREeewuR5nsaDph4xE3woQbiN6G21U957Po5L/x/bSpFC6wvz7u221rVK3nV8ThPhYF7Pp8vHO7GmJ6YtpJGYHNhJO4OWjB6rzmvL9kOVSQSHhqNqyX3EQ9nPyWG6E3JUOcRszDfI8muDFeCzc5a0mdD481xkfs9EsRwVnhOWFSIFwGxZN56333gS1I59DbgZlDenz7uiiy7DQFLX+xJrcl2p1meFAvq1q4mLkqQ2OefyzvdxDnyQtjcrw5KrMEg+SXtpHVLHv+BGcQmI+IDsZw07biWC+fZj55l8FVDGK4RK5IBPUHjjYp8769QvhImMzusKbNEsFwS6+I55e8AkwkYllIu0bWyjn/wgvDYbnRzpS9Tgs3b9p/TXn0I2JDaAK4Cx/HoKvvvUSre4mCZ5NIrGbv6zCvZARnd1fUoQ1yX42HgU1UzW8oNVoxi5XrZlBXPW476QhW1lVuaenuun/EOAo8xQA3gyv/yoZyDZSPFeJPks/kzFHYRGommcp9Z01/f+bKHIgL9fwHWrVE5tms=
