@@ -8,7 +8,12 @@
 
 	<meta name="author" content="Maciej Jaros">
 	
+	<!-- ajax helper -->
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	
+	<!-- syntax highlighter -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 
 	<script src="js/key.js"></script>
 	<script src="js/Losowanie.js"></script>
@@ -18,8 +23,12 @@
 		display: block;
 		font-weight: bold;
 	}
+	pre {
+		white-space: pre-wrap;
+		word-wrap: break-word;
+	}
 	body {
-		font: 12pt Tahoma;
+		font: 10pt Tahoma;
 	}
 	h2 {
 		font-family: serif;
@@ -29,20 +38,19 @@
 <body lang="pl">
 
 <h2>Wykonanie żądania</h2>
-<pre>
+<pre><code class="js">
 // zakres: 1-6 
 // 2 liczby
 // bez powtórzeń
 randomApi.drawIntegers(1, 6, 2, false);
-</pre>
+</code></pre>
 
 <h2>Przykładowa odpowiedź</h2>
-<pre>
-{
+<pre><code class="js">{
 	"jsonrpc":"2.0",
 	"result":
 		{
-			// główne dane odpowiedzi
+			// główne dane odpowiedzi (`data` to wylosowane liczby)
 			"random":
 				{
 					"method":"generateSignedIntegers"
@@ -63,8 +71,7 @@ randomApi.drawIntegers(1, 6, 2, false);
 			, "bitsUsed":5, "bitsLeft":249995, "requestsLeft":999, "advisoryDelay":110
 		}
 	,"id":123
-}
-</pre>
+}</code></pre>
 
 <h2>Sprawdzenie</h2>
 
@@ -92,5 +99,6 @@ randomApi.drawIntegers(1, 6, 2, false);
   <p><input type='submit' value='Sprawdź' /></p>
 </form>
 
+<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
