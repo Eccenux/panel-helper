@@ -7,12 +7,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<meta name="author" content="Maciej Jaros">
+	
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
-	<script type="text/javascript" src="js/key.js"></script>
-	<script type="text/javascript" src="js/Losowanie.js"></script>
+	<script src="js/key.js"></script>
+	<script src="js/Losowanie.js"></script>
+	<style>
+	label {
+		width: 100%;
+		display: block;
+		font-weight: bold;
+	}
+	body {
+		font: 12pt Tahoma;
+	}
+	h2 {
+		font-family: serif;
+	}
+	</style>
 </head>
 <body lang="pl">
-    <!-- content -->
-    Test losowania.
+
+<h2>Wykonanie żądania</h2>
+<pre>
+// zakres: 1-6 
+// 2 liczby
+// bez powtórzeń
+randomApi.drawIntegers(1, 6, 2, false);
+</pre>
+
+<h2>Przykładowa odpowiedź</h2>
+<pre>
+{
+	"jsonrpc":"2.0",
+	"result":
+		{
+			// dane odpowiedzi
+			"random":
+				{"method":"generateSignedIntegers","hashedApiKey":"Ebk1QE+s8lM4/lPNsigqJ82Bw5Kq/Ik8+hmXmnatfCb0YPEEBcdoO93I7L4XfAFNn+poZQiQqD5xOxnYynl8MQ==","n":2,"min":1,"max":6,"replacement":false,"base":10,"data":[4,1],"completionTime":"2016-10-04 18:05:35Z","serialNumber":1}
+			// cyfrowy podpis
+			, "signature": 
+				"1F6cvs7ZWAQwzo3rq6PgocA8btWbU4gEiqoxtDnGLojKbL906l0ZOdrKHYtot/H7JgU4myL5lEnnlwvhple1mah4L18lcmB0ZpqYvXqSlFQ3W8/uXTC/zujDnWR5k5vg5B2tSHAzbHILpXJGnnKvMREeewuR5nsaDph4xE3woQbiN6G21U957Po5L/x/bSpFC6wvz7u221rVK3nV8ThPhYF7Pp8vHO7GmJ6YtpJGYHNhJO4OWjB6rzmvL9kOVSQSHhqNqyX3EQ9nPyWG6E3JUOcRszDfI8muDFeCzc5a0mdD481xkfs9EsRwVnhOWFSIFwGxZN56333gS1I59DbgZlDenz7uiiy7DQFLX+xJrcl2p1meFAvq1q4mLkqQ2OefyzvdxDnyQtjcrw5KrMEg+SXtpHVLHv+BGcQmI+IDsZw07biWC+fZj55l8FVDGK4RK5IBPUHjjYp8769QvhImMzusKbNEsFwS6+I55e8AkwkYllIu0bWyjn/wgvDYbnRzpS9Tgs3b9p/TXn0I2JDaAK4Cx/HoKvvvUSre4mCZ5NIrGbv6zCvZARnd1fUoQ1yX42HgU1UzW8oNVoxi5XrZlBXPW476QhW1lVuaenuun/EOAo8xQA3gyv/yoZyDZSPFeJPks/kzFHYRGommcp9Z01/f+bKHIgL9fwHWrVE5tms="
+			// informacje o abonamencie
+			, "bitsUsed":5, "bitsLeft":249995, "requestsLeft":999, "advisoryDelay":110
+		}
+	,"id":123
+}
+</pre>
+
+<h2>Sprawdzenie</h2>
+
+<p>Każdą odpowiedź można sprawdzić wklejając wartość właściwości `random` oraz `signature` w poniższe pola.</p>
+<p>Sprawdzenia można dokonać analogicznie bezpośrednio na stronie Random.org <a href="https://api.random.org/verify" target="_blank">https://api.random.org/verify</a>.</p>
+<form action='https://api.random.org/verify' method='post' target="_blank">
+  <input type='hidden' name='format' value='json' />
+  <label>Wartość `random` odpowiedzi</label>
+  <textarea name="random" style="width: 50%"
+  >{"method":"generateSignedIntegers","hashedApiKey":"Ebk1QE+s8lM4/lPNsigqJ82Bw5Kq/Ik8+hmXmnatfCb0YPEEBcdoO93I7L4XfAFNn+poZQiQqD5xOxnYynl8MQ==","n":2,"min":1,"max":6,"replacement":false,"base":10,"data":[4,1],"completionTime":"2016-10-04 18:05:35Z","serialNumber":1}
+  </textarea>
+  <label>Wartość `signature` odpowiedzi</label>
+  <textarea name="signature" style="width: 50%"
+  >1F6cvs7ZWAQwzo3rq6PgocA8btWbU4gEiqoxtDnGLojKbL906l0ZOdrKHYtot/H7JgU4myL5lEnnlwvhple1mah4L18lcmB0ZpqYvXqSlFQ3W8/uXTC/zujDnWR5k5vg5B2tSHAzbHILpXJGnnKvMREeewuR5nsaDph4xE3woQbiN6G21U957Po5L/x/bSpFC6wvz7u221rVK3nV8ThPhYF7Pp8vHO7GmJ6YtpJGYHNhJO4OWjB6rzmvL9kOVSQSHhqNqyX3EQ9nPyWG6E3JUOcRszDfI8muDFeCzc5a0mdD481xkfs9EsRwVnhOWFSIFwGxZN56333gS1I59DbgZlDenz7uiiy7DQFLX+xJrcl2p1meFAvq1q4mLkqQ2OefyzvdxDnyQtjcrw5KrMEg+SXtpHVLHv+BGcQmI+IDsZw07biWC+fZj55l8FVDGK4RK5IBPUHjjYp8769QvhImMzusKbNEsFwS6+I55e8AkwkYllIu0bWyjn/wgvDYbnRzpS9Tgs3b9p/TXn0I2JDaAK4Cx/HoKvvvUSre4mCZ5NIrGbv6zCvZARnd1fUoQ1yX42HgU1UzW8oNVoxi5XrZlBXPW476QhW1lVuaenuun/EOAo8xQA3gyv/yoZyDZSPFeJPks/kzFHYRGommcp9Z01/f+bKHIgL9fwHWrVE5tms=
+  </textarea>
+  <p><input type='submit' value='Sprawdź' /></p>
+</form>
+
 </body>
 </html>
