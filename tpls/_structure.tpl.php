@@ -55,6 +55,19 @@
 					break;
 				}
 			?></div>
+			<!-- TogetherJS -->
+			<script>
+			  // TogetherJS configuration
+			  
+			  // click on all browsers
+			  TogetherJSConfig_cloneClicks = 'input.ui-button,#menu a';
+			  // disable audio
+			  TogetherJSConfig_disableWebRTC = true;
+			  // messages to ignore
+			  //TogetherJSConfig_ignoreMessages = ["cursor-update", "keydown", "scroll-update"];
+			</script>
+			<script src="https://togetherjs.com/togetherjs-min.js"></script>
+			<button onclick="TogetherJS(this); return false;">Współdzielenie z TogetherJS</button>
 		</div>
 		<div id="menu">
 			<?=$pv_mainMenu?>
