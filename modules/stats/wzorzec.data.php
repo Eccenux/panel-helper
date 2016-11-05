@@ -1,59 +1,51 @@
 <?php
+// rescale to expected total
+function reScaleData($fraction) {
+	$total = 65;
+	return $fraction * $total;
+}
+
 $pv_wzorzecData = array(
 	"wyksztalcenie" => array(
 		array (
 			"title" => "p",
-			"value" => 4,
+			"value" => reScaleData(20/40),
 		),
 		array (
 			"title" => "ś",
-			"value" => 5,
+			"value" => reScaleData(13/40),
 		),
 		array (
 			"title" => "w",
-			"value" => 6,
+			"value" => reScaleData(7/40),
 		)
 	),
 	"plec" => array(
 		array (
 			"title" => "kobieta",
-			"value" => 8,
+			"value" => reScaleData(21/40),
 		),
 		array (
 			"title" => "mężczyzna",
-			"value" => 7,
+			"value" => reScaleData(19/40),
 		),
 	),
 	"wiek" => array(
 		array (
 			"title" => "16-24",
-			"value" => 1,
+			"value" => reScaleData(4/40),
 		),
 		array (
 			"title" => "25-39",
-			"value" => 5,
+			"value" => reScaleData(12/40),
 		),
 		array (
 			"title" => "40-64",
-			"value" => 6,
+			"value" => reScaleData(17/40),
 		),
 		array (
 			"title" => "65+",
-			"value" => 3,
-		)
-	),
-	"miejsce" => array(
-		array (
-			"title" => "Warszawa",
-			"value" => 5,
-		),
-		array (
-			"title" => "miasto",
-			"value" => 5,
-		),
-		array (
-			"title" => "wieś",
-			"value" => 5,
+			"value" => reScaleData(7/40),
 		)
 	),
 );
