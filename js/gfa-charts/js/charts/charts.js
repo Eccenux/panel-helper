@@ -156,7 +156,7 @@ window.charts = (function(AmCharts, colorGenerator){
 		this.bar = function(chartData, containerId, maximum) {
 			// SERIAL CHART
 			var chart = new AmCharts.AmSerialChart();
-			chart.pathToImages = "js/charts/amcharts/images/";
+			chart.pathToImages = "js/gfa-charts/js/charts/amcharts/images/";
 			chart.dataProvider = chartData;
 			chart.categoryField = "title";
 			chart.colorField = "color";
