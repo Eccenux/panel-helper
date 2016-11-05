@@ -195,7 +195,7 @@ window.charts = (function(AmCharts, colorGenerator){
 		this.timeline = function(chartData, containerId) {
 			// SERIAL CHART
 			var chart = new AmCharts.AmSerialChart();
-			chart.pathToImages = "js/charts/amcharts/images/";
+			chart.pathToImages = "js/gfa-charts/js/charts/amcharts/images/";
 			chart.dataProvider = chartData;
 			chart.categoryField = "title";
 			chart.startDuration = 0;
