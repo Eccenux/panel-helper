@@ -4,8 +4,8 @@
 var filterSets = {
 	"ogólne" : {
 		questionsGrouppedOrder : [
-			[ 'Płeć', 'Wiek', 'Wykształcenie', 'Miejsce zamieszkania'  ],
-			'Sygnatura czasowa'
+			[ 'Płeć', 'Wiek', 'Wykształcenie', 'Miejsce zamieszkania', 'Sygnatura czasowa' ],
+			
 		]
 	}
 };
