@@ -91,6 +91,6 @@ class dbProfile extends dbBaseClass
 	 * @var array
 	 */
 	public static $pv_grupy = array (
-		'w puli', 'grupa główna', 'zastępcza', 'rezerwowa', 'rezygnacja', 'robocza'
+		'w puli', 'grupa główna', 'zastępcza', 'rezygnacja'
 	);
 }
