@@ -8,7 +8,7 @@
 		$(".tabs").tabs();
 		// Radio/checkboxes/buttons
 		$(".buttonset,[data-type='buttonset']").buttonset();
-		$('[type="radio"],[type="checkbox"],[type="submit"]').button();
+		$('[type="radio"],[type="checkbox"],[type="submit"],[type="button"]').button();
 		// select
 		//$('select').selectmenu();
 	});

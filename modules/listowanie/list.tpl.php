@@ -2,7 +2,7 @@
 	<?php
 			foreach($tplData['personal'] as $i=>&$row) {
 				$row['e_mail'] = "<span class='dane' style='display:none'>{$row['e_mail']}</span>";
-				$row['nr_tel'] = "<span class='dane' style='display:none'>{$row['nr_tel']}</span>";
+				$row['nr_tel'] = "<span class='dane phone' style='display:none'>{$row['nr_tel']}</span>";
 			}
 			ModuleTemplate::printArray($tplData['personal'],
 					array(
@@ -14,8 +14,24 @@
 	?>
 </div>
 <p>
-	<input type="submit" id="dane_kontaktowe_show" value="Pokaż dane kontaktowe" data-value-hide="Schowaj dane kontaktowe">
+	<input type="button" id="dane_kontaktowe_show" value="Pokaż dane kontaktowe" data-value-hide="Schowaj dane kontaktowe">
+	<input type="button" id="dane_kontaktowe_export" value="Eksportuj numery telefonów (CSV)">
 </p>
+<script src="js/export-csv.js"></script>
+<script>
+(function($){
+	var $dane = $('#dane_kontaktowe_container .dane.phone');
+	var $trigger = $('#dane_kontaktowe_export');
+	$trigger.click(function (e)
+	{
+		var phoneNumbers = [];
+		$dane.each(function (){
+			phoneNumbers.push([this.textContent]);
+		});
+		exportToCsv('numery.csv', phoneNumbers);
+	});
+})(jQuery);
+</script>
 <script>
 (function($){
 	var hidden = true;
