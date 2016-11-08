@@ -25,9 +25,9 @@
 	<script type="text/javascript" src="js/gfa-charts/js/chartsRenderer.js"></script>
 
 	<!-- survey specific data -->
-	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>summaryData.js"></script>
-	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>questionsData.js"></script>
-	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>filterSets.js"></script>
+	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>summaryData.js?0003"></script>
+	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>questionsData.js?0003"></script>
+	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>filterSets.js?0003"></script>
 
 	<link rel="stylesheet" href="js/gfa-charts/index.css" />
 </head>
