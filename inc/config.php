@@ -6,7 +6,7 @@
 		# draw -- searching and editing is accessible.
 		# results -- listing is unlocked, but editing is locked.
 	*/
-	define ('PANEL_STAGE', 'tests');
+	define ('PANEL_STAGE', 'draw');
 
 	define ('AUTH_GROUP_OPS', 'admin,maciej.j,marcin.g');
 
