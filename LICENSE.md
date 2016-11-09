@@ -1,5 +1,14 @@
 Dual Licensed: CC-BY or MIT
 
+License exceptions!
+-------------------
+
+Note! Some images and documents might not be licensed under below free licenses.
+
+Specfically:
+* `.info/` -- documents gathered here are mostly from outside sources. You should assume this documents cannot be used freely.
+* `images/` -- all non-standard images are copyrighted. Assume everything except `logo.png` and `icons.svg` cannot be used freely.
+
 CC-BY
 -----
 
