@@ -1,4 +1,12 @@
-<div id="dane_kontaktowe_container">
+<p>
+	Liczba osób w tej kategorii: <?=count($tplData['personal'])?>
+</p>
+<p>
+	<input type="button" id="dane_kontaktowe_show" value="Pokaż dane kontaktowe" data-value-hide="Schowaj dane kontaktowe">
+	<input type="button" id="dane_kontaktowe_export" value="Eksportuj telefony (CSV)">
+	<input type="button" id="dane_id_export" value="Eksportuj id ankiet (CSV)">
+</p>
+<div id="dane_kontaktowe_container" style="float:left;">
 	<?php
 			foreach($tplData['personal'] as $i=>&$row) {
 				$row['e_mail'] = "<span class='dane' style='display:none'>{$row['e_mail']}</span>";
@@ -13,11 +21,34 @@
 			);
 	?>
 </div>
-<p>
-	<input type="button" id="dane_kontaktowe_show" value="Pokaż dane kontaktowe" data-value-hide="Schowaj dane kontaktowe">
-	<input type="button" id="dane_kontaktowe_export" value="Eksportuj numery telefonów (CSV)">
-</p>
+<div id="dane_id_container" style="float:left; margin-left: 5em">
+	<?php
+			ModuleTemplate::printArray($tplData['poll_ids'],
+					array(
+						'ankieta_id'=>'id',
+					)
+			);
+	?>
+</div>
+<br clear="all">
 <script src="js/export-csv.js"></script>
+<script>
+	grupa_ascii = '<?=$tplData['grupa_ascii']?>';
+</script>
+<script>
+(function($){
+	var $dane = $('#dane_id_container td');
+	var $trigger = $('#dane_id_export');
+	$trigger.click(function (e)
+	{
+		var numbers = [];
+		$dane.each(function (){
+			numbers.push([this.textContent]);
+		});
+		exportToCsv(grupa_ascii+'_id.csv', numbers);
+	});
+})(jQuery);
+</script>
 <script>
 (function($){
 	var $dane = $('#dane_kontaktowe_container .dane.phone');
@@ -28,7 +59,7 @@
 		$dane.each(function (){
 			phoneNumbers.push([this.textContent]);
 		});
-		exportToCsv('numery.csv', phoneNumbers);
+		exportToCsv(grupa_ascii+'_numery.csv', phoneNumbers);
 	});
 })(jQuery);
 </script>
