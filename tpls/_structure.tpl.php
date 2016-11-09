@@ -4,18 +4,18 @@
 	<meta charset="UTF-8">
     <? $pv_page_title = empty($pv_page_title) ? 'Panel Helper' : htmlspecialchars($pv_page_title) . ' &bull; Panel Helper';?>
     <title><?=$pv_page_title?></title>
-	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0003">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0003">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0108">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0108">
 	<meta name="author" content="Maciej Jaros">
 	<meta name="copyright" content="Maciej Jaros">
 
 	<!-- jQuery -->
-	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0003" rel="stylesheet">
+	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0108" rel="stylesheet">
 	<script type="text/javascript" src="./js/jquery/js/jquery-min.js"></script>
 	<script type="text/javascript" src="./js/jquery/js/jquery-ui-custom.min.js"></script>
 	
 	<!-- jQuery inits and other global stuff -->
-	<script type="text/javascript" src="./js/prepare-std.js?0003"></script>
+	<script type="text/javascript" src="./js/prepare-std.js?0108"></script>
 
 	<!-- History API: http://balupton.com/projects/jquery-history -->
 	<script type="text/javascript" src="./js/native.history.js"></script>
