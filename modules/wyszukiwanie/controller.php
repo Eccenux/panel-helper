@@ -31,7 +31,8 @@
 
 	if (!empty($_POST['search']))
 	{
-		$pv_allow = array('miejsce', 'plec');
+		// radio or single value
+		$pv_allow = array('miejsce', 'plec', 'wyksztalcenie');
 		$pv_ograniczenia = array();
 		foreach ($pv_allow as $name)
 		{
@@ -45,10 +46,13 @@
 		{
 			$pv_ograniczenia['grupa'] = $pv_controller->action;
 		}
+		// checkbox
+		/**
 		if (!empty($_POST['wyksztalcenie']))
 		{
 			$pv_ograniczenia['wyksztalcenie'] = array('IN', $_POST['wyksztalcenie']);
 		}
+		/**/
 		if (!empty($_POST['wiek_od']) || !empty($_POST['wiek_do']))
 		{
 			$rok = intval(date('Y'));

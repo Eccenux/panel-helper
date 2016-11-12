@@ -89,8 +89,8 @@
 		<label>Wykształcenie</label>
 		<div class="buttonset">
 		<? foreach ($tplData['wyksztalcenie'] as $i=>$row) { ?>
-			<input id="wyksztalcenie_<?=$i?>" type="radio" name="wyksztalcenie[]" value="<?=$row['wyksztalcenie']?>"
-					   <?=in_array($row['wyksztalcenie'], $tplData['prev']['wyksztalcenie']) ? 'checked' : ''?>
+			<input id="wyksztalcenie_<?=$i?>" type="radio" name="wyksztalcenie" value="<?=$row['wyksztalcenie']?>"
+					   <?=($row['wyksztalcenie'] == $tplData['prev']['wyksztalcenie']) ? 'checked' : ''?>
 				   >
 			<label for="wyksztalcenie_<?=$i?>"><?
 			switch ($row['wyksztalcenie'])
@@ -103,7 +103,7 @@
 				 break;
 			} ?> (<?=$row['licznik']?>)</label>
 		<? } ?>
-			<input id="wyksztalcenie_i" type="radio" name="wyksztalcenie[]" value=""
+			<input id="wyksztalcenie_i" type="radio" name="wyksztalcenie" value=""
 					   <?=empty($tplData['prev']['wyksztalcenie']) ? 'checked' : ''?>
 				   >
 			<label for="wyksztalcenie_i">ignoruj  </label>
