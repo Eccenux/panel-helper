@@ -61,7 +61,7 @@
 			<p style="margin:.5em 0 0 0">
 			albo wybierz:
 			<span class="wiek presets">
-				<button>16-24</button>
+				<button>18-24</button>
 				<button>25-39</button>
 				<button>40-64</button>
 				<button>65+</button>
