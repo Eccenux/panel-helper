@@ -11,6 +11,7 @@ var drawHelper = new DrawHelper({
 	integersToDraw: 6
 	, rowNumberCell: 0	// index of the cell that contains row numbers (local)
 	, keyCell: 1		// index of the cell that contains ids (global)
+	, mock: true		// if true then Math.random will be used rather then Random.org API
 	, messages: {'':''
 		//, 'row not found' : 'Błąd! Nie udało się odnaleźć wylosowanej liczby!'
 	}
@@ -56,9 +57,10 @@ DrawHelper.prototype.draw = function(tableBody) {
 		return;
 	}
 
+	var drawFunction = this.config.mock ? 'drawIntegersMock' : 'drawIntegers';
 	// draw numbers and apply to table
 	var _self = this;
-	this.drawIntegers(rows.length).done(function(integersArray){
+	this[drawFunction](rows.length).done(function(integersArray){
 		_self.showOnlyRows(rows, integersArray);
 	});
 };
@@ -89,3 +91,27 @@ DrawHelper.prototype.drawIntegers = function(listLength) {
 
 	return deferred;
 };
+
+/**
+ * [MOCK] Draw integers based on the list length.
+ *
+ * @param {Number} listLength
+ * @returns {jQuery.Deferred}
+ *	on done(integersArray); radom integers
+ *	on fail();
+ */
+DrawHelper.prototype.drawIntegersMock = function(listLength) {
+	var deferred = $.Deferred();
+
+	var randomData = [];
+	for (var i = 0; i < this.config.integersToDraw; i++) {
+		randomData.push(quickRandomInt(1, listLength));
+	}
+	deferred.resolve(randomData);
+
+	return deferred;
+};
+
+function quickRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
