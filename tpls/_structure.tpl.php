@@ -15,8 +15,11 @@
 	<script type="text/javascript" src="./js/jquery/js/jquery-ui-custom.min.js"></script>
 	
 	<!-- jQuery inits and other global stuff -->
+	<script type="text/javascript" src="./js/logger.js"></script>
 	<script type="text/javascript" src="./js/prepare-std.js?0108"></script>
 	<script type="text/javascript" src="./js/sortable.js"></script>
+	<script type="text/javascript" src="./js/random-org/key.js"></script>
+	<script type="text/javascript" src="./js/random-org/RandomApi.js"></script>
 
 	<!-- History API: http://balupton.com/projects/jquery-history -->
 	<script type="text/javascript" src="./js/native.history.js"></script>
