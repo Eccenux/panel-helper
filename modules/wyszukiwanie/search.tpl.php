@@ -3,7 +3,11 @@
 	form#search > div {
 		display: flex;
 		margin:1em 1em 1em 0;
-		border: 1px solid #a8d2e3;
+		padding: 0 0 1em 0;
+		border-bottom: 1px solid #a8d2e3;
+	}
+	form#search > div:last-child {
+		border-bottom-color: #000;
 	}
 	form#search > div > div,
 	form#search > div > label {
@@ -21,8 +25,18 @@
 		vertical-align: top;
 		padding: 1em .5em;
 	}
+
 	form#search [name="search"] {
 		margin-left: 127px;
+		margin-top: .5em;
+		padding: .5em 3em;
+	}
+
+	.search-results {
+		margin-top: 2em;
+		/*border-top: 1px solid #a8d2e3;*/
+	}
+	.search-results [name="draw6"] {
 		margin-top: 1.5em;
 		padding: .5em 3em;
 	}
@@ -114,10 +128,15 @@
 			<label for="wyksztalcenie_i">ignoruj  </label>
 		</div>
 	</div>
-	<input type="submit" name="search" value="Szukaj" />
+	<div><input type="submit" name="search" value="Szukaj" /></div>
 </form>
 
-<div style="margin-top: 2em">
+<div class="search-results">
+
+<?php if (!empty($tplData['profiles']) && count($tplData['profiles']) > 6) { ?>
+	<p><input type="button" name="draw6" value="Wylosuj 6 z listy" onclick="drawHelper.onDraw(this)" /></p>
+<?php } ?>
+
 <?php
 	// quick&evil ;-)
 	$grupaSelectorIndex = 1;

@@ -4,6 +4,7 @@
  * @requires Array.indexOf
  * @requires Logger
  * @requires randomApi
+ * @requires jQuery UI
  *
  * @type DrawHelper
  */
@@ -12,6 +13,7 @@ var drawHelper = new DrawHelper({
 	, rowNumberCell: 0	// index of the cell that contains row numbers (local)
 	, keyCell: 1		// index of the cell that contains ids (global)
 	, mock: true		// if true then Math.random will be used rather then Random.org API
+	, tbodySelector: '#content table tbody'
 	, messages: {'':''
 		//, 'row not found' : 'Błąd! Nie udało się odnaleźć wylosowanej liczby!'
 	}
@@ -28,10 +30,32 @@ DrawHelper.prototype.message = function(code) {
 	alert(txt);
 };
 
+/**
+ * Button click handler.
+ * 
+ * @param {Element} button
+ */
+DrawHelper.prototype.onDraw = function(button) {
+	this.draw(document.querySelector(this.config.tbodySelector));
+	if (button) {
+		//button.setAttribute('disabled', 'disabled');
+		$(button).button("disable");	// jQuery UI way
+	}
+};
+
 DrawHelper.prototype.getTrimmedContents = function(cell) {
 	return cell.textContent.replace(/^\s+/, '').replace(/\s+$/, '');
 };
 
+/**
+ * Show only rows with given numbers.
+ *
+ * Note! Numbers are the ones in the `rowNumberCell` cell. Not indexs.
+ * So sorting the table should not affect this.
+ *
+ * @param {NodeList} rows
+ * @param {Array} visibleRowNumbers
+ */
 DrawHelper.prototype.showOnlyRows = function(rows, visibleRowNumbers) {
 	for (var i = 0; i < rows.length; i++) {
 		var row = rows[i];
