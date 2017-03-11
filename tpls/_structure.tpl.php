@@ -16,6 +16,7 @@
 	
 	<!-- jQuery inits and other global stuff -->
 	<script type="text/javascript" src="./js/prepare-std.js?0108"></script>
+	<script type="text/javascript" src="./js/sortable.js"></script>
 
 	<!-- History API: http://balupton.com/projects/jquery-history -->
 	<script type="text/javascript" src="./js/native.history.js"></script>
