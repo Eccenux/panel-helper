@@ -1,20 +1,24 @@
 <style type="text/css">
 	form#search > div {
-		display: table-row;
+		display: flex;
 		margin:1em 1em 1em 0;
+		border: 1px solid #a8d2e3;
+	}
+	form#search > div > div,
+	form#search > div > label {
+		box-sizing: border-box;
+		margin: 0;
 	}
 	form#search > div > div {
-		display: table-cell;
 		padding: .5em;
+		width: calc(100% - 120px);
 	}
 	form#search > div > label {
 		font-weight:bold;
-		display: table-cell;
 		width: 120px;
 		text-align: right;
 		vertical-align: top;
 		padding: 1em .5em;
-		box-sizing: border-box;
 	}
 	form#search [name="search"] {
 		margin-left: 127px;
@@ -23,18 +27,6 @@
 	}
 </style>
 <form id="search" method="post" action="">
-	<div>
-		<label>Miejsce zamieszkania</label>
-		<div>
-			<select name="miejsce">
-				<option value="">dowolna (&mdash;)</option>
-				<? foreach ($tplData['miejsce'] as $row) { ?>
-					<option <?=($tplData['prev']['miejsce']==$row['miejsce']) ? 'selected' : ''?>
-						value="<?=$row['miejsce']?>"><?=$row['miejsce']?> (<?=$row['licznik']?>)</option>
-				<? } ?>
-			</select>
-		</div>
-	</div>
 	<div>
 		<label>Płeć</label>
 		<div class="buttonset">
@@ -47,6 +39,18 @@
 			<input type="radio" name="plec" id="plec_i" value=""
 				   <?=(empty($tplData['prev']['plec'])) ? 'checked' : ''?>
 				   ><label for="plec_i">ignoruj  </label>
+		</div>
+	</div>
+	<div>
+		<label>Dzielnica</label>
+		<div>
+			<select name="miejsce">
+				<option value="">dowolna (&mdash;)</option>
+				<? foreach ($tplData['miejsce'] as $row) { ?>
+					<option <?=($tplData['prev']['miejsce']==$row['miejsce']) ? 'selected' : ''?>
+						value="<?=$row['miejsce']?>"><?=$row['miejsce']?> (<?=$row['licznik']?>)</option>
+				<? } ?>
+			</select>
 		</div>
 	</div>
 	<div>
