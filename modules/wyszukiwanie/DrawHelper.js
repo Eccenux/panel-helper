@@ -107,10 +107,25 @@ DrawHelper.prototype.drawIntegers = function(listLength) {
 DrawHelper.prototype.drawIntegersMock = function(listLength) {
 	var deferred = $.Deferred();
 
+	var maxRepetitions = this.config.integersToDraw * this.config.integersToDraw;
+
 	var randomData = [];
 	for (var i = 0; i < this.config.integersToDraw; i++) {
-		randomData.push(quickRandomInt(1, listLength));
+		var newInt;
+		var intIsUnique = false;
+		for (var repeat = 0; repeat < maxRepetitions; repeat++) {
+			newInt = quickRandomInt(1, listLength);
+			if (randomData.indexOf(newInt) < 0) {
+				intIsUnique = true;
+				break;
+			}
+		}
+		if (!intIsUnique) {
+			this.LOG.warn('reached maxRepetitions trying to get unique numbers: ', maxRepetitions);
+		}
+		randomData.push(newInt);
 	}
+	this.LOG.info("MOCKED random: ", randomData);
 	deferred.resolve(randomData);
 
 	return deferred;
