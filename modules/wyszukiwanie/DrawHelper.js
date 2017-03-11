@@ -28,12 +28,16 @@ DrawHelper.prototype.message = function(code) {
 	alert(txt);
 };
 
+DrawHelper.prototype.getTrimmedContents = function(cell) {
+	return cell.textContent.replace(/^\s+/, '').replace(/\s+$/, '');
+};
+
 DrawHelper.prototype.showOnlyRows = function(rows, visibleRowNumbers) {
 	for (var i = 0; i < rows.length; i++) {
 		var row = rows[i];
 		var cells = row.querySelectorAll('td');
-		var no = cells[this.config.rowNumberCell];
-		//var id = cells[this.config.keyCell];
+		var no = parseInt(this.getTrimmedContents(cells[this.config.rowNumberCell]));
+		//var id = this.getTrimmedContents(cells[this.config.keyCell]);
 		if (visibleRowNumbers.indexOf(no) >= 0) {
 			$(row).show();
 		}
