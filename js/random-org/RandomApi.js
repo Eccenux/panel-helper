@@ -49,7 +49,14 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 			var responseData = JSON.parse(responseText);
 			LOG.info("response random: ", responseData.result.random);
 			LOG.info("response signature: ", responseData.result.signature);
+			LOG.info("quota information: "
+				,'\n\tbits used: '+ responseData.result.bitsUsed
+				,'\n\tbits left: '+ responseData.result.bitsLeft
+				,'\n\trequests left (absolute): '+ responseData.result.requestsLeft
+				,'\n\tsimilar requests left (bits u./l.): '+ responseData.result.bitsLeft/responseData.result.bitsUsed
+			);
 			deferred.resolve(responseData.result.random, responseData.result.signature, responseData);
+			//deferred.reject("fake-parsererror", responseText);
 		} catch(e) {
 			LOG.error('unable to parse response: ', e, responseText);
 			deferred.reject("parsererror", responseText);
