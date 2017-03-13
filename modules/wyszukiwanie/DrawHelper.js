@@ -12,10 +12,12 @@ var drawHelper = new DrawHelper({
 	integersToDraw: 6
 	, rowNumberCell: 0	// index of the cell that contains row numbers (local)
 	, keyCell: 1		// index of the cell that contains ids (global)
-	, mock: true		// if true then Math.random will be used rather then Random.org API
+	, mock: false		// if true then Math.random will be used rather then Random.org API
 	, tbodySelector: '#content table tbody'
 	, messages: {'':''
-		//, 'row not found' : 'Błąd! Nie udało się odnaleźć wylosowanej liczby!'
+		, 'randomorg failed' : 'Błąd losowania! Losowanie za pomocą Random.org nie powiodłow się.'
+			+'\n\n'
+			+'Sprawdź połączenie z Internetem i spróbuj ponownie. Informacje techniczne znajdują się w konsoli JS.'
 	}
 });
 
@@ -36,11 +38,12 @@ DrawHelper.prototype.message = function(code) {
  * @param {Element} button
  */
 DrawHelper.prototype.onDraw = function(button) {
-	this.draw(document.querySelector(this.config.tbodySelector));
-	if (button) {
-		//button.setAttribute('disabled', 'disabled');
-		$(button).button("disable");	// jQuery UI way
-	}
+	this.draw(document.querySelector(this.config.tbodySelector)).fail(function(){
+		// re-enable upon failure
+		$(button).button("enable");
+	});
+	// disable immediately
+	$(button).button("disable");
 };
 
 DrawHelper.prototype.getTrimmedContents = function(cell) {
@@ -77,6 +80,8 @@ DrawHelper.prototype.showOnlyRows = function(rows, visibleRowNumbers) {
  * @param {Element} tableBody Body of the table to be transformed.
  */
 DrawHelper.prototype.draw = function(tableBody) {
+	var deferred = $.Deferred();
+
 	var rows = tableBody.querySelectorAll('tr');
 	var LOG = this.LOG;
 	// validate
@@ -90,7 +95,12 @@ DrawHelper.prototype.draw = function(tableBody) {
 	var _self = this;
 	this[drawFunction](rows.length).done(function(integersArray){
 		_self.showOnlyRows(rows, integersArray);
+		deferred.resolve();
+	}).fail(function(){
+		deferred.reject();
 	});
+
+	return deferred;
 };
 
 /**
@@ -103,6 +113,7 @@ DrawHelper.prototype.draw = function(tableBody) {
  */
 DrawHelper.prototype.drawIntegers = function(listLength) {
 	var deferred = $.Deferred();
+	var _self = this;
 
 	randomApi.drawIntegers(1, listLength,  this.config.integersToDraw, false)
 		.done(function(random, signature){
@@ -111,7 +122,8 @@ DrawHelper.prototype.drawIntegers = function(listLength) {
 			deferred.resolve(random.data);
 		})
 		.fail(function(){
-			// TODO: show error message
+			// show error message
+			_self.message('randomorg failed');
 			// return error
 			deferred.reject();
 		})
