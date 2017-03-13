@@ -8,6 +8,8 @@
  * @type DrawHistory
  */
 var drawHistory = new DrawHistory({'':''
+	, formSelector : '#content #search'
+	, storageKey : 'DrawHistory'
 	, formDataGetter: function() {
 		var form = document.querySelector('#content #search');
 		return {
@@ -31,17 +33,58 @@ var drawHistory = new DrawHistory({'':''
 			]
 		};
 	}
+	, labels: {'':''
+		, 'time' : 'czas'
+		, 'action-RandomApi' : 'losowanie 6 z listy'
+		, 'action-GroupSet' : 'grupa'
+	}
 	, messages: {'':''
 	}
 });
 
 function DrawHistory(config)
 {
+	var _self = this;
+
 	this.config = config;
 	this.LOG = new Logger('DrawHistory');
+
+	// init store
+	this.store = localforage.createInstance({
+		name: config.storageKey
+	});
+
+	// data from last form submit
+	this.lastFormData = null;
+	$(function(){
+		_self.lastFormData = config.formDataGetter();
+	});
+
+	// the history items
+	this.history = null;
+	this.store.getItem('history', function(value){
+		_self.history = (value === null) ? [] : value;
+	});
 }
 
 DrawHistory.prototype.message = function(code) {
 	var txt = (code in this.config.messages) ? this.config.messages[code] : code;
 	alert(txt);
+};
+
+/**
+ * Save Random.org event to history.
+ */
+DrawHistory.prototype.saveRandomApi = function(result) {
+	var historyItem = {
+		formData : this.lastFormData,
+		action : 'RandomApi',
+		actionData : {
+			random : result.random,
+			signature : result.signature,
+			result : result
+		}
+	};
+	this.history.push(historyItem);
+	this.store.setItem('history', this.history);
 };

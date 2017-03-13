@@ -4,6 +4,7 @@
  * @requires Array.indexOf
  * @requires Logger
  * @requires randomApi
+ * @requires drawHistory
  * @requires jQuery UI
  *
  * @type DrawHelper
@@ -116,8 +117,9 @@ DrawHelper.prototype.drawIntegers = function(listLength) {
 	var _self = this;
 
 	randomApi.drawIntegers(1, listLength,  this.config.integersToDraw, false)
-		.done(function(random, signature){
-			// TODO: save random&signature to local storage
+		.done(function(random, signature, responseData){
+			// save draw results (mainly random&signature) to local storage
+			drawHistory.saveRandomApi(responseData.result);
 			// return value
 			deferred.resolve(random.data);
 		})

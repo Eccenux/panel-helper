@@ -1,6 +1,6 @@
 /**
  * Form value definition helper.
- * @param {Object} config
+ * @param {DrawHistoryValue} config
  */
 function DrawHistoryValue(config) {
 	this.label = '' + config.label;
