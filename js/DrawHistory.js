@@ -62,10 +62,20 @@ function DrawHistory(config)
 
 	// the history items
 	this.history = null;
-	this.store.getItem('history', function(value){
-		_self.history = (value === null) ? [] : value;
+	$(function(){
+		_self.load();
 	});
 }
+
+DrawHistory.prototype.load = function(callback) {
+	var _self = this;
+	this.store.getItem('history').then(function(value){
+		_self.history = (value === null) ? [] : value;
+		if (callback) {
+			callback();
+		}
+	});
+};
 
 DrawHistory.prototype.message = function(code) {
 	var txt = (code in this.config.messages) ? this.config.messages[code] : code;
@@ -74,11 +84,13 @@ DrawHistory.prototype.message = function(code) {
 
 /**
  * Save Random.org event to history.
+ * @param {Object} result Result object from Random.org API
+ * (it's expected to contain at least `random` and `signature`)
  */
 DrawHistory.prototype.saveRandomApi = function(result) {
 	var historyItem = {
 		formData : this.lastFormData,
-		action : 'RandomApi',
+		actionName : 'RandomApi',
 		actionData : {
 			random : result.random,
 			signature : result.signature,
@@ -87,4 +99,25 @@ DrawHistory.prototype.saveRandomApi = function(result) {
 	};
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
+};
+
+/**
+ * Show history.
+ */
+DrawHistory.prototype.render = function(secondRun) {
+	// just to be sure it's loaded
+	var _self = this;
+	if (this.history === null) {
+		if (secondRun) {
+			this.LOG.error('unable to render - loading history failed');
+		}
+		this.load(function(){
+			_self.render(true);
+		});
+	}
+	// render items
+	for (var i = 0; i < this.history.length; i++) {
+		var item = new DrawHistoryItem(this.history[i]);
+		this.LOG.info(item.render());
+	}
 };
