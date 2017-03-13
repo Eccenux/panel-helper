@@ -16,7 +16,9 @@
 	
 	<!-- jQuery inits and other global stuff -->
 	<script type="text/javascript" src="./js/logger.js"></script>
+	<script type="text/javascript" src="./js/localforage.min.js"></script>
 	<script type="text/javascript" src="./js/prepare-std.js?0108"></script>
+	<script type="text/javascript" src="./js/DrawHistory.js"></script>
 	<script type="text/javascript" src="./js/sortable.js"></script>
 	<script type="text/javascript" src="./js/random-org/key.js"></script>
 	<script type="text/javascript" src="./js/random-org/RandomApi.js"></script>

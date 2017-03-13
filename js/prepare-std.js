@@ -1,3 +1,6 @@
+// global log
+var LOG = new Logger('PanelHelper');
+
 (function($)
 {
 	$(function()
