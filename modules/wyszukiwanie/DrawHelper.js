@@ -13,7 +13,7 @@ var drawHelper = new DrawHelper({
 	integersToDraw: 6
 	, rowNumberCell: 0	// index of the cell that contains row numbers (local)
 	, keyCell: 1		// index of the cell that contains ids (global)
-	, mock: false		// if true then Math.random will be used rather then Random.org API
+	, mock: true		// if true then Math.random will be used rather then Random.org API
 	, tbodySelector: '#content table tbody'
 	, messages: {'':''
 		, 'randomorg failed' : 'Błąd losowania! Losowanie za pomocą Random.org nie powiodłow się.'
@@ -44,7 +44,9 @@ DrawHelper.prototype.onDraw = function(button) {
 		$(button).button("enable");
 	});
 	// disable immediately
-	$(button).button("disable");
+	if (!this.config.mock) {
+		$(button).button("disable");
+	}
 };
 
 DrawHelper.prototype.getTrimmedContents = function(cell) {
@@ -65,6 +67,7 @@ DrawHelper.prototype.showOnlyRows = function(rows, visibleRowNumbers) {
 		var row = rows[i];
 		var cells = row.querySelectorAll('td');
 		var no = parseInt(this.getTrimmedContents(cells[this.config.rowNumberCell]));
+		cells[this.config.rowNumberCell].innerHTML = '<sup>('+no+')<sup>';
 		//var id = this.getTrimmedContents(cells[this.config.keyCell]);
 		if (visibleRowNumbers.indexOf(no) >= 0) {
 			$(row).show();
@@ -96,6 +99,7 @@ DrawHelper.prototype.draw = function(tableBody) {
 	var _self = this;
 	this[drawFunction](rows.length).done(function(integersArray){
 		_self.showOnlyRows(rows, integersArray);
+		$(tableBody).addClass('hidden-rows');
 		deferred.resolve();
 	}).fail(function(){
 		deferred.reject();

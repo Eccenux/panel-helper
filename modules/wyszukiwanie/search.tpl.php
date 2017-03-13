@@ -40,6 +40,19 @@
 		margin-top: 1.5em;
 		padding: .5em 3em;
 	}
+
+	table .hidden-rows {
+		counter-reset: hiddenrows;
+	}
+	table .hidden-rows td:first-child sup {
+		color: #777;
+	}
+	table .hidden-rows td:first-child:before {
+		counter-increment: hiddenrows;
+		content: counter(hiddenrows);
+		display: inline-block;
+		padding-right: .2em;
+	}
 </style>
 <form id="search" method="post" action="">
 	<div>
