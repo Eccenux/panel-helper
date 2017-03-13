@@ -48,8 +48,18 @@ function Logger(tag, levels) {
 	this.enabledLevels = {
 		info : true,
 		warn : true,
+		error : true,
+		trace : true
+	};
+	/**
+	 * Use to enable/disable running trace automatically.
+	 */
+	this.traceLevels = {
+		info : false,
+		warn : true,
 		error : true
 	};
+
 	/**
 	 * The tag text.
 	 * @private
@@ -121,6 +131,11 @@ Logger.prototype.isEnabled = function (level) {
 		case 'error':
 			if ('error' in console) {
 				enabled = this.enabledLevels.error;
+			}
+		break;
+		case 'trace':
+			if ('trace' in console) {
+				enabled = this.enabledLevels.trace;
 			}
 		break;
 	}
@@ -201,6 +216,9 @@ Logger.prototype.performance = function (comment) {
 Logger.prototype.info = function () {
 	if (this.isEnabled('info')) {
 		console.log(this._renderArguments(arguments));
+		if (this.traceLevels.info && this.isEnabled('trace')) {
+			console.trace();
+		}
 	}
 };
 
@@ -212,6 +230,9 @@ Logger.prototype.info = function () {
 Logger.prototype.warn = function () {
 	if (this.isEnabled('warn')) {
 		console.warn(this._renderArguments(arguments));
+		if (this.traceLevels.warn && this.isEnabled('trace')) {
+			console.trace();
+		}
 	}
 };
 
@@ -223,5 +244,20 @@ Logger.prototype.warn = function () {
 Logger.prototype.error = function () {
 	if (this.isEnabled('error')) {
 		console.error(this._renderArguments(arguments));
+		if (this.traceLevels.error && this.isEnabled('trace')) {
+			console.trace();
+		}
+	}
+};
+
+/**
+ * Call-stack trace.
+ *
+ * @note Trace does not have arugments.
+ * @note Trace is run automatically upon warn and error.
+ */
+Logger.prototype.trace = function () {
+	if (this.isEnabled('trace')) {
+		console.trace();
 	}
 };
