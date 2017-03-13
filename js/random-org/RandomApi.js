@@ -55,12 +55,13 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 				,'\n\trequests left (absolute): '+ responseData.result.requestsLeft
 				,'\n\tsimilar requests left (bits u./l.): '+ responseData.result.bitsLeft/responseData.result.bitsUsed
 			);
-			deferred.resolve(responseData.result.random, responseData.result.signature, responseData);
-			//deferred.reject("fake-parsererror", responseText);
 		} catch(e) {
-			LOG.error('unable to parse response: ', e, responseText);
+			LOG.error('unable to parse response: ', responseText);
+			LOG.error('error message: ', e.message);
 			deferred.reject("parsererror", responseText);
 		}
+		deferred.resolve(responseData.result.random, responseData.result.signature, responseData);
+		//deferred.reject("fake-parsererror", responseText);
 	}).fail(function(jqXHR, textStatus, errorThrown) {
 		LOG.warn('request failed: ', attributes);
 		deferred.reject(textStatus, errorThrown);
