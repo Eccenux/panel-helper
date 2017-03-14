@@ -124,16 +124,8 @@
 			<input id="wyksztalcenie_<?=$i?>" type="radio" name="wyksztalcenie" value="<?=$row['wyksztalcenie']?>"
 					   <?=($row['wyksztalcenie'] == $tplData['prev']['wyksztalcenie']) ? 'checked' : ''?>
 				   >
-			<label for="wyksztalcenie_<?=$i?>"><?
-			switch ($row['wyksztalcenie'])
-			{
-				 case 'p': echo "podstawowe"; break;
-				 case 's': echo "średnie"; break;
-				 case 'w': echo "wyższe"; break;
-				 default:
-					echo $row['wyksztalcenie'];
-				 break;
-			} ?> (<?=$row['licznik']?>)</label>
+			<label for="wyksztalcenie_<?=$i?>"><?=dbProfile::pf_wyksztalcenieTranslate($row['wyksztalcenie'])?>
+				(<?=$row['licznik']?>)</label>
 		<? } ?>
 			<input id="wyksztalcenie_i" type="radio" name="wyksztalcenie" value=""
 					   <?=empty($tplData['prev']['wyksztalcenie']) ? 'checked' : ''?>
@@ -176,7 +168,15 @@
 			$row['grupa'] = grupaSelector($row['grupa'], $row['id']);
 			unset($row['id']);
 		}
-		ModuleTemplate::printArray($tplData['profiles']);
+		ModuleTemplate::printArray($tplData['profiles'], array(
+			'ankieta_id' => 'ID ankiety',
+			'plec' => 'płeć',
+			'wyksztalcenie' => 'wykształcenie',
+		), array(
+			'wyksztalcenie' => function($value) {
+				return dbProfile::pf_wyksztalcenieTranslate($value);
+			},
+		));
 	}
 ?>
 <script>

@@ -93,4 +93,14 @@ class dbProfile extends dbBaseClass
 	public static $pv_grupy = array (
 		'w puli', 'grupa główna', 'zastępcza', 'rezygnacja'
 	);
+
+	public static function pf_wyksztalcenieTranslate($dbValue) {
+		switch ($dbValue)
+		{
+			 case 'p': return "podstawowe";
+			 case 's': return "średnie";
+			 case 'w': return "wyższe";
+		}
+		return $dbValue;
+	}
 }
