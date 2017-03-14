@@ -60,9 +60,11 @@ DrawHistoryItem.prototype.renderAction = function(actionName, actionData) {
 	html = '<b>'+drawHistory.config.labels['action-'+actionName]+'</b>: ';
 	// render action data
 	if (actionName == 'RandomApi') {
-		html += '<a href="#verify" data-RandomApi-actionData="'+JSON.stringify(actionData).replace(/"/g, "&quot;")+'">'
+		html += '<a href="#verify" data-RandomApi-result="'+JSON.stringify(actionData.result).replace(/"/g, "&quot;")+'">'
 				+drawHistory.config.labels['action-RandomApi-verify']
-			+'</a> ';
+			+'</a>'
+			+' (nr '+actionData.random.serialNumber+')'
+		;
 	} else {
 		html += actionData.grupName
 			+ " (" + drawHistory.config.labels['action-GroupChange-for'] + " " + actionData.registrationId + ")"

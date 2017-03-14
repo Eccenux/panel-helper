@@ -87,6 +87,19 @@ function DrawHistory(config)
 DrawHistory.prototype.show = function() {
 	var html = this.render(this.config.maxItemsRendered);
 	$('.draw-history').html(html);
+	$('.draw-history a[data-RandomApi-result]').click(function(){
+		var $dialog = $('#randomApi-verify-dialog');
+		var result = JSON.parse(this.getAttribute('data-RandomApi-result'));
+		$('[data-id="serialNumber"]', $dialog).text(result.random.serialNumber);
+		$('[data-id="min"]', $dialog).text(result.random.min);
+		$('[data-id="max"]', $dialog).text(result.random.max);
+		$('[data-id="result"]', $dialog).text(result.random.data.join(', '));
+		$('[name="random"]', $dialog).val(JSON.stringify(result.random));
+		$('[name="signature"]', $dialog).val(result.signature);
+		$dialog.dialog({
+			modal: true
+		});
+	});
 };
 
 /**

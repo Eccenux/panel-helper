@@ -76,6 +76,18 @@
 		<div id="footer">
 			<p>Copyright &copy;2014-2016 Maciej Jaros.</p>
 		</div>
+
+		<div id="randomApi-verify-dialog" title="Weryfikacja losowania" style="display: none">
+			<p>Numer kolejny losowania: <span data-id="serialNumber"></span></p>
+			<p>Zakres losowania: <span data-id="min"></span>-<span data-id="max"></span></p>
+			<p>Wylosowane liczby: <span data-id="result"></span></p>
+			<form action='https://api.random.org/verify' method='post' target="_blank">
+				<input type='hidden' name='format' value='json' />
+				<input type='hidden' name='random' value='' />
+				<input type='hidden' name='signature' value='' />
+				<input type='submit' value='Sprawdź na Random.org' />
+			</form>
+		</div>
 	</div>
 	<script>
 		(function($){
