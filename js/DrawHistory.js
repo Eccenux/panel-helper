@@ -63,7 +63,10 @@ function DrawHistory(config)
 	// the history items
 	this.history = null;
 	$(function(){
-		_self.load();
+		_self.load(function(){
+			var html = _self.render();
+			$('.draw-history').html(html);
+		});
 	});
 }
 

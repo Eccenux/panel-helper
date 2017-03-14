@@ -41,6 +41,7 @@
 		padding: .5em 3em;
 	}
 
+	/* style change upon draw6 */
 	table .hidden-rows {
 		counter-reset: hiddenrows;
 	}
@@ -53,7 +54,30 @@
 		display: inline-block;
 		padding-right: .2em;
 	}
+
+	/* draw history */
+	.draw-history-container {
+		float: right;
+		width: content-box;
+		border: 1px solid #a8d2e3;
+		box-sizing: border-box;
+		margin: 0 0 1em 1em;
+	}
+	.draw-history-container h3 {
+		font-size: 100%;
+		margin: 0;
+		padding: .5em;
+		border-bottom: 1px solid #a8d2e3;
+	}
+	.draw-history-container ul {
+		padding: 0 1em 0 2.5em;
+	}
 </style>
+<div class="draw-history-container">
+	<h3>Historia działań</h3>
+	<div class="draw-history">
+	</div>
+</div>
 <form id="search" method="post" action="">
 	<div>
 		<label>Płeć</label>
