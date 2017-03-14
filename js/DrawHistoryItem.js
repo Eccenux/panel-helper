@@ -9,13 +9,13 @@ function DrawHistoryItem(config) {
 	this.actionData = config.actionData;
 
 	this.time = new Date();
-	if (typeof config.time === 'object') {
+	if (typeof config.time === 'object') {	// assuming Date Object
 		this.time = config.time;
 	}
-	if (typeof config.time === 'string') {
+	if (typeof config.time === 'string') {	// assuming ISO or other Date recognized string
 		this.time = new Date(config.time);
 	}
-	if (typeof config.time === 'number') {
+	if (typeof config.time === 'number') {	// assuming UNIX timestamp
 		this.time.setTime(config.time);
 	}
 }
@@ -46,8 +46,8 @@ DrawHistoryItem.prototype.renderForm = function(formData){
 		if (!val.value.length) {
 			continue;
 		}
-		var className = className = (i+1 < formData.values) ? '': 'last';
-		html += "<span class='"+className+"'"
+		var className = (i+1 < formData.values.length) ? '': 'last';
+		html += "<span class='profile-data "+className+"'"
 			+ "title='"+val.label+': '+val.value+"'"
 			+ ">"+val.shortValue+"</span>"
 		;

@@ -72,6 +72,12 @@
 	.draw-history-container ul {
 		padding: 0 1em 0 2.5em;
 	}
+	.draw-history .profile-data:after {
+		content: ", ";
+	}
+	.draw-history .profile-data.last:after {
+		display:none;
+	}
 </style>
 <div class="draw-history-container">
 	<h3>Historia działań</h3>
