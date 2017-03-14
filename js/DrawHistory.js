@@ -10,6 +10,7 @@
 var drawHistory = new DrawHistory({'':''
 	, formSelector : '#content #search'
 	, storageKey : 'DrawHistory'
+	, maxItemsRendered : 6
 	, formDataGetter: function() {
 		var form = document.querySelector('#content #search');
 		return {
@@ -64,7 +65,7 @@ function DrawHistory(config)
 	this.history = null;
 	$(function(){
 		_self.load(function(){
-			var html = _self.render();
+			var html = _self.render(_self.config.maxItemsRendered);
 			$('.draw-history').html(html);
 		});
 	});
@@ -149,10 +150,11 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
  *
  * @note If you don't use callback then there will be no attempt to load data from storage.
  *
+ * @param {Number} maxItems Maximum items to be rendered (oldest items will be skipped).
  * @param {Function} callback Optional callback.
  * @param {Boolean} secondRun If true then this is a second attempt to render history.
  */
-DrawHistory.prototype.render = function(callback, secondRun) {
+DrawHistory.prototype.render = function(maxItems, callback, secondRun) {
 	// just to be sure it's loaded
 	var _self = this;
 	if (this.history === null) {
@@ -169,7 +171,12 @@ DrawHistory.prototype.render = function(callback, secondRun) {
 	}
 	// render items
 	var itemsHtml = [];
-	for (var i = 0; i < this.history.length; i++) {
+	var startItem = 0;
+	if (this.history.length > maxItems) {
+		startItem = this.history.length - maxItems;
+		itemsHtml.push('...');
+	}
+	for (var i = startItem; i < this.history.length; i++) {
 		var item = new DrawHistoryItem(this.history[i]);
 		itemsHtml.push(item.render());
 	}
