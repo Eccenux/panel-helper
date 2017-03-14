@@ -117,6 +117,16 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
 			profileId : profileId
 		}
 	};
+	// replace last if group changes for the same person
+	if (this.history.length) {
+		var lastItem = this.history.pop();
+		if (lastItem.actionName != 'GroupChange'
+			|| lastItem.actionData.profileId != historyItem.actionData.profileId
+		) {
+			this.history.push(lastItem);	// lastItem is different - re-push it
+		}
+	}
+	// save new item
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
 };
