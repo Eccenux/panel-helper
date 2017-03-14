@@ -15,6 +15,9 @@ function DrawHistoryValue(config) {
 DrawHistoryValue.firstLetter = function (value) {
 	return (!value.length) ? "" : value.substr(0, 1) + ".";
 };
+DrawHistoryValue.shortWords = function (value) {
+	return (!value.length) ? "" : value.replace(/[ -.,]+/g, ' ').replace(/([^ ]{2,3})[^ ]*/g, '$1.');
+};
 DrawHistoryValue.range = function (from, to) {
 	if (to.length) {
 		if (!from.length) {

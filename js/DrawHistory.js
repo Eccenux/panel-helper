@@ -31,7 +31,7 @@ var drawHistory = new DrawHistory({'':''
 				}),
 				new DrawHistoryValue({label: 'Dzielnica'
 					, value: form.miejsce.value
-					, shortValue: DrawHistoryValue.firstLetter
+					, shortValue: DrawHistoryValue.shortWords
 				}),
 				new DrawHistoryValue({label: 'Wiek'
 					, value: DrawHistoryValue.range(form.wiek_od.value, form.wiek_do.value)
