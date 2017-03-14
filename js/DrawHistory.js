@@ -36,7 +36,7 @@ var drawHistory = new DrawHistory({'':''
 	, labels: {'':''
 		, 'time' : 'czas'
 		, 'action-RandomApi' : 'losowanie 6 z listy'
-		, 'action-GroupSet' : 'grupa'
+		, 'action-GroupChange' : 'grupa'
 	}
 	, messages: {'':''
 	}
@@ -95,6 +95,26 @@ DrawHistory.prototype.saveRandomApi = function(result) {
 			random : result.random,
 			signature : result.signature,
 			result : result
+		}
+	};
+	this.history.push(historyItem);
+	this.store.setItem('history', this.history);
+};
+
+/**
+ * Save group change event to history.
+ * @param {String} grupName Choosen group.
+ * @param {String} registrationId Human ID.
+ * @param {Number} profileId DB ID.
+ */
+DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profileId) {
+	var historyItem = {
+		formData : this.lastFormData,
+		actionName : 'GroupChange',
+		actionData : {
+			grupName : grupName,
+			registrationId : registrationId,
+			profileId : profileId
 		}
 	};
 	this.history.push(historyItem);

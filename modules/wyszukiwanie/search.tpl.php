@@ -166,6 +166,7 @@
 		foreach($tplData['profiles'] as $i=>&$row) {
 			$row = array('l.p.'=>$i+1) + $row;
 			$row['grupa'] = grupaSelector($row['grupa'], $row['id']);
+			$row['ankieta_id'] = "<span class='profile-id-{$row['id']}'>{$row['ankieta_id']}</span>";
 			unset($row['id']);
 		}
 		ModuleTemplate::printArray($tplData['profiles'], array(
@@ -185,8 +186,9 @@
 	$('.grupa-selectors input').click(
 		function (e) {
 			var profileId = $(this).attr('name').replace(/[^0-9]+([0-9]+).*/, '$1');
+			var grupName = $(this).val();
 			$.ajax(grupaSelectorUrl, {'data':{
-				'grupa' : $(this).val(),
+				'grupa' : grupName,
 				'display' : 'raw',
 				'id': profileId
 			}})
@@ -194,6 +196,8 @@
 				if (console && console.log) {
 					console.log("Info:", data, "Id:", profileId);
 				}
+				var registrationId = $('.profile-id-'+profileId).text();
+				drawHistory.saveGroupChange(grupName, registrationId, profileId);
 			})
 			.fail(function(ajaxCall) {
 				if (console && console.warn) {
