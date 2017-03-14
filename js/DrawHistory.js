@@ -155,6 +155,9 @@ DrawHistory.prototype.render = function(callback, secondRun) {
 	if (this.history === null) {
 		if (secondRun || !callback) {
 			this.LOG.error('unable to render - loading history failed');
+			if (callback) {
+				callback(null);
+			}
 			return null;
 		}
 		this.load(function(){
