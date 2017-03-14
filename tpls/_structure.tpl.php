@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
     <? $pv_page_title = empty($pv_page_title) ? 'Panel Helper' : htmlspecialchars($pv_page_title) . ' &bull; Panel Helper';?>
     <title><?=$pv_page_title?></title>
+	
+	<link rel="icon" type="image/png" href="images/logo.png" />
+	
 	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0108">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0108">
 	<meta name="author" content="Maciej Jaros">
