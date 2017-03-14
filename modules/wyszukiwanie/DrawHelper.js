@@ -13,7 +13,7 @@ var drawHelper = new DrawHelper({
 	integersToDraw: 6
 	, rowNumberCell: 0	// index of the cell that contains row numbers (local)
 	, keyCell: 1		// index of the cell that contains ids (global)
-	, mock: true		// if true then Math.random will be used rather then Random.org API
+	, mock: false		// if true then Math.random will be used rather then Random.org API
 	, tbodySelector: '#content table tbody'
 	, messages: {'':''
 		, 'randomorg failed' : 'Błąd losowania! Losowanie za pomocą Random.org nie powiodłow się.'

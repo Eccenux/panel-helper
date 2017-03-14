@@ -22,11 +22,11 @@ function DrawHistoryItem(config) {
 
 DrawHistoryItem.prototype.render = function(){
 	return ''
-		+ this.renderForm(this.formData)
+		+ this.renderTime(this.time)
 		+ '; '
 		+ this.renderAction(this.actionName, this.actionData)
 		+ '; '
-		+ this.renderTime(this.time)
+		+ this.renderForm(this.formData)
 	;
 };
 
@@ -57,8 +57,17 @@ DrawHistoryItem.prototype.renderForm = function(formData){
 
 DrawHistoryItem.prototype.renderAction = function(actionName, actionData) {
 	var html = "";
-	html = '<b>'+drawHistory.config.labels['action-'+actionName]+'</b>: ...';
-	// TODO render action data
+	html = '<b>'+drawHistory.config.labels['action-'+actionName]+'</b>: ';
+	// render action data
+	if (actionName == 'RandomApi') {
+		html += '<a href="#verify" data-RandomApi-actionData="'+JSON.stringify(actionData).replace(/"/g, "&quot;")+'">'
+				+drawHistory.config.labels['action-RandomApi-verify']
+			+'</a> ';
+	} else {
+		html += actionData.grupName
+			+ " (" + drawHistory.config.labels['action-GroupChange-for'] + " " + actionData.registrationId + ")"
+		;
+	}
 	return html;
 };
 
@@ -80,7 +89,7 @@ DrawHistoryItem.prototype.formatTwoDigit = function(value){
  * @returns {String}
  */
 DrawHistoryItem.prototype.renderTime = function(time){
-	var html = '<b>'+drawHistory.config.labels['time']+'</b>: '
+	var html = ''//'<b>'+drawHistory.config.labels['time']+'</b>: '
 		+ this.formatTwoDigit(time.getHours())
 		+ ':'
 		+ this.formatTwoDigit(time.getMinutes())

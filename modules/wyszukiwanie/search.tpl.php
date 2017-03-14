@@ -70,7 +70,13 @@
 		border-bottom: 1px solid #a8d2e3;
 	}
 	.draw-history-container ul {
-		padding: 0 1em 0 2.5em;
+		padding: 0 1em 0 1.5em;
+	}
+	.draw-history-container li {
+		list-style: none;
+	}
+	.draw-history-container li:before {
+		content: "🕑 ";
 	}
 	.draw-history .profile-data:after {
 		content: ", ";

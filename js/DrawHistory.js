@@ -45,8 +45,10 @@ var drawHistory = new DrawHistory({'':''
 	}
 	, labels: {'':''
 		, 'time' : 'czas'
-		, 'action-RandomApi' : 'losowanie 6 z listy'
+		, 'action-RandomApi' : 'losowanie 6-ciu'
+		, 'action-RandomApi-verify' : 'sprawdź'
 		, 'action-GroupChange' : 'grupa'
+		, 'action-GroupChange-for' : 'dla'
 	}
 	, messages: {'':''
 	}
