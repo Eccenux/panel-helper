@@ -5,12 +5,15 @@
  */
 function DrawHistoryItem(config) {
 	this.formData = config.formData;
-	this.actionName = 'action' in config ? config.action : config.actionName;
+	this.actionName = config.actionName;
 	this.actionData = config.actionData;
 
 	this.time = new Date();
 	if (typeof config.time === 'object') {
 		this.time = config.time;
+	}
+	if (typeof config.time === 'string') {
+		this.time = new Date(config.time);
 	}
 	if (typeof config.time === 'number') {
 		this.time.setTime(config.time);
@@ -60,15 +63,29 @@ DrawHistoryItem.prototype.renderAction = function(actionName, actionData) {
 };
 
 /**
+ * Zero pad two digit number.
+ * @param {Number} value One or two digit number.
+ * @returns {String}
+ */
+DrawHistoryItem.prototype.formatTwoDigit = function(value){
+	if (value < 10) {
+		return "0" + value;
+	}
+	return "" + value;
+};
+
+/**
  *
  * @param {Date} time
  * @returns {String}
  */
 DrawHistoryItem.prototype.renderTime = function(time){
 	var html = '<b>'+drawHistory.config.labels['time']+'</b>: '
-		+ time.getHours()
+		+ this.formatTwoDigit(time.getHours())
 		+ ':'
-		+ time.getSeconds()
+		+ this.formatTwoDigit(time.getMinutes())
+		+ ':'
+		+ this.formatTwoDigit(time.getSeconds())
 	;
 	return html;
 };

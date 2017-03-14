@@ -89,6 +89,7 @@ DrawHistory.prototype.message = function(code) {
  */
 DrawHistory.prototype.saveRandomApi = function(result) {
 	var historyItem = {
+		time : new Date(),
 		formData : this.lastFormData,
 		actionName : 'RandomApi',
 		actionData : {
@@ -109,6 +110,7 @@ DrawHistory.prototype.saveRandomApi = function(result) {
  */
 DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profileId) {
 	var historyItem = {
+		time : new Date(),
 		formData : this.lastFormData,
 		actionName : 'GroupChange',
 		actionData : {
@@ -146,8 +148,10 @@ DrawHistory.prototype.render = function(secondRun) {
 		});
 	}
 	// render items
+	var itemsHtml = [];
 	for (var i = 0; i < this.history.length; i++) {
 		var item = new DrawHistoryItem(this.history[i]);
-		this.LOG.info(item.render());
+		itemsHtml.push(item.render());
 	}
+	return "<ul><li>" + itemsHtml.join("</li>\n<li>") + "</li></ul>";
 };
