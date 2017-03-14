@@ -13,6 +13,15 @@ var drawHistory = new DrawHistory({'':''
 	, maxItemsRendered : 6
 	, formDataGetter: function() {
 		var form = document.querySelector('#content #search');
+		// null when not on search page
+		if (!form) {
+			return null;
+		}
+		// get long value of the education status
+		var wyksztalcenie = $(form.wyksztalcenie).filter(':checked').attr('data-longValue');
+		if (!wyksztalcenie) {
+			wyksztalcenie = "";
+		}
 		return {
 			label: 'profil',
 			values: [
@@ -28,7 +37,7 @@ var drawHistory = new DrawHistory({'':''
 					, value: DrawHistoryValue.range(form.wiek_od.value, form.wiek_do.value)
 				}),
 				new DrawHistoryValue({label: 'Wykształcenie'
-					, value: form.wyksztalcenie.value
+					, value: wyksztalcenie
 					, shortValue: DrawHistoryValue.firstLetter
 				})
 			]
