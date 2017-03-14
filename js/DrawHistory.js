@@ -65,11 +65,18 @@ function DrawHistory(config)
 	this.history = null;
 	$(function(){
 		_self.load(function(){
-			var html = _self.render(_self.config.maxItemsRendered);
-			$('.draw-history').html(html);
+			_self.show();
 		});
 	});
 }
+
+/**
+ * Show history.
+ */
+DrawHistory.prototype.show = function() {
+	var html = this.render(this.config.maxItemsRendered);
+	$('.draw-history').html(html);
+};
 
 /**
  * Load data from storage.
@@ -112,6 +119,7 @@ DrawHistory.prototype.saveRandomApi = function(result) {
 	};
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
+	this.show();
 };
 
 /**
@@ -143,6 +151,7 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
 	// save new item
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
+	this.show();
 };
 
 /**
