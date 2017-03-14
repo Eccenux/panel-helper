@@ -8,11 +8,10 @@
  * @type DrawHistory
  */
 var drawHistory = new DrawHistory({'':''
-	, formSelector : '#content #search'
 	, storageKey : 'DrawHistory'
 	, maxItemsRendered : 6
 	, formDataGetter: function() {
-		var form = document.querySelector('#content #search');
+		var form = document.querySelector('#content .draw-history-profile-form');
 		// null when not on search page
 		if (!form) {
 			return null;

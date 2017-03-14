@@ -90,7 +90,7 @@
 	<div class="draw-history">
 	</div>
 </div>
-<form id="search" method="post" action="">
+<form id="search" method="post" action="" class="draw-history-profile-form">
 	<div>
 		<label>Płeć</label>
 		<div class="buttonset">
