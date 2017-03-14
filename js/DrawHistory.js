@@ -67,6 +67,10 @@ function DrawHistory(config)
 	});
 }
 
+/**
+ * Load data from storage.
+ * @param {Function} callback Optional callback.
+ */
 DrawHistory.prototype.load = function(callback) {
 	var _self = this;
 	this.store.getItem('history').then(function(value){
@@ -77,6 +81,10 @@ DrawHistory.prototype.load = function(callback) {
 	});
 };
 
+/**
+ * Show message to the user.
+ * @param {String} code Message code.
+ */
 DrawHistory.prototype.message = function(code) {
 	var txt = (code in this.config.messages) ? this.config.messages[code] : code;
 	alert(txt);
@@ -135,13 +143,19 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
 
 /**
  * Show history.
+ *
+ * @note If you don't use callback then there will be no attempt to load data from storage.
+ *
+ * @param {Function} callback Optional callback.
+ * @param {Boolean} secondRun If true then this is a second attempt to render history.
  */
-DrawHistory.prototype.render = function(secondRun) {
+DrawHistory.prototype.render = function(callback, secondRun) {
 	// just to be sure it's loaded
 	var _self = this;
 	if (this.history === null) {
-		if (secondRun) {
+		if (secondRun || !callback) {
 			this.LOG.error('unable to render - loading history failed');
+			return null;
 		}
 		this.load(function(){
 			_self.render(true);
@@ -153,5 +167,9 @@ DrawHistory.prototype.render = function(secondRun) {
 		var item = new DrawHistoryItem(this.history[i]);
 		itemsHtml.push(item.render());
 	}
-	return "<ul><li>" + itemsHtml.join("</li>\n<li>") + "</li></ul>";
+	var html = "<ul><li>" + itemsHtml.join("</li>\n<li>") + "</li></ul>";
+	if (callback) {
+		callback(html);
+	}
+	return html;
 };
