@@ -187,6 +187,9 @@
 		function (e) {
 			var profileId = $(this).attr('name').replace(/[^0-9]+([0-9]+).*/, '$1');
 			var grupName = $(this).val();
+			var registrationId = $('.profile-id-'+profileId).text();
+			drawHistory.saveGroupChange(grupName, registrationId, profileId);
+			
 			$.ajax(grupaSelectorUrl, {'data':{
 				'grupa' : grupName,
 				'display' : 'raw',
@@ -196,8 +199,6 @@
 				if (console && console.log) {
 					console.log("Info:", data, "Id:", profileId);
 				}
-				var registrationId = $('.profile-id-'+profileId).text();
-				drawHistory.saveGroupChange(grupName, registrationId, profileId);
 			})
 			.fail(function(ajaxCall) {
 				if (console && console.warn) {
