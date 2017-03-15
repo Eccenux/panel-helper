@@ -45,15 +45,25 @@ DrawHistoryItem.prototype.render = function(full){
 DrawHistoryItem.prototype.renderForm = function(formData, full){
 	var html = "";
 	html += '<b>'+formData.label+'</b>: ';
+	// get non-empty values
+	var values = [];
 	for (var i = 0; i < formData.values.length; i++) {
+		if (!formData.values[i].value.length) {
+			continue;
+		}
+		values.push(formData.values[i]);
+	}
+	// no values?
+	if (!values.length) {
+		html += '&mdash;';
+	}
+	// render non-empty
+	for (var i = 0; i < values.length; i++) {
 		/**
 		 * @type DrawHistoryValue
 		 */
-		var val = formData.values[i];
-		if (!val.value.length) {
-			continue;
-		}
-		var className = (i+1 < formData.values.length) ? '': 'last';
+		var val = values[i];
+		var className = (i+1 < values.length) ? '': 'last';
 		if (full) {
 			html += "<span class='profile-data "+className+"'"
 				+ "title='"+val.label+': '+val.value+"'"
