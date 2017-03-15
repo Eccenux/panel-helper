@@ -91,7 +91,7 @@ class dbProfile extends dbBaseClass
 	 * @var array
 	 */
 	public static $pv_grupy = array (
-		'w puli', 'grupa główna', 'zastępcza', 'rezygnacja'
+		'w puli', 'grupa główna', 'rezerwowa', 'zastępcza', 'rezygnacja'
 	);
 
 	public static function pf_wyksztalcenieTranslate($dbValue) {
