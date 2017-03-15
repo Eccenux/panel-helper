@@ -15,15 +15,13 @@ function RandomApi(key)
  * @param {type} n Number of integers to get.
  * @param {type} canHaveDuplicates If true than
  * @returns {jQuery.Deferred}
- *	on done(random, signature); where random.data is an array of the n radom integers
+ *	on done(random, signature); where random.data is an array of the n random integers
  *	on fail(textStatus, errorThrown); where:
  *		textStatus can be e.g.: "error", "timeout", "abort", or "parsererror"
  *		errorThrown can be e.g.: "Internal Server Error" or an actual text that the server responded with.
  */
 RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 	var deferred = $.Deferred();
-	var LOG = this.LOG;
-
 	var requestData = {
 		"jsonrpc": "2.0",
 		"method": "generateSignedIntegers",
@@ -37,6 +35,13 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 		},
 		"id": 123	 // whatever
 	};
+	this._makeRequest(deferred, requestData);
+	return deferred;
+};
+
+RandomApi.prototype._makeRequest = function(deferred, requestData) {
+	var LOG = this.LOG;
+
 	LOG.info("request: ", requestData);
 	$.ajax({
 		url: 'https://api.random.org/json-rpc/1/invoke',
@@ -66,6 +71,4 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 		LOG.warn('request failed: ', attributes);
 		deferred.reject(textStatus, errorThrown);
 	});
-
-	return deferred;
 };
