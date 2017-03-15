@@ -97,7 +97,6 @@ function DrawHistory(config)
 				});
 			} else {
 				_self.show();
-				$dialog.dialog("close");
 			}
 		});
 	});
