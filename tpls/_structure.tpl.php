@@ -9,6 +9,7 @@
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0108">
 	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0108">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/draw_history.css?0108">
 	<meta name="author" content="Maciej Jaros">
 	<meta name="copyright" content="Maciej Jaros">
 

@@ -54,36 +54,6 @@
 		display: inline-block;
 		padding-right: .2em;
 	}
-
-	/* draw history */
-	.draw-history-container {
-		float: right;
-		width: content-box;
-		border: 1px solid #a8d2e3;
-		box-sizing: border-box;
-		margin: 0 0 1em 1em;
-	}
-	.draw-history-container h3 {
-		font-size: 100%;
-		margin: 0;
-		padding: .5em;
-		border-bottom: 1px solid #a8d2e3;
-	}
-	.draw-history-container ul {
-		padding: 0 1em 0 1.5em;
-	}
-	.draw-history-container li {
-		list-style: none;
-	}
-	.draw-history-container li:before {
-		content: "🕑 ";
-	}
-	.draw-history .profile-data:after {
-		content: ", ";
-	}
-	.draw-history .profile-data.last:after {
-		display:none;
-	}
 </style>
 <div class="draw-history-container">
 	<h3>Historia działań</h3>
