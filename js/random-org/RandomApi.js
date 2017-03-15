@@ -16,9 +16,7 @@ function RandomApi(key)
  * @param {type} canHaveDuplicates If true than
  * @returns {jQuery.Deferred}
  *	on done(random, signature); where random.data is an array of the n random integers
- *	on fail(textStatus, errorThrown); where:
- *		textStatus can be e.g.: "error", "timeout", "abort", or "parsererror"
- *		errorThrown can be e.g.: "Internal Server Error" or an actual text that the server responded with.
+ *	on fail(textStatus, errorThrown); see [_makeRequest method]{@link RandomApi#_makeRequest} for details.
  */
 RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 	var deferred = $.Deferred();
@@ -39,6 +37,19 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 	return deferred;
 };
 
+/**
+ * Make random.org request.
+ *
+ * @note Assumptions is that the response will be signed.
+ * Use signed methods: https://api.random.org/json-rpc/1/signing
+ *
+ * @param {jQuery.Deferred} deferred Initialized deffered object.
+ *	on done(random, signature); where random.data is usually an array of results.
+ *	on fail(textStatus, errorThrown); where:
+ *		textStatus can be e.g.: "error", "timeout", "abort", or "parsererror"
+ *		errorThrown can be e.g.: "Internal Server Error" or an actual text that the server responded with.
+ * @param {Object} requestData Request data specific for given type of request.
+ */
 RandomApi.prototype._makeRequest = function(deferred, requestData) {
 	var LOG = this.LOG;
 
