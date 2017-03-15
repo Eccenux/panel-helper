@@ -252,6 +252,14 @@ DrawHistory.prototype.saveRandomApi = function(result) {
 			result : result
 		}
 	};
+	this.saveItem(historyItem);
+};
+
+/**
+ * Save new event to history.
+ * @param {DrawHistoryItem} historyItem Save item to history.
+ */
+DrawHistory.prototype.saveItem = function(historyItem) {
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
 	this.saveToServer();
@@ -285,10 +293,7 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
 		}
 	}
 	// save new item
-	this.history.push(historyItem);
-	this.store.setItem('history', this.history);
-	this.saveToServer();
-	this.show();
+	this.saveItem(historyItem);
 };
 
 /**
