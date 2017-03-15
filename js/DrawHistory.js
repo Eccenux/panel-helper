@@ -103,6 +103,34 @@ function DrawHistory(config)
 }
 
 /**
+ * Save history to server.
+ * @param {Function} onSuccess Success callback (gets server response text as a parameter).
+ * @param {Function} onFailure Failure callback (gets jQuery's AJAX object as a parameter).
+ */
+DrawHistory.prototype.saveToServer = function(onSuccess, onFailure) {
+	var LOG = this.LOG;
+	$.ajax(eventHistorySaveUrl+'&display=raw', {
+	'method':'post',
+	'data':{
+		'uuid': this.historyId,
+		'data': JSON.stringify(this.history)
+	}})
+		.done(function(response) {
+			LOG.info("history saved; response: ", response);
+			if (onSuccess) {
+				onSuccess(response);
+			}
+		})
+		.fail(function(ajaxCall) {
+			LOG.warn("history saving failed; response: ", ajaxCall.responseText);
+			if (onFailure) {
+				onFailure(ajaxCall);
+			}
+		})
+	;
+};
+
+/**
  * Delay running callback.
  *
  * @param {Date} startTime Time you started the countdown.

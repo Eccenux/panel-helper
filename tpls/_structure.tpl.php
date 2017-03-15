@@ -47,6 +47,9 @@
 	);
 	</script>
     <?=$pv_controller->tpl->extraHeadTags?>
+	<script language="JavaScript" type="text/javascript">
+	var eventHistorySaveUrl = '<?=MainMenu::getModuleUrl('event_history', 'save')?>'.replace(/&amp;/g, '&');
+	</script>
 </head>
 <body lang="pl">
 	<div id="container">
