@@ -15,7 +15,7 @@ function RandomApi(key)
  * @param {type} n Number of integers to get.
  * @param {type} canHaveDuplicates If true than
  * @returns {jQuery.Deferred}
- *	on done(random, signature); where random.data is an array of the n random integers
+ *	on done(random, signature, responseData); where random.data is an array of the n random integers
  *	on fail(textStatus, errorThrown); see [_makeRequest method]{@link RandomApi#_makeRequest} for details.
  */
 RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
@@ -42,7 +42,7 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
  *
  * @param {type} n Number of UUIDs to get.
  * @returns {jQuery.Deferred}
- *	on done(random, signature); where random.data is an array of the n UUIDs
+ *	on done(random, signature, responseData); where random.data is an array of the n UUIDs
  *	on fail(textStatus, errorThrown); see [_makeRequest method]{@link RandomApi#_makeRequest} for details.
  */
 RandomApi.prototype.generateUUIDs = function(n) {
@@ -67,7 +67,7 @@ RandomApi.prototype.generateUUIDs = function(n) {
  * Use signed methods: https://api.random.org/json-rpc/1/signing
  *
  * @param {jQuery.Deferred} deferred Initialized deffered object.
- *	on done(random, signature); where random.data is usually an array of results.
+ *	on done(random, signature, responseData); where random.data is usually an array of results.
  *	on fail(textStatus, errorThrown); where:
  *		textStatus can be e.g.: "error", "timeout", "abort", or "parsererror"
  *		errorThrown can be e.g.: "Internal Server Error" or an actual text that the server responded with.

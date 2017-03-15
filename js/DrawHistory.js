@@ -72,10 +72,17 @@ function DrawHistory(config)
 	});
 
 	// the history items
+	this.historyId = null;
 	this.history = null;
 	$(function(){
 		_self.load(function(){
-			_self.show();
+			if (_self.historyId === null) {
+				_self.generateId(function(){
+					_self.show();
+				});
+			} else {
+				_self.show();
+			}
 		});
 	});
 }
@@ -107,11 +114,30 @@ DrawHistory.prototype.show = function() {
  */
 DrawHistory.prototype.load = function(callback) {
 	var _self = this;
-	this.store.getItem('history').then(function(value){
-		_self.history = (value === null) ? [] : value;
-		if (callback) {
-			callback();
-		}
+	_self.store.getItem('historyId').then(function(value){
+		_self.historyId = value;
+		_self.store.getItem('history').then(function(value){
+			_self.history = (value === null) ? [] : value;
+			if (callback) {
+				callback();
+			}
+		});
+	});
+};
+
+/**
+ * Generate and save unique id for the history.
+ * @param {Function} callback Optional callback.
+ */
+DrawHistory.prototype.generateId = function(callback) {
+	var _self = this;
+	randomApi.generateUUIDs(1).done(function(random){
+		_self.historyId = random.data[0];
+		_self.store.setItem('historyId', _self.historyId).then(function(){
+			if (callback) {
+				callback();
+			}
+		});
 	});
 };
 
