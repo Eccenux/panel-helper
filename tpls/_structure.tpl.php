@@ -97,6 +97,15 @@
 			<p>Jeśli komunikat nie zniknie - sprawdź połączenie z Internetem
 				i odśwież stronę lub skontaktuj się z administratorem.</p>
 		</div>
+		<div id="history-delete-dialog" title="Skasować historię działań?" style="display: none">
+			<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+				Kopia historii zostanie zapisana na serwerze, ale nie będziesz mógł(-a) jej przywrócić historii.</p>
+			<p>Czy na pewno chcesz usunąć całą historię działań?</p>
+			<ul data-id="buttons" style="display: none">
+				<li data-id="delete">Skasuj historię</li>
+				<li data-id="cancel">Anuluj</li>
+			</ul>
+		</div>
 	</div>
 	<script>
 		(function($){

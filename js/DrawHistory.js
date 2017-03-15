@@ -152,6 +152,68 @@ DrawHistory.prototype.delayedRun = function(startTime, minDelay, callback) {
 };
 
 /**
+ * Delete with confirmation dialog.
+ */
+DrawHistory.prototype.deleteAll = function() {
+	var _self = this;
+	var LOG = this.LOG;
+	// confirm removal
+	_self.showDeleteConfirmDialog(function(){
+		// waiting
+		var startTime = new Date();
+		var $dialog = _self.showPreparationDialog();
+		// save to server
+		_self.saveToServer(function() {
+			LOG.info('[DEL] data saved');
+			// remove history & id
+			_self.historyId = null;
+			_self.history = [];
+			_self.store.setItem('historyId', null).then(function(){
+				_self.store.setItem('history', null).then(function(){
+					LOG.info('[DEL] data removed');
+					// generate new id
+					_self.generateId(function(){
+						LOG.info('[DEL] new history id generated');
+						_self.show();
+						// show for a minimum of 3 seconds
+						_self.delayedRun(startTime, 3000, function(){
+							$dialog.dialog("close");
+						});
+					});
+				});
+			});
+		});
+	});
+};
+
+/**
+ * Show delete confirmation dialog.
+ *
+ * @param {Function} okCallback Function to call when user confired it is OK to delete.
+ * @returns {jQuery}
+ */
+DrawHistory.prototype.showDeleteConfirmDialog = function(okCallback) {
+	var $confirmDialog = $('#history-delete-dialog');
+	var deleteLabel = $('[data-id="delete"]', $confirmDialog).text();
+	var cancelLabel = $('[data-id="cancel"]', $confirmDialog).text();
+	var buttons = {};
+	buttons[deleteLabel] = function() {
+		$confirmDialog.dialog("close");
+		okCallback();
+	};
+	buttons[cancelLabel] = function() {
+		$confirmDialog.dialog("close");
+	};
+	$confirmDialog.dialog({
+		modal: true,
+		resizable: false,
+		height: "auto",
+		width: 400,
+		buttons: buttons
+	});
+};
+
+/**
  * Show preparation, modal dialog.
  *
  * @returns {jQuery}
