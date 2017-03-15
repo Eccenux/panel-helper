@@ -172,9 +172,14 @@ DrawHistory.prototype.showPreparationDialog = function() {
  * Show history.
  */
 DrawHistory.prototype.show = function() {
-	var html = this.render(this.config.maxItemsRendered);
-	$('.draw-history').html(html);
-	$('.draw-history a[data-RandomApi-result]').click(function(){
+	var $container = $('.draw-history');
+	var shortHistory = true;
+	if ($container.hasClass('draw-history-full')) {
+		shortHistory = false;
+	}
+	var html = shortHistory ? this.render(this.config.maxItemsRendered) : this.render(-1);
+	$container.html(html);
+	$('a[data-RandomApi-result]', $container).click(function(){
 		var $dialog = $('#randomApi-verify-dialog');
 		var result = JSON.parse(this.getAttribute('data-RandomApi-result'));
 		$('[data-id="serialNumber"]', $dialog).text(result.random.serialNumber);
@@ -313,7 +318,11 @@ DrawHistory.prototype.render = function(maxItems, callback, secondRun) {
 	// render items
 	var itemsHtml = [];
 	var startItem = 0;
-	if (this.history.length > maxItems) {
+	var shortHistory = true;
+	if (maxItems < 0) {
+		shortHistory = false;
+	}
+	if (shortHistory && this.history.length > maxItems) {
 		startItem = this.history.length - maxItems;
 		itemsHtml.push('...');
 	}
