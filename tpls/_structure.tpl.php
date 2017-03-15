@@ -88,6 +88,11 @@
 				<input type='submit' value='Sprawdź na Random.org' />
 			</form>
 		</div>
+		<div id="history-prepare-dialog" title="Przygotowywanie historii" style="display: none">
+			<p>Trwa przygotowywanie historii. Proszę czekać.</p>
+			<p>Jeśli komunikat nie zniknie - sprawdź połączenie z Internetem
+				i odśwież stronę lub skontaktuj się z administratorem.</p>
+		</div>
 	</div>
 	<script>
 		(function($){

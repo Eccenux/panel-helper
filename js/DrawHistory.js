@@ -71,21 +71,75 @@ function DrawHistory(config)
 		_self.lastFormData = config.formDataGetter();
 	});
 
-	// the history items
-	this.historyId = null;
+	/**
+	 * The history items.
+	 * @type Array
+	 */
 	this.history = null;
+	/**
+	 * Unique history id.
+	 * @type String
+	 */
+	this.historyId = null;
+
+	// prepare history
 	$(function(){
 		_self.load(function(){
 			if (_self.historyId === null) {
+				var startTime = new Date();
+				var $dialog = _self.showPreparationDialog();
 				_self.generateId(function(){
 					_self.show();
+					// show for a minimum of 3 seconds
+					_self.delayedRun(startTime, 3000, function(){
+						$dialog.dialog("close");
+					});
 				});
 			} else {
 				_self.show();
+				$dialog.dialog("close");
 			}
 		});
 	});
 }
+
+/**
+ * Delay running callback.
+ *
+ * @param {Date} startTime Time you started the countdown.
+ * @param {Number} minDelay The minimum [ms] you want to wait from startTime.
+ *	If more time already passed then callback will be run immediately.
+ * @param {Function} callback Function to run after the delay.
+ * @returns {Number} 0 if running immediately or whatever `setTimeout` returns.
+ */
+DrawHistory.prototype.delayedRun = function(startTime, minDelay, callback) {
+	var msDiff = (new Date()) - startTime;
+	var extraDelay = minDelay - msDiff;
+	if (extraDelay < 0) {
+		callback();
+		return 0;
+	}
+	return setTimeout(function(){
+		callback();
+	}, extraDelay);
+};
+
+/**
+ * Show preparation, modal dialog.
+ *
+ * @returns {jQuery}
+ */
+DrawHistory.prototype.showPreparationDialog = function() {
+	var $dialog = $('#history-prepare-dialog');
+	$dialog.dialog({
+		modal: true,
+		closeOnEscape: false,
+		open: function(event, ui) {
+			$(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+		}
+	});
+	return $dialog;
+};
 
 /**
  * Show history.
