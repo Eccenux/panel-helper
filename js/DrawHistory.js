@@ -249,6 +249,7 @@ DrawHistory.prototype.saveRandomApi = function(result) {
 	};
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
+	this.saveToServer();
 	this.show();
 };
 
@@ -281,6 +282,7 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
 	// save new item
 	this.history.push(historyItem);
 	this.store.setItem('history', this.history);
+	this.saveToServer();
 	this.show();
 };
 
