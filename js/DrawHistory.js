@@ -328,7 +328,7 @@ DrawHistory.prototype.render = function(maxItems, callback, secondRun) {
 	}
 	for (var i = startItem; i < this.history.length; i++) {
 		var item = new DrawHistoryItem(this.history[i]);
-		itemsHtml.push(item.render());
+		itemsHtml.push(item.render(!shortHistory));
 	}
 	var html = "<ul><li>" + itemsHtml.join("</li>\n<li>") + "</li></ul>";
 	if (callback) {

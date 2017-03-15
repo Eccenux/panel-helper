@@ -20,22 +20,29 @@ function DrawHistoryItem(config) {
 	}
 }
 
-DrawHistoryItem.prototype.render = function(){
+/**
+ * Render item.
+ * 
+ * @param {Boolean?} full If true then short forms should be avoided.
+ * @returns {String} HTML to display.
+ */
+DrawHistoryItem.prototype.render = function(full){
 	return ''
-		+ this.renderTime(this.time)
+		+ this.renderTime(this.time, full)
 		+ '; '
-		+ this.renderAction(this.actionName, this.actionData)
+		+ this.renderAction(this.actionName, this.actionData, full)
 		+ '; '
-		+ this.renderForm(this.formData)
+		+ this.renderForm(this.formData, full)
 	;
 };
 
 /**
  * Render form data information.
  * @param {Object} formData
+ * @param {Boolean?} full If true then short forms should be avoided.
  * @returns {String} html
  */
-DrawHistoryItem.prototype.renderForm = function(formData){
+DrawHistoryItem.prototype.renderForm = function(formData, full){
 	var html = "";
 	html += '<b>'+formData.label+'</b>: ';
 	for (var i = 0; i < formData.values.length; i++) {
@@ -47,15 +54,29 @@ DrawHistoryItem.prototype.renderForm = function(formData){
 			continue;
 		}
 		var className = (i+1 < formData.values.length) ? '': 'last';
-		html += "<span class='profile-data "+className+"'"
-			+ "title='"+val.label+': '+val.value+"'"
-			+ ">"+val.shortValue+"</span>"
-		;
+		if (full) {
+			html += "<span class='profile-data "+className+"'"
+				+ "title='"+val.label+': '+val.value+"'"
+				+ ">"+val.value+"</span>"
+			;
+		} else {
+			html += "<span class='profile-data "+className+"'"
+				+ "title='"+val.label+': '+val.value+"'"
+				+ ">"+val.shortValue+"</span>"
+			;
+		}
 	}
 	return html;
 };
 
-DrawHistoryItem.prototype.renderAction = function(actionName, actionData) {
+/**
+ * Render action specific data.
+ * @param {String} actionName
+ * @param {Object} actionData
+ * @param {Boolean?} full If true then short forms should be avoided.
+ * @returns {String} HTML.
+ */
+DrawHistoryItem.prototype.renderAction = function(actionName, actionData, full) {
 	var html = "";
 	html = '<b>'+drawHistory.config.labels['action-'+actionName]+'</b>: ';
 	// render action data
@@ -86,12 +107,24 @@ DrawHistoryItem.prototype.formatTwoDigit = function(value){
 };
 
 /**
- *
+ * Redner time.
  * @param {Date} time
- * @returns {String}
+ * @param {Boolean?} full If true then short forms should be avoided.
+ * @returns {String} HTML.
  */
-DrawHistoryItem.prototype.renderTime = function(time){
-	var html = ''//'<b>'+drawHistory.config.labels['time']+'</b>: '
+DrawHistoryItem.prototype.renderTime = function(time, full){
+	var html = '';
+	if (full) {
+		html += ''
+			+ time.getFullYear()
+			+ '-'
+			+ this.formatTwoDigit(time.getMonth())
+			+ '-'
+			+ this.formatTwoDigit(time.getDate())
+			+ ' '
+		;
+	}
+	html += ''
 		+ this.formatTwoDigit(time.getHours())
 		+ ':'
 		+ this.formatTwoDigit(time.getMinutes())
