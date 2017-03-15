@@ -38,6 +38,29 @@ RandomApi.prototype.drawIntegers = function(min, max, n, canHaveDuplicates) {
 };
 
 /**
+ * Generate n random UUIDs.
+ *
+ * @param {type} n Number of UUIDs to get.
+ * @returns {jQuery.Deferred}
+ *	on done(random, signature); where random.data is an array of the n UUIDs
+ *	on fail(textStatus, errorThrown); see [_makeRequest method]{@link RandomApi#_makeRequest} for details.
+ */
+RandomApi.prototype.generateUUIDs = function(n) {
+	var deferred = $.Deferred();
+	var requestData = {
+		"jsonrpc": "2.0",
+		"method": "generateSignedUUIDs",
+		"params": {
+			"apiKey": this.key,
+			"n": n
+		},
+		"id": 1234	 // whatever
+	};
+	this._makeRequest(deferred, requestData);
+	return deferred;
+};
+
+/**
  * Make random.org request.
  *
  * @note Assumptions is that the response will be signed.
