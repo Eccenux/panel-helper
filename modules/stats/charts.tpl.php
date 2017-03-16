@@ -64,10 +64,13 @@
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats)
 		{
-			if (empty($stats)) {
-				break;
+			$pv_max[$statName] = 0;
+			if (!empty($stats)) {
+				$pv_max[$statName] = max(array_column($stats, 'licznik'));
 			}
-			$pv_max[$statName] = max(array_column($stats, 'licznik'));
+			if (empty($pv_max[$statName])) {
+				continue;
+			}
 			if ($statName != $bottomStat)
 			{
 				echo "<div id='chart-container-$statName' style='float:left; width:270px; height:200px;'></div>";
@@ -82,11 +85,10 @@
 	<?php
 		foreach($pv_wzorzecData as $statName=>$stats)
 		{
-			if (empty($pv_max[$statName])) {
-				break;
+			if (!empty($pv_max[$statName])) {
+				$pv_max_tmp = max(array_column($stats, 'value'));
+				$pv_max[$statName] = max($pv_max[$statName], $pv_max_tmp);
 			}
-			$pv_max_tmp = max(array_column($stats, 'value'));
-			$pv_max[$statName] = max($pv_max[$statName], $pv_max_tmp);
 			if ($statName != $bottomStat)
 			{
 				echo "<div id='chart-container-wzorzec-$statName' style='float:left; width:270px; height:200px;'></div>";
@@ -117,11 +119,9 @@
 	?>
 	<?php
 		foreach($pv_wzorzecData as $statName=>$chartData) {
-			if (empty($stats) || empty($pv_max[$statName])) {
-				continue;
-			}
+			$pv_statMax = empty($pv_max[$statName]) ? 'false' : $pv_max[$statName];
 			echo "\nchartData = ". json_encode($chartData);
-			echo "\ncharts.bar(chartData, 'chart-container-wzorzec-$statName', {$pv_max[$statName]});";
+			echo "\ncharts.bar(chartData, 'chart-container-wzorzec-$statName', {$pv_statMax});";
 		}
 	?>
 </script>
