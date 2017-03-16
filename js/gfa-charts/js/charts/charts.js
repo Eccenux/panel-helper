@@ -163,7 +163,6 @@ window.charts = (function(AmCharts, colorGenerator){
 			chart.startDuration = 0;
 			chart.rotate = true;
 
-
 			// value-axis
 			var valueAxis = new AmCharts.ValueAxis();
 			valueAxis.minimum = 0;
@@ -180,6 +179,7 @@ window.charts = (function(AmCharts, colorGenerator){
 			graph.lineColor = colorScheme.start;
 			graph.lineAlpha = 0;
 			graph.fillAlphas = 0.85;
+			graph.labelText = "[[value]]";
 			chart.addGraph(graph);
 
 			// WRITE
