@@ -103,6 +103,9 @@
 	var chartData;
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats) {
+			if (empty($stats) || empty($pv_max[$statName])) {
+				continue;
+			}
 			$chartData = array();
 			foreach($stats as $stat) {
 				$s = array_values($stat);
@@ -114,6 +117,9 @@
 	?>
 	<?php
 		foreach($pv_wzorzecData as $statName=>$chartData) {
+			if (empty($stats) || empty($pv_max[$statName])) {
+				continue;
+			}
 			echo "\nchartData = ". json_encode($chartData);
 			echo "\ncharts.bar(chartData, 'chart-container-wzorzec-$statName', {$pv_max[$statName]});";
 		}
