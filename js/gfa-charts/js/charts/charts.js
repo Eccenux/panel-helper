@@ -161,7 +161,7 @@ window.charts = (function(AmCharts, colorGenerator){
 			chart.categoryField = "title";
 			chart.colorField = "color";
 			chart.startDuration = 0;
-			chart.rotate = true;https://www.youtube.com/watch?v=Z8OuzzFFWoU#t=51
+			chart.rotate = true;
 
 
 			// value-axis
