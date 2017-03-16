@@ -15,7 +15,7 @@
 	$pv_choices = array('grupa');
 	foreach ($pv_choices as $choice)
 	{
-		$tplData['prev'][$choice] = (!empty($_POST[$choice])) ? $_POST[$choice] : '';
+		$tplData['prev'][$choice] = (!empty($_POST[$choice])) ? $_POST[$choice] : (!empty($_GET[$choice]) ? $_GET[$choice] : '');
 	}
 	if (empty($tplData['prev']['grupa']))
 	{
