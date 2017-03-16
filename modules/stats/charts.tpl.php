@@ -78,7 +78,7 @@
 		}
 	?>
 	<br clear="all" />
-	<div id='chart-container-<?=$bottomStat?>' style='width:550px; height:600px;'></div>
+	<div id='chart-container-<?=$bottomStat?>' style='width:550px; height:700px;'></div>
 </div>
 <div style='float:left; width:570px; margin-left: 2em;'>
 	<h2>Ogólne dane statystyczne</h2>
