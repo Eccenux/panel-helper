@@ -34,6 +34,22 @@ class dbEventHistory extends dbBaseClass
 	);
 
 	/**
+	 * "Szablony" SQL do statystyk/szybkich zapytań.
+	 *
+	 * @see dbBaseClass->pf_getStats
+	 * @var array
+	 */
+	protected $pv_sqlStatsTpls = array (
+		// ostatnie dane pasujące do kryteriów
+		'last' =>
+			'SELECT dt_change, uuid, history_data
+			FROM event_history
+			WHERE {pv_constraints|(1)}
+			ORDER BY 1
+			LIMIT 1',
+	);
+
+	/**
 	 * Alised names of columns that are to be excluded when inserting records.
 	 *
 	 * @note For tables that have automatically incremented ids you should add the name of this id column here.

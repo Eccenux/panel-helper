@@ -41,6 +41,21 @@
 		case 'list':
 			$pv_controller->tpl->file = 'history.tpl.php';
 		break;
+		case 'list-server':
+			$uuid = empty($_GET['uuid']) ? '' : $_GET['uuid'];
+			$pv_constraints = array();
+			if (!empty($uuid)) {
+				$pv_constraints['uuid'] = array('!=', $uuid);
+			}
+			$dbEventHistory->pf_getStats($pv_items, 'last', $pv_constraints);
+			$tplData = array();
+			if (!empty($pv_items)) {
+				$tplData['history'] = $pv_items[0];
+			}
+
+			$pv_controller->tpl->file = 'history-server.tpl.php';
+			$pv_controller->tpl->data = $tplData;
+		break;
 		default:
 			$pv_controller->tpl->setResponseCode(403);
 			$pv_controller->tpl->message = 'Nie używaj bezpośrednio';

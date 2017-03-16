@@ -239,7 +239,8 @@ DrawHistory.prototype.show = function() {
 	if ($container.hasClass('draw-history-full')) {
 		shortHistory = false;
 	}
-	var html = shortHistory ? this.render(this.config.maxItemsRendered) : this.render(-1);
+	var history = (typeof serverHistoryData === 'object') ? serverHistoryData : this.history;
+	var html = shortHistory ? this.render(history, this.config.maxItemsRendered) : this.render(history, -1);
 	$container.html(html);
 	$('a[data-RandomApi-result]', $container).click(function(){
 		var $dialog = $('#randomApi-verify-dialog');
@@ -367,10 +368,10 @@ DrawHistory.prototype.saveGroupChange = function(grupName, registrationId, profi
  * @param {Function} callback Optional callback.
  * @param {Boolean} secondRun If true then this is a second attempt to render history.
  */
-DrawHistory.prototype.render = function(maxItems, callback, secondRun) {
+DrawHistory.prototype.render = function(history, maxItems, callback, secondRun) {
 	// just to be sure it's loaded
 	var _self = this;
-	if (this.history === null) {
+	if (history === null) {
 		if (secondRun || !callback) {
 			this.LOG.error('unable to render - loading history failed');
 			if (callback) {
@@ -379,7 +380,7 @@ DrawHistory.prototype.render = function(maxItems, callback, secondRun) {
 			return null;
 		}
 		this.load(function(){
-			_self.render(true);
+			_self.render(_self.history, maxItems, callback, true);
 		});
 	}
 	// render items
@@ -389,12 +390,12 @@ DrawHistory.prototype.render = function(maxItems, callback, secondRun) {
 	if (maxItems < 0) {
 		shortHistory = false;
 	}
-	if (shortHistory && this.history.length > maxItems) {
-		startItem = this.history.length - maxItems;
+	if (shortHistory && history.length > maxItems) {
+		startItem = history.length - maxItems;
 		itemsHtml.push('...');
 	}
-	for (var i = startItem; i < this.history.length; i++) {
-		var item = new DrawHistoryItem(this.history[i]);
+	for (var i = startItem; i < history.length; i++) {
+		var item = new DrawHistoryItem(history[i]);
 		itemsHtml.push(item.render(!shortHistory));
 	}
 	var html = "<ul><li>" + itemsHtml.join("</li>\n<li>") + "</li></ul>";
