@@ -32,7 +32,7 @@ var questionsData =
 		, type: 'select-one'
 		, other: false
 		, options:
-		["16-24"
+		["18-24"
 		,"25-39"
 		,"40-64"
 		,"więcej niż 65 lat"]
