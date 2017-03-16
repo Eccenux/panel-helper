@@ -17,6 +17,12 @@ class dbProfile extends dbBaseClass
 
 	/**
 	 * @see dbBaseClass
+	 * @var string
+	 */
+	protected $pv_defaultOrderSql = 'ORDER BY dt';
+
+	/**
+	 * @see dbBaseClass
 	 * @var array
 	 */
 	protected $pv_aliasNames2colNames = array (
