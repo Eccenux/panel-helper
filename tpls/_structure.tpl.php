@@ -78,7 +78,7 @@
 			<?=$pv_page_content?>
 		</div>
 		<div id="footer">
-			<p>Copyright &copy;2014-2016 Maciej Jaros.</p>
+			<p>Copyright &copy;2014-2017 Maciej Jaros.</p>
 		</div>
 
 		<div id="randomApi-verify-dialog" title="Weryfikacja losowania" style="display: none">
