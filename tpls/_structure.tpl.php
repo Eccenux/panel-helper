@@ -7,27 +7,27 @@
 	
 	<link rel="icon" type="image/png" href="images/logo.png" />
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0108">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0108">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/draw_history.css?0108">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0331">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0331">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/draw_history.css?0331">
 	<meta name="author" content="Maciej Jaros">
 	<meta name="copyright" content="Maciej Jaros">
 
 	<!-- jQuery -->
-	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0108" rel="stylesheet">
+	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0331" rel="stylesheet">
 	<script type="text/javascript" src="./js/jquery/js/jquery-min.js"></script>
 	<script type="text/javascript" src="./js/jquery/js/jquery-ui-custom.min.js"></script>
 	
 	<!-- jQuery inits and other global stuff -->
-	<script type="text/javascript" src="./js/logger.js"></script>
-	<script type="text/javascript" src="./js/localforage.min.js"></script>
-	<script type="text/javascript" src="./js/prepare-std.js?0108"></script>
-	<script type="text/javascript" src="./js/DrawHistoryValue.js"></script>
-	<script type="text/javascript" src="./js/DrawHistoryItem.js"></script>
-	<script type="text/javascript" src="./js/DrawHistory.js"></script>
-	<script type="text/javascript" src="./js/sortable.js"></script>
-	<script type="text/javascript" src="./js/random-org/key.js"></script>
-	<script type="text/javascript" src="./js/random-org/RandomApi.js"></script>
+	<script type="text/javascript" src="./js/logger.js?0331"></script>
+	<script type="text/javascript" src="./js/localforage.min.js?0331"></script>
+	<script type="text/javascript" src="./js/prepare-std.js?0331"></script>
+	<script type="text/javascript" src="./js/DrawHistoryValue.js?0331"></script>
+	<script type="text/javascript" src="./js/DrawHistoryItem.js?0331"></script>
+	<script type="text/javascript" src="./js/DrawHistory.js?0331"></script>
+	<script type="text/javascript" src="./js/sortable.js?0331"></script>
+	<script type="text/javascript" src="./js/random-org/key.js?0331"></script>
+	<script type="text/javascript" src="./js/random-org/RandomApi.js?0331"></script>
 
 	<!-- History API: http://balupton.com/projects/jquery-history -->
 	<script type="text/javascript" src="./js/native.history.js"></script>

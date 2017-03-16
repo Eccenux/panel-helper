@@ -54,9 +54,9 @@
 <script type="text/javascript" src="js/gfa-charts/js/charts/amcharts/amcharts.js"></script>
 <script type="text/javascript" src="js/gfa-charts/js/charts/color.js"></script>
 <script type="text/javascript" src="js/gfa-charts/js/charts/colorGenerator.js"></script>
-<script type="text/javascript" src="js/gfa-charts/js/charts/charts.js"></script>
+<script type="text/javascript" src="js/gfa-charts/js/charts/charts.js?0331"></script>
 
-<script type="text/javascript" src="modules_public/wizualizacje/wzorzec/summaryData.js"></script>
+<script type="text/javascript" src="modules_public/wizualizacje/wzorzec/summaryData.js?0331"></script>
 
 <!-- wykresy -->
 <div style='float:left; width:570px;'>

@@ -1,4 +1,4 @@
-<script src="modules/wyszukiwanie/DrawHelper.js"></script>
+<script src="modules/wyszukiwanie/DrawHelper.js?0331"></script>
 <style type="text/css">
 	form#search > div {
 		display: flex;

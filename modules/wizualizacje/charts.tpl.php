@@ -20,14 +20,14 @@
 	<script type="text/javascript" src="js/gfa-charts/js/charts/amcharts/amcharts.js"></script>
 	<script type="text/javascript" src="js/gfa-charts/js/charts/color.js"></script>
 	<script type="text/javascript" src="js/gfa-charts/js/charts/colorGenerator.js"></script>
-	<script type="text/javascript" src="js/gfa-charts/js/charts/charts.js"></script>
+	<script type="text/javascript" src="js/gfa-charts/js/charts/charts.js?0331"></script>
 
 	<script type="text/javascript" src="js/gfa-charts/js/chartsRenderer.js"></script>
 
 	<!-- survey specific data -->
-	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>summaryData.js?0108"></script>
-	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>questionsData.js?0108"></script>
-	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>filterSets.js?0108"></script>
+	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>summaryData.js?0331"></script>
+	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>questionsData.js?0331"></script>
+	<script type="text/javascript" src="<?=$tplData['chartDataPath']?>filterSets.js?0331"></script>
 
 	<link rel="stylesheet" href="js/gfa-charts/index.css" />
 </head>
