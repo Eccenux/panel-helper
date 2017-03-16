@@ -33,7 +33,7 @@ aprobaty dla siebie lub swojego sposobu wykorzystania licencjonowanego utworu.
 The MIT License (MIT)
 ---------------------
 
-Copyright (c) 2014-2016 Nux
+Copyright (c) 2014-2017 Nux
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
