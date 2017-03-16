@@ -1,7 +1,7 @@
 <?php
 // rescale to expected total
 function reScaleData($fraction) {
-	$total = 65;
+	$total = 63;
 	return $fraction * $total;
 }
 
