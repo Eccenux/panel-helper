@@ -28,7 +28,7 @@ class dbProfile extends dbBaseClass
 		'miejsce' => 'miejsce',
 		'plec' => 'plec',
 		'rok' => 'rok',
-		'wiek' => '2016 - rok',
+		'wiek' => '2017 - rok',
 		'wyksztalcenie' => 'wyksztalcenie',
 	);
 
@@ -63,25 +63,25 @@ class dbProfile extends dbBaseClass
 			(
 			SELECT \'16-24\' as wiek, count(*) as licznik
 			FROM profile
-			WHERE {pv_constraints|(1)} AND (2016 - rok <= 24)
+			WHERE {pv_constraints|(1)} AND (2017 - rok <= 24)
 			)
 			UNION
 			(
 			SELECT \'25-39\', count(*) as licznik
 			FROM profile
-			WHERE {pv_constraints|(1)} AND (2016 - rok >=25 AND 2016 - rok <= 39)
+			WHERE {pv_constraints|(1)} AND (2017 - rok >=25 AND 2017 - rok <= 39)
 			)
 			UNION
 			(
 			SELECT \'40-64\', count(*) as licznik
 			FROM profile
-			WHERE {pv_constraints|(1)} AND (2016 - rok >=40 AND 2016 - rok <= 64)
+			WHERE {pv_constraints|(1)} AND (2017 - rok >=40 AND 2017 - rok <= 64)
 			)
 			UNION
 			(
 			SELECT \'65+\', count(*) as licznik
 			FROM profile
-			WHERE {pv_constraints|(1)} AND (2016 - rok >=65)
+			WHERE {pv_constraints|(1)} AND (2017 - rok >=65)
 			)
 		'
 	);
