@@ -42,10 +42,16 @@
 			$pv_controller->tpl->file = 'history.tpl.php';
 		break;
 		case 'list-server':
-			$uuid = empty($_GET['uuid']) ? '' : $_GET['uuid'];
 			$pv_constraints = array();
+			// negative
+			$not_uuid = empty($_GET['not_uuid']) ? '' : $_GET['not_uuid'];
+			if (!empty($not_uuid)) {
+				$pv_constraints['uuid'] = array('NOT IN', $not_uuid);
+			}
+			// positive
+			$uuid = empty($_GET['uuid']) ? '' : $_GET['uuid'];
 			if (!empty($uuid)) {
-				$pv_constraints['uuid'] = array('!=', $uuid);
+				$pv_constraints['uuid'] = $uuid;
 			}
 			$dbEventHistory->pf_getStats($pv_items, 'last', $pv_constraints);
 			$tplData = array();
