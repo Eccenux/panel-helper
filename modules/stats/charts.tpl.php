@@ -64,13 +64,13 @@
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats)
 		{
+			if (empty($stats)) {
+				break;
+			}
 			$pv_max[$statName] = max(array_column($stats, 'licznik'));
 			if ($statName != $bottomStat)
 			{
 				echo "<div id='chart-container-$statName' style='float:left; width:270px; height:200px;'></div>";
-			}
-			if (empty($stats)) {
-				break;
 			}
 		}
 	?>
@@ -82,6 +82,9 @@
 	<?php
 		foreach($pv_wzorzecData as $statName=>$stats)
 		{
+			if (empty($pv_max[$statName])) {
+				break;
+			}
 			$pv_max_tmp = max(array_column($stats, 'value'));
 			$pv_max[$statName] = max($pv_max[$statName], $pv_max_tmp);
 			if ($statName != $bottomStat)
