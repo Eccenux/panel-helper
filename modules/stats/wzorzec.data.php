@@ -2,7 +2,7 @@
 // rescale to expected total
 function reScaleData($fraction) {
 	$total = 63;
-	return $fraction * $total;
+	return round($fraction * $total, 1);
 }
 
 $pv_wzorzecData = array(
