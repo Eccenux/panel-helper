@@ -32,7 +32,7 @@ $pv_wzorzecData = array(
 	),
 	"wiek" => array(
 		array (
-			"title" => "16-24",
+			"title" => "18-24",
 			"value" => reScaleData(4/40),
 		),
 		array (

@@ -90,10 +90,10 @@
 	<div>
 		<label>Wiek</label>
 		<div>
-			od: <input type="number" name="wiek_od" min="16" max="100"
+			od: <input type="number" name="wiek_od" min="18" max="100"
 					   value="<?=$tplData['prev']['wiek_od']?>"
 					   >
-			do: <input type="number" name="wiek_do" min="16" max="100"
+			do: <input type="number" name="wiek_do" min="18" max="100"
 					   value="<?=$tplData['prev']['wiek_do']?>"
 					   >
 			<p style="margin:.5em 0 0 0">

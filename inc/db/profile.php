@@ -61,7 +61,7 @@ class dbProfile extends dbBaseClass
 		'wiek' =>
 			'
 			(
-			SELECT \'16-24\' as wiek, count(*) as licznik
+			SELECT \'18-24\' as wiek, count(*) as licznik
 			FROM profile
 			WHERE {pv_constraints|(1)} AND (2017 - rok <= 24)
 			)
