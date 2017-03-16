@@ -45,7 +45,7 @@ class dbEventHistory extends dbBaseClass
 			'SELECT dt_change, uuid, history_data
 			FROM event_history
 			WHERE {pv_constraints|(1)}
-			ORDER BY 1
+			ORDER BY 1 DESC
 			LIMIT 1',
 	);
 
