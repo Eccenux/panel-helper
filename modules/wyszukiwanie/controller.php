@@ -56,10 +56,10 @@
 		if (!empty($_POST['wiek_od']) || !empty($_POST['wiek_do']))
 		{
 			if (!empty($_POST['wiek_od'])) {
-				$pv_ograniczenia['wiek'] = array('<=', intval($_POST['wiek_od']));
+				$pv_ograniczenia['wiek'] = array('>=', intval($_POST['wiek_od']));
 			}
 			if (!empty($_POST['wiek_do'])) {
-				$pv_ograniczenia['wiek '] = array('>=', intval($_POST['wiek_do']));
+				$pv_ograniczenia['wiek '] = array('<=', intval($_POST['wiek_do']));
 			}
 		}
 		// get
