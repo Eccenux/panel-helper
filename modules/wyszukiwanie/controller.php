@@ -55,16 +55,18 @@
 		/**/
 		if (!empty($_POST['wiek_od']) || !empty($_POST['wiek_do']))
 		{
-			$rok = intval(date('Y'));
-			if (!empty($_POST['wiek_od'])) $pv_ograniczenia['rok'] = array('<=', $rok - intval($_POST['wiek_od']));
-			if (!empty($_POST['wiek_do'])) $pv_ograniczenia['rok '] = array('>=', $rok - intval($_POST['wiek_do']));
+			if (!empty($_POST['wiek_od'])) {
+				$pv_ograniczenia['wiek'] = array('<=', intval($_POST['wiek_od']));
+			}
+			if (!empty($_POST['wiek_do'])) {
+				$pv_ograniczenia['wiek '] = array('>=', intval($_POST['wiek_do']));
+			}
 		}
 		// get
 		$dbProfile->pf_getRecords($tplData['profiles'], $pv_ograniczenia, 
 			array('id', 'ankieta_id', 'miejsce', 'plec', 'wiek', 'wyksztalcenie', 'grupa')
 		);
 	}
-	// wiek -> rok
 
 	$pv_controller->tpl->file = 'search.tpl.php';
 	$pv_controller->tpl->data = $tplData;
