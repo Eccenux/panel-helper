@@ -12,6 +12,14 @@ var LOG = new Logger('PanelHelper');
 		// Radio/checkboxes/buttons
 		$(".buttonset,[data-type='buttonset']").buttonset();
 		$('[type="radio"],[type="checkbox"],[type="submit"],[type="button"]').button();
+		$('button').each(function(){
+			var options = {};
+			var icon = this.getAttribute('data-icon');
+			if (icon && icon.length) {
+				options['icons'] = { primary: "ui-icon-" + icon };
+			}
+			$(this).button(options);
+		});
 		// select
 		//$('select').selectmenu();
 	});

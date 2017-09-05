@@ -38,10 +38,12 @@
 		padding: 1em .5em;
 	}
 
-	form#search [name="search"] {
+	form#search .main-buttons {
 		margin-left: 127px;
 		margin-top: .5em;
-		padding: .5em 3em;
+	}
+	form#search .main-buttons .ui-button {
+		margin: 0 .5em;
 	}
 
 	.search-results {
@@ -164,8 +166,18 @@
 			<label for="wyksztalcenie_i">ignoruj  </label>
 		</div>
 	</div>
-	<div><input type="submit" name="search" value="Szukaj" /></div>
+	<div>
+		<div class="main-buttons">
+			<button type="submit" name="search" value="search" data-icon="search">Szukaj</button>
+			<button type="reset" class="reset-button" data-icon="refresh">Resetuj i odśwież</button>
+		</div>
+	</div>
 </form>
+<script>
+$("form#search .reset-button").click(function(){
+	location.href = location.search;
+});
+</script>
 
 <div class="search-results">
 

@@ -21,7 +21,7 @@
 	<!-- jQuery inits and other global stuff -->
 	<script type="text/javascript" src="./js/logger.js?0331"></script>
 	<script type="text/javascript" src="./js/localforage.min.js?0331"></script>
-	<script type="text/javascript" src="./js/prepare-std.js?0331"></script>
+	<script type="text/javascript" src="./js/prepare-std.js?2329"></script>
 	<script type="text/javascript" src="./js/DrawHistoryValue.js?0331"></script>
 	<script type="text/javascript" src="./js/DrawHistoryItem.js?0331"></script>
 	<script type="text/javascript" src="./js/DrawHistory.js?0331"></script>
