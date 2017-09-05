@@ -30,6 +30,7 @@ class dbProfile extends dbBaseClass
 		'dt' => 'dt',
 		'ankieta_id' => 'ankieta_id',
 		'grupa' => 'grupa',
+		'dt_change' => 'dt_change',
 		
 		'miejsce' => 'miejsce',
 		'plec' => 'plec',
@@ -114,5 +115,16 @@ class dbProfile extends dbBaseClass
 			 case 'w': return "wyższe";
 		}
 		return $dbValue;
+	}
+
+	/**
+	 * Extra operations on a record to be run in `pf_setRecords`.
+	 *
+	 * @param array $pv_record The record.
+	 */
+	protected function pf_setRecordExtraParse(&$pv_record)
+	{
+		$now = date('Y-m-d H:i:s');
+		$pv_record['dt_change'] = $now;
 	}
 }
