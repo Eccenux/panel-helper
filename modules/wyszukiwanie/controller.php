@@ -9,8 +9,17 @@
 	// Przetwarzanie danych
 	//
 	$tplData = array();
+
 	// spr. liczników
 	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
+
+	// wrong group check
+	$tplData['wrong-group'] = false;
+	if ($configHelper->panel_stage != 'results' && $pv_controller->action != 'w puli')
+	{
+		$tplData['wrong-group'] = true;
+	}
+
 	// wypełnienie pól wyboru
 	$pv_ograniczeniaStats = array();
 	if (!empty($pv_controller->action))

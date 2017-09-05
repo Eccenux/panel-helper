@@ -1,3 +1,15 @@
+<? if ($tplData['wrong-group']) { ?>
+<div class="ui-widget">
+	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+		<p>
+			<span class="ui-icon ui-icon-alert"
+				style="float: left; margin-right: .3em;"></span>
+			Uwaga! W trakcie losowania należy wybrać grupę „w puli”. Wybierz z menu po lewej odpowiednią grupę przed rozpoczęciem losowania!
+		</p>
+	</div>
+</div>
+<? } ?>
+
 <script src="modules/wyszukiwanie/DrawHelper.js?0331"></script>
 <style type="text/css">
 	form#search > div {
