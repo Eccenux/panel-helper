@@ -60,6 +60,18 @@
 	<div class="draw-history">
 	</div>
 </div>
+<div class="group-stats-container">
+	<h3>Przydział do grup</h3>
+	<ul class="group-stats">
+		<? foreach (dbProfile::$pv_grupy as $g) { ?>
+			<? foreach ($tplData['grupy_liczniki'] as $row) { ?>
+				<? if ($g == $row['nazwa']) { ?>
+					<li><?=$row['nazwa']?> (<?=$row['licznik']?>)</li>
+				<? } ?>
+			<? } ?>
+		<? } ?>
+	</ul>
+</div>
 <form id="search" method="post" action="" class="draw-history-profile-form">
 	<div>
 		<label>Płeć</label>

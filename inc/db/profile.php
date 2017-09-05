@@ -44,6 +44,13 @@ class dbProfile extends dbBaseClass
 	 * @var array
 	 */
 	protected $pv_sqlStatsTpls = array (
+		// liczniki grup
+		'grupy' =>
+			'SELECT grupa as nazwa, count(grupa) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)}
+			GROUP BY grupa
+			ORDER BY 1, 2',
 		// Zbiorcze podsumowanie
 		'miejsce' =>
 			'SELECT miejsce, count(miejsce) as licznik

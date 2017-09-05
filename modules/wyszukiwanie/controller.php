@@ -9,6 +9,8 @@
 	// Przetwarzanie danych
 	//
 	$tplData = array();
+	// spr. liczników
+	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
 	// wypełnienie pól wyboru
 	$pv_ograniczeniaStats = array();
 	if (!empty($pv_controller->action))
