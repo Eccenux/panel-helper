@@ -1,7 +1,9 @@
 /.robocze
-/*.lnk
+*.lnk
 /nbproject/private/
 /inc/dbConnect.php
 *.ods#
 /.vists.log
 key.js
+__DB.sql
+\!_*.bat
