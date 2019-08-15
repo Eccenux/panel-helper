@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery UI Autocomplete - Combobox</title>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<link rel="stylesheet" href="./combobox.css">
+	<script src="./combobox.js"></script>
+	<script>
+	$(function() {
+		$(".combobox").combobox();
+	});
+	</script>
+</head>
+<body>
+ 
+<div class="ui-widget">
+	<label>Your preferred programming language: </label>
+	<select class="combobox" name="cities">
+		<option value="">Select one...</option>
+		<option value="1">ActionScript</option>
+		<option value="2">AppleScript</option>
+		<option value="3">Asp</option>
+	</select>
+</div>
+
+<div>
+	<input type="button" onclick="alert(document.querySelector('[name=cities]').value)" value="Show value">
+</div>
+ 
+</body>
+</html>
