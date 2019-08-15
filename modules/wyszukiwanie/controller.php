@@ -30,7 +30,7 @@
 	$dbProfile->pf_getStats($tplData['wyksztalcenie'], 'wyksztalcenie', $pv_ograniczeniaStats);
 
 	$tplData['prev'] = array();
-	$pv_choices = array('miejsce', 'plec', 'wyksztalcenie', 'wiek_od', 'wiek_do');
+	$pv_choices = array('miejsce', 'plec', 'wyksztalcenie', 'wiek_od', 'wiek_do', 'wiek', 'profil');
 	foreach ($pv_choices as $choice)
 	{
 		$tplData['prev'][$choice] = (!empty($_POST[$choice])) ? $_POST[$choice] : '';
@@ -39,6 +39,8 @@
 	{
 		$tplData['prev']['wyksztalcenie'] = array();
 	}
+
+	$tplData['search-submited'] = !empty($_POST['search']);
 
 	if (!empty($_POST['search']))
 	{

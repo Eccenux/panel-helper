@@ -107,16 +107,26 @@
 		/**
 		 * Select or ignore search template.
 		 */
-		function search_valueOrIgnore($label, $name, $value, $displayValue=null) {
+		function search_valueOrIgnore(&$tplData, $label, $name, $value, $displayValue=null) {
 			if (is_null($displayValue)) {
 				$displayValue = $value;
 			}
+
+			$ignore = false;
+			if ($tplData['search-submited']) {
+				if (empty($tplData['prev'][$name])) {
+					$ignore = true;
+				}
+			}
+
 			return "
 				<label>{$label}</label>
 				<div class='buttonset'>
-					<input type='radio' name='{$name}' id='{$name}_value' value='{$value}' checked
+					<input type='radio' name='{$name}' id='{$name}_value' value='{$value}' 
+						".(!$ignore ? 'checked' : '')."
 						><label for='{$name}_value'>{$displayValue}</label>
 					<input type='radio' name='{$name}' id='{$name}_ignore' value=''
+						".($ignore ? 'checked' : '')."
 						><label for='{$name}_ignore'>ignoruj  </label>
 				</div>
 			"
@@ -124,13 +134,11 @@
 		}
 	?>
 	<section class="profile-options">
-		<!-- TODO: zapamiętaniu stanu ignore (wypełnianie wg `$tplData['prev']`) -->
+		<?=search_valueOrIgnore($tplData, "Płeć", "plec", "mężczyzna", "Mężczyzna")?>
 
-		<?=search_valueOrIgnore("Płeć", "plec", "mężczyzna", "Mężczyzna")?>
+		<?=search_valueOrIgnore($tplData, "Dzielnica", "miejsce", "CHEŁM")?>
 
-		<?=search_valueOrIgnore("Dzielnica", "miejsce", "CHEŁM")?>
-
-		<?=search_valueOrIgnore("Wiek", "wiek", "25-39")?>
+		<?=search_valueOrIgnore($tplData, "Wiek", "wiek", "25-39")?>
 		<input type="hidden" name="wiek_od" value="25">
 		<input type="hidden" name="wiek_do" value="39">
 		<script>
@@ -138,7 +146,7 @@
 			(function(){
 				let ageFrom = document.querySelector('#search [name=wiek_od]');
 				let ageTo = document.querySelector('#search [name=wiek_do]');
-				$('#search [name=wiek]').change(function(){
+				function setupHiddenAge(){
 					// visual field value
 					let value = $('#search [name=wiek]:checked').val();
 					// ignore
@@ -150,11 +158,14 @@
 						ageFrom.value = ageFrom.getAttribute('value');
 						ageTo.value = ageTo.getAttribute('value');
 					}
-				});
+				}
+				$('#search [name=wiek]').change(setupHiddenAge);
+				// pre-init hidden
+				setupHiddenAge();
 			})();
 		</script>
 
-		<?=search_valueOrIgnore("Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
+		<?=search_valueOrIgnore($tplData, "Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
 	</section>
 
 	<?php /*
@@ -249,6 +260,11 @@ $("form#search .reset-button").click(function(){
 	location.href = location.search;
 });
 </script>
+
+<?php/*
+<pre>prev: <?=var_export($tplData['prev'], true)?></pre>
+<pre>search-submited: <?=var_export($tplData['search-submited'], true)?></pre>
+*/?>
 
 <section class="search-results">
 
