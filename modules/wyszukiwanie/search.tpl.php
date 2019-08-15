@@ -11,44 +11,47 @@
 <? } ?>
 
 <script src="modules/wyszukiwanie/DrawHelper.js?0331"></script>
+
 <style type="text/css">
-	form#search > div {
-		display: flex;
-		margin:1em 1em 1em 0;
-		padding: 0 0 1em 0;
-		border-bottom: 1px solid #a8d2e3;
+	:root {
 	}
-	form#search > div:last-child {
-		border-bottom-color: #000;
-	}
-	form#search > div > div,
-	form#search > div > label {
-		box-sizing: border-box;
-		margin: 0;
-	}
-	form#search > div > div {
-		padding: .5em;
-		width: calc(100% - 120px);
-	}
-	form#search > div > label {
-		font-weight:bold;
-		width: 120px;
-		text-align: right;
-		vertical-align: top;
-		padding: 1em .5em;
+	form#search {
+		--border-color: #a8d2e3;
+		--label-width: 127px;
+		--label-gap: 1rem;
+		--section-padding: 1rem;
 	}
 
+	/* profile selection section */
+	form#search .profile-chooser {
+		clear: both;
+		border-top: 1px solid var(--border-color);
+		padding: var(--section-padding);
+	}
+
+	/* options for choosen profile */
+	form#search .profile-options {
+		border-top: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border-color);
+		padding: var(--section-padding);
+
+		display: grid;
+		grid-template-columns: var(--label-width) auto;
+		grid-gap: var(--label-gap);
+	}
+	/* main buttons (submit etc) */
 	form#search .main-buttons {
-		margin-left: 127px;
-		margin-top: .5em;
+		padding: var(--section-padding);
+		margin-left: calc(var(--label-gap) + var(--label-width));
 	}
 	form#search .main-buttons .ui-button {
-		margin: 0 .5em;
+		margin-right: 1rem;
 	}
 
+	/* search results section */
 	.search-results {
 		margin-top: 2em;
-		/*border-top: 1px solid #a8d2e3;*/
+		/*border-top: 1px solid var(--border-color);*/
 	}
 	.search-results [name="draw6"] {
 		margin-top: 1.5em;
@@ -87,6 +90,55 @@
 	</ul>
 </div>
 <form id="search" method="post" action="" class="draw-history-profile-form">
+	<section class="profile-chooser">
+		<div class="ui-widget">
+			<label>Profil</label>
+			<select name="profil" class="combobox">
+				<option selected
+						value="1">(1) m., CHE., 25-39, w.</option>
+			</select>
+		</div>
+		<!-- TODO: wypełnianie `option` wg faktycznych profili (w JS, czy w PHP?) -->
+		<!-- TODO: po wybraniu profilu wypełnianie `profile-options` 
+			(mogę zrobić z przeładowaniem strony; to nie będę potrzebował danych profili w JS) -->
+	</section>
+
+	<?php
+		/**
+		 * Select or ignore search template.
+		 */
+		function search_valueOrIgnore($label, $name, $value, $displayValue=null) {
+			if (is_null($displayValue)) {
+				$displayValue = $value;
+			}
+			return "
+				<label>{$label}</label>
+				<div class='buttonset'>
+					<input type='radio' name='{$name}' id='{$name}_value' value='{$value}' checked
+						><label for='{$name}_value'>{$displayValue}</label>
+					<input type='radio' name='{$name}' id='{$name}_ignore' value=''
+						><label for='{$name}_ignore'>ignoruj  </label>
+				</div>
+			"
+			;
+		}
+	?>
+	<section class="profile-options">
+		<!-- TODO: dla wieku wypełnianie wiek_od, wiek_do po wybraniu ignore  -->
+		<!-- TODO: zapamiętaniu stanu ignore (wypełnianie wg `$tplData['prev']`) -->
+
+		<?=search_valueOrIgnore("Płeć", "plec", "mężczyzna", "Mężczyzna")?>
+
+		<?=search_valueOrIgnore("Dzielnica", "miejsce", "CHEŁM")?>
+
+		<?=search_valueOrIgnore("Wiek", "wiek", "25-39")?>
+		<input type="hidden" name="wiek_od" value="25">
+		<input type="hidden" name="wiek_do" value="39">
+
+		<?=search_valueOrIgnore("Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
+	</section>
+
+	<?php /*
 	<div>
 		<label>Płeć</label>
 		<div class="buttonset">
@@ -166,12 +218,12 @@
 			<label for="wyksztalcenie_i">ignoruj  </label>
 		</div>
 	</div>
-	<div>
-		<div class="main-buttons">
-			<button type="submit" name="search" value="search" data-icon="search">Szukaj</button>
-			<button type="reset" class="reset-button" data-icon="refresh">Resetuj i odśwież</button>
-		</div>
-	</div>
+	*/?>
+
+	<section class="main-buttons">
+		<button type="submit" name="search" value="search" data-icon="search">Szukaj</button>
+		<button type="reset" class="reset-button" data-icon="refresh">Wyczyść opcje i odśwież</button>
+	</section>
 </form>
 <script>
 $("form#search .reset-button").click(function(){
@@ -179,7 +231,7 @@ $("form#search .reset-button").click(function(){
 });
 </script>
 
-<div class="search-results">
+<section class="search-results">
 
 <?php if (!empty($tplData['profiles']) && count($tplData['profiles']) > 6) { ?>
 	<p><input type="button" name="draw6" value="Wylosuj 6 z listy" onclick="drawHelper.onDraw(this)" /></p>
@@ -223,6 +275,9 @@ $("form#search .reset-button").click(function(){
 		));
 	}
 ?>
+
+</section>
+
 <script>
 	// quick&evil
 	var grupaSelectorUrl = '<?=MainMenu::getModuleUrl('edit', 'grupa')?>'.replace(/&amp;/g, '&');
@@ -254,4 +309,3 @@ $("form#search .reset-button").click(function(){
 		}
 	);
 </script>
-</div>
