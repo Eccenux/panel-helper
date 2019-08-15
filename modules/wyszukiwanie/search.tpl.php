@@ -11,66 +11,8 @@
 <? } ?>
 
 <script src="modules/wyszukiwanie/DrawHelper.js?0331"></script>
-
 <style type="text/css">
-	:root {
-	}
-	form#search {
-		--border-color: #a8d2e3;
-		--label-width: 127px;
-		--label-gap: 1rem;
-		--section-padding: 1rem;
-	}
-
-	/* profile selection section */
-	form#search .profile-chooser {
-		clear: both;
-		border-top: 1px solid var(--border-color);
-		padding: var(--section-padding);
-	}
-
-	/* options for choosen profile */
-	form#search .profile-options {
-		border-top: 1px solid var(--border-color);
-		border-bottom: 1px solid var(--border-color);
-		padding: var(--section-padding);
-
-		display: grid;
-		grid-template-columns: var(--label-width) auto;
-		grid-gap: var(--label-gap);
-	}
-	/* main buttons (submit etc) */
-	form#search .main-buttons {
-		padding: var(--section-padding);
-		margin-left: calc(var(--label-gap) + var(--label-width));
-	}
-	form#search .main-buttons .ui-button {
-		margin-right: 1rem;
-	}
-
-	/* search results section */
-	.search-results {
-		margin-top: 2em;
-		/*border-top: 1px solid var(--border-color);*/
-	}
-	.search-results [name="draw6"] {
-		margin-top: 1.5em;
-		padding: .5em 3em;
-	}
-
-	/* style change upon draw6 */
-	table .hidden-rows {
-		counter-reset: hiddenrows;
-	}
-	table .hidden-rows td:first-child sup {
-		color: #777;
-	}
-	table .hidden-rows td:first-child:before {
-		counter-increment: hiddenrows;
-		content: counter(hiddenrows);
-		display: inline-block;
-		padding-right: .2em;
-	}
+<?php include "search.css" ?>
 </style>
 <div class="draw-history-container">
 	<h3>Historia działań</h3>
@@ -261,7 +203,7 @@ $("form#search .reset-button").click(function(){
 });
 </script>
 
-<?php/*
+<?php /*
 <pre>prev: <?=var_export($tplData['prev'], true)?></pre>
 <pre>search-submited: <?=var_export($tplData['search-submited'], true)?></pre>
 */?>
