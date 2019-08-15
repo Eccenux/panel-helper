@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
 	<meta charset="UTF-8">
     <? $pv_page_title = empty($pv_page_title) ? 'Panel Helper' : htmlspecialchars($pv_page_title) . ' &bull; Panel Helper';?>
@@ -55,7 +55,22 @@
 	var eventHistorySaveUrl = '<?=MainMenu::getModuleUrl('event_history', 'save')?>'.replace(/&amp;/g, '&');
 	</script>
 </head>
-<body lang="pl">
+<body>
+	<div class="not-supported-browser">
+		<div class="ui-widget">
+			<div class="ui-state-error ui-corner-all" style="margin: 1em; padding: 0 .7em;">
+				<p>
+					<span class="ui-icon ui-icon-alert"
+						style="float: left; margin-right: .3em;"></span>
+					Uwaga! Twoja przeglądarka jest przestarzała i nie jest wspierana (niektóre elementy mogą być dziwnie wyświetlane lub nie działać wcale).
+				</p>
+				<p>
+					Zaktualizuj swoją przeglądarkę lub zainstaluj inną. 
+					Możesz np. zainstalować darmową przeglądarkę <a href="https://www.mozilla.org/pl/firefox/" target="_blank">Mozilla Firefox</a>.
+				</p>
+			</div>
+		</div>
+	</div>
 	<div id="container">
 		<div id="header">
 			<div id="logo"></div><p><a href="index.php"><?=$pv_page_title?></a></p>
@@ -110,18 +125,5 @@
 			</ul>
 		</div>
 	</div>
-	<script>
-		(function($){
-			function setHeight() {
-				document.getElementById('content').style.cssText = '';
-				var min = $(window).height() - ( $('#header').height() +  $('#footer').height() );
-				// box-sizinig required(!)
-				document.getElementById('content').style.cssText = 'min-height:'+ min +'px';
-			}
-			setHeight();
-			window.addEventListener('load', setHeight);
-			window.addEventListener('resize', setHeight);
-		})(jQuery);
-	</script>
 </body>
 </html>
