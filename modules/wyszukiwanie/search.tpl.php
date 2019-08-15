@@ -124,7 +124,6 @@
 		}
 	?>
 	<section class="profile-options">
-		<!-- TODO: dla wieku wypełnianie wiek_od, wiek_do po wybraniu ignore  -->
 		<!-- TODO: zapamiętaniu stanu ignore (wypełnianie wg `$tplData['prev']`) -->
 
 		<?=search_valueOrIgnore("Płeć", "plec", "mężczyzna", "Mężczyzna")?>
@@ -134,6 +133,26 @@
 		<?=search_valueOrIgnore("Wiek", "wiek", "25-39")?>
 		<input type="hidden" name="wiek_od" value="25">
 		<input type="hidden" name="wiek_do" value="39">
+		<script>
+			// hidden age values synchronization with visual fields
+			(function(){
+				let ageFrom = document.querySelector('#search [name=wiek_od]');
+				let ageTo = document.querySelector('#search [name=wiek_do]');
+				$('#search [name=wiek]').change(function(){
+					// visual field value
+					let value = $('#search [name=wiek]:checked').val();
+					// ignore
+					if (value.length === 0) {
+						ageFrom.value = "";
+						ageTo.value = "";
+					// reset
+					} else {
+						ageFrom.value = ageFrom.getAttribute('value');
+						ageTo.value = ageTo.getAttribute('value');
+					}
+				});
+			})();
+		</script>
 
 		<?=search_valueOrIgnore("Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
 	</section>
