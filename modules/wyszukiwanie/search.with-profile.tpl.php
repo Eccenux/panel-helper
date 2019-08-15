@@ -1,10 +1,10 @@
 <form id="search" method="post" action="" class="draw-history-profile-form">
 	<section class="profile-chooser">
-		<div class="ui-widget">
+		<div>
 			<label>Profil</label>
 			<select name="profil" class="combobox">
 				<option selected
-						value="1">(1) m., CHE., 25-39, w.</option>
+						value="1">(1) m., PRZ. WIE. 25-39, w.</option>
 			</select>
 		</div>
 		<!-- TODO: wypełnianie `option` wg faktycznych profili (w JS, czy w PHP?) -->

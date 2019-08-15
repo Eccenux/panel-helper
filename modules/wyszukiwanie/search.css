@@ -10,9 +10,22 @@ form#search {
 
 /* profile selection section */
 form#search .profile-chooser {
-	clear: both;
+	/* clear: both; */
 	border-top: 1px solid var(--border-color);
 	padding: var(--section-padding);
+	/* makes the section respect margins of floating history */
+	display: flex;
+}
+/* extra space for profile display */
+form#search .profile-chooser .custom-combobox-input {
+	width: 220px;
+}
+/* bold label */
+form#search .profile-chooser > div > label {
+	font-weight: bold;
+	/* width: var(--label-width); */
+	display: inline-block;
+	padding-right: var(--label-gap);
 }
 
 /* options for choosen profile (and free-search) */
