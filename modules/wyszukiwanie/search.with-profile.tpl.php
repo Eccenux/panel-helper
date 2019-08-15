@@ -43,13 +43,13 @@
 		}
 	?>
 	<section class="profile-options">
-		<?=search_valueOrIgnore($tplData, "Płeć", "plec", "mężczyzna", "Mężczyzna")?>
+		<?=search_valueOrIgnore($tplData, "Płeć", "plec", "mężczyzna")?>
 
-		<?=search_valueOrIgnore($tplData, "Dzielnica", "miejsce", "CHEŁM")?>
+		<?=search_valueOrIgnore($tplData, "Dzielnica", "miejsce", "PRZYMORZE WIELKIE")?>
 
 		<?=search_valueOrIgnore($tplData, "Wiek", "wiek", "25-39")?>
-		<input type="hidden" name="wiek_od" value="25">
-		<input type="hidden" name="wiek_do" value="39">
+		<input type="hidden" name="wiek_od" data-value="25">
+		<input type="hidden" name="wiek_do" data-value="39">
 		<script>
 			// hidden age values synchronization with visual fields
 			(function(){
@@ -64,9 +64,10 @@
 						ageTo.value = "";
 					// reset
 					} else {
-						ageFrom.value = ageFrom.getAttribute('value');
-						ageTo.value = ageTo.getAttribute('value');
+						ageFrom.value = ageFrom.getAttribute('data-value');
+						ageTo.value = ageTo.getAttribute('data-value');
 					}
+					console.log(`hidden age: ${ageFrom.value}, ${ageTo.value}`);
 				}
 				$('#search [name=wiek]').change(setupHiddenAge);
 				// pre-init hidden
