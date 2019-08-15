@@ -1,4 +1,5 @@
 <form id="search" method="post" action="" class="draw-history-profile-form">
+<section class="free-search">
 	<div>
 		<label>Płeć</label>
 		<div class="buttonset">
@@ -78,6 +79,7 @@
 			<label for="wyksztalcenie_i">ignoruj  </label>
 		</div>
 	</div>
+</section>
 
 	<section class="main-buttons">
 		<button type="submit" name="search" value="search" data-icon="search">Szukaj</button>

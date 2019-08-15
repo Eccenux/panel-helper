@@ -15,7 +15,8 @@ form#search .profile-chooser {
 	padding: var(--section-padding);
 }
 
-/* options for choosen profile */
+/* options for choosen profile (and free-search) */
+form#search .free-search,
 form#search .profile-options {
 	border-top: 1px solid var(--border-color);
 	border-bottom: 1px solid var(--border-color);
@@ -25,6 +26,29 @@ form#search .profile-options {
 	grid-template-columns: var(--label-width) auto;
 	grid-gap: var(--label-gap);
 }
+
+/* free-search customizations */
+/* make grid work in a different structure */
+form#search .free-search > div {
+	display: contents;
+}
+/* reset border */
+form#search .free-search {
+	border-style: none;
+}
+/* borders between fields */
+form#search .free-search > div:last-child::after,
+form#search .free-search > div::before {
+	grid-column: 1/-1;
+	content: " ";
+	display: block;
+	border-bottom: 1px solid var(--border-color);
+}
+/* bold labels */
+form#search .free-search > div > label {
+	font-weight: bold;
+}
+
 /* main buttons (submit etc) */
 form#search .main-buttons {
 	padding: var(--section-padding);
