@@ -17,6 +17,9 @@
 	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0331" rel="stylesheet">
 	<script type="text/javascript" src="./js/jquery/js/jquery-min.js"></script>
 	<script type="text/javascript" src="./js/jquery/js/jquery-ui-custom.min.js"></script>
+	<!-- jQuery UI Combobox -->
+	<link rel="stylesheet" href="./js/jquery/combobox.css">
+	<script src="./js/jquery/combobox.js"></script>
 	
 	<!-- jQuery inits and other global stuff -->
 	<script type="text/javascript" src="./js/logger.js?0331"></script>
@@ -78,7 +81,7 @@
 			<?=$pv_page_content?>
 		</div>
 		<div id="footer">
-			<p>Copyright &copy;2014-2017 Maciej Jaros.</p>
+			<p>Copyright &copy;2014-2019 Maciej Jaros</p>
 		</div>
 
 		<div id="randomApi-verify-dialog" title="Weryfikacja losowania" style="display: none">

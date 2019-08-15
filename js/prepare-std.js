@@ -22,6 +22,8 @@ var LOG = new Logger('PanelHelper');
 		});
 		// select
 		//$('select').selectmenu();
+		// combobox
+		$('.combobox').combobox();
 	});
 }(jQuery))
 /*
