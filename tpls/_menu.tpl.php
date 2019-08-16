@@ -10,7 +10,7 @@
 				<li class="branch <?=($isCurrentModule ? 'current' : '')?>"><a href="<?=$m->url?>"><?=htmlspecialchars($m->title)?></a>
 					<ul>
 						<? foreach ($m->submenu as $sm) { ?>
-							<? $isCurrentAction = ($pv_controller->action === $sm['action']) ?>
+							<? $isCurrentAction = ($isCurrentModule && $pv_controller->action === $sm['action']) ?>
 							<li class="leaf <?=($isCurrentAction ? 'current' : '')?>"><a href="<?=$sm['url']?>"><?=htmlspecialchars($sm['title'])?></a></li>
 						<? } ?>
 					</ul>
