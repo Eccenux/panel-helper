@@ -32,8 +32,11 @@
 	</ul>
 </div>
 <?php 
-	/* include "search.free.tpl.php"; */
-	include "search.with-profile.tpl.php";
+	if ($tplData['search-type'] === 'free') {
+		include "search.free.tpl.php";
+	} else {
+		include "search.with-profile.tpl.php";
+	}
 ?>
 
 <?php /*

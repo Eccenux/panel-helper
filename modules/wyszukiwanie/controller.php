@@ -20,6 +20,9 @@
 		$tplData['wrong-group'] = true;
 	}
 
+	// search type
+	$tplData['search-type'] = $pv_controller->action == 'w puli' ? 'profile' : 'free';
+	
 	// wypełnienie pól wyboru
 	$pv_ograniczeniaStats = array();
 	if (!empty($pv_controller->action))
