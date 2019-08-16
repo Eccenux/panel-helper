@@ -32,6 +32,7 @@
 				<label>{$label}</label>
 				<div class='buttonset'>
 					<input type='radio' name='{$name}' id='{$name}_value' value='{$value}' 
+						data-longValue='{$displayValue}'
 						".(!$ignore ? 'checked' : '')."
 						><label for='{$name}_value'>{$displayValue}</label>
 					<input type='radio' name='{$name}' id='{$name}_ignore' value=''
