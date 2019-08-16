@@ -3,7 +3,21 @@
 	https://jqueryui.com/autocomplete/#combobox
 */
 $.widget( "custom.combobox", {
+	// Default options.
+	options: {
+		// keeps options with empty values in the dropdown menu
+		keepEmpty: false
+	},
+	_truethyValues: ["1", "y", "yes", "true"],
+
 	_create: function() {
+		// extra options
+		if (this.element.attr('data-keep-empty')) {
+			if (this._truethyValues.indexOf(this.element.attr('data-keep-empty')) >= 0) {
+				this.options.keepEmpty = true;
+			}
+		}
+
 		this.wrapper = $( "<span>" )
 			.addClass( "custom-combobox" )
 			.insertAfter( this.element );
@@ -15,7 +29,10 @@ $.widget( "custom.combobox", {
 
 	_createAutocomplete: function() {
 		var selected = this.element.children( ":selected" ),
-			value = selected.val() ? selected.text() : "";
+			value = "";
+		if (this.options.keepEmpty || selected.val()) {
+			value = selected.text();
+		}
 
 		this.input = $( "<input>" )
 			.appendTo( this.wrapper )
@@ -80,9 +97,10 @@ $.widget( "custom.combobox", {
 
 	_source: function( request, response ) {
 		var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+		var _self = this;
 		response( this.element.children( "option" ).map(function() {
 			var text = $( this ).text();
-			if ( this.value && ( !request.term || matcher.test(text) ) )
+			if ( ( _self.options.keepEmpty || this.value ) && ( !request.term || matcher.test(text) ) )
 				return {
 					label: text,
 					value: text,

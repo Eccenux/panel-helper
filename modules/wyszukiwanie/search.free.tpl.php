@@ -17,7 +17,7 @@
 	<div>
 		<label>Dzielnica</label>
 		<div>
-			<select name="miejsce">
+			<select name="miejsce" class="combobox" data-keep-empty="1">
 				<option value="">dowolna (&mdash;)</option>
 				<? foreach ($tplData['miejsce'] as $row) { ?>
 					<option <?=($tplData['prev']['miejsce']==$row['miejsce']) ? 'selected' : ''?>
