@@ -53,6 +53,16 @@ var drawHistory = new DrawHistory({'':''
 	}
 });
 
+/**
+ * Draw history.
+ * 
+ * Events triggered when initializing the `drawHistory` object (in order):
+ * 1. `loaded` -- data was loaded. Note! At this point `historyId` might be `null` if there was no previous history.
+ * 2. `ready` -- history Id was either restored or generated.
+ * 3. `shown` -- history was pre-rendered. See `show` method for more details.
+ * 
+ * @param {Object} config 
+ */
 function DrawHistory(config)
 {
 	var _self = this;
@@ -85,18 +95,23 @@ function DrawHistory(config)
 	// prepare history
 	$(function(){
 		_self.load(function(){
+			$(_self).trigger("loaded");
 			if (_self.historyId === null) {
 				var startTime = new Date();
 				var $dialog = _self.showPreparationDialog();
 				_self.generateId(function(){
+					$(_self).trigger("ready");
 					_self.show();
+					$(_self).trigger("shown");
 					// show for a minimum of 3 seconds
 					_self.delayedRun(startTime, 3000, function(){
 						$dialog.dialog("close");
 					});
 				});
 			} else {
+				$(_self).trigger("ready");
 				_self.show();
+				$(_self).trigger("shown");
 			}
 		});
 	});
