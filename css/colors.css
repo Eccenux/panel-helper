@@ -42,6 +42,10 @@ html
 {
 	color:#903;
 }
+#menu .leaf.current a
+{
+	color:#c63;
+}
 body
 {
 	background-color:whitesmoke;
