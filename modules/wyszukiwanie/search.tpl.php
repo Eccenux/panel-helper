@@ -1,6 +1,6 @@
 <? if ($tplData['wrong-group']) { ?>
 <div class="ui-widget">
-	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+	<div class="ui-state-error ui-corner-all" style="padding: 0 .7em; margin-bottom: 1em;">
 		<p>
 			<span class="ui-icon ui-icon-alert"
 				style="float: left; margin-right: .3em;"></span>
@@ -40,6 +40,7 @@
 ?>
 
 <?php /*
+<textarea style="width: 100%; height: 30vh"><?=var_export($tplData, true)?></textarea>
 <pre>prev: <?=var_export($tplData['prev'], true)?></pre>
 <pre>search-submited: <?=var_export($tplData['search-submited'], true)?></pre>
 */?>
