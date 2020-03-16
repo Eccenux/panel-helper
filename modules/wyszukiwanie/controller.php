@@ -15,6 +15,7 @@
 	// spr. liczników
 	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
 	$dbSearchProfile->pf_getRecords($tplData['search_profiles'], array(), array(
+		'id',
 		'group_name',
 		'sex',
 		'region',
@@ -22,6 +23,12 @@
 		'age_max',
 		'education',
 	));
+
+	// profile pre-parse
+	foreach ($tplData['search_profiles'] as &$sp_row)
+	{
+		$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
+	}
 
 	// wrong group check
 	$tplData['wrong-group'] = false;

@@ -19,6 +19,12 @@ DrawHistoryValue.shortWords = function (value) {
 	return (!value.length) ? "" : value.replace(/[ .,]+/g, ' ').replace(/\s*-\s*/g, '-').replace(/([^ -]{2,3})[^ -]*/g, '$1.');
 };
 DrawHistoryValue.range = function (from, to) {
+	if (to == null) {
+		to = '';
+	}
+	if (from == null) {
+		from = '';
+	}
 	if (to.length) {
 		if (!from.length) {
 			from = '0';

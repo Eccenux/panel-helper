@@ -61,16 +61,6 @@ class dbSearchProfile extends dbBaseClass
 		'w puli', 'grupa główna', 'zastępcza', 'rezerwowa', 'rez.zast.', 'rezygnacja'
 	);
 
-	public static function pf_wyksztalcenieTranslate($dbValue) {
-		switch ($dbValue)
-		{
-			 case 'p': return "podstawowe";
-			 case 's': return "średnie";
-			 case 'w': return "wyższe";
-		}
-		return $dbValue;
-	}
-
 	/**
 	 * Extra operations on a record to be run in `pf_setRecords`.
 	 *
