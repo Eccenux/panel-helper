@@ -36,6 +36,11 @@
 		}
 		// wykształcenie
 		$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
+		$sp_row['age_range'] = dbProfile::pf_ageRangeTranslate($sp_row['age_min'], $sp_row['age_max']);
+		
+		if ($profil == $sp_row['id']) {
+			$tplData['selected_profile_row'] = $sp_row;
+		}
 	}
 	$tplData['selected_profile_id'] = $profil;
 

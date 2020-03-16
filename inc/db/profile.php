@@ -116,6 +116,17 @@ class dbProfile extends dbBaseClass
 		}
 		return $dbValue;
 	}
+	public static function pf_ageRangeTranslate($from, $to) {
+		if (!empty($to)) {
+			if (empty($from)) {
+				$from = '0';
+			}
+			return $from . "-" . $to;
+		} else if (!empty($from)) {
+			return $from . "+";
+		}
+		return "";
+	}
 
 	/**
 	 * Extra operations on a record to be run in `pf_setRecords`.

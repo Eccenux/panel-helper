@@ -57,13 +57,13 @@
 		}
 	?>
 	<section class="profile-options">
-		<?=search_valueOrIgnore($tplData, "Płeć", "plec", "mężczyzna")?>
+		<?=search_valueOrIgnore($tplData, "Płeć", "plec", $tplData['selected_profile_row']['sex'])?>
 
-		<?=search_valueOrIgnore($tplData, "Dzielnica", "miejsce", "PRZYMORZE WIELKIE")?>
+		<?=search_valueOrIgnore($tplData, "Region", "miejsce", $tplData['selected_profile_row']['region'])?>
 
-		<?=search_valueOrIgnore($tplData, "Wiek", "wiek", "25-39")?>
-		<input type="hidden" name="wiek_od" data-value="25">
-		<input type="hidden" name="wiek_do" data-value="39">
+		<?=search_valueOrIgnore($tplData, "Wiek", "wiek", $tplData['selected_profile_row']['age_range'])?>
+		<input type="hidden" name="wiek_od" data-value="<?=$tplData['selected_profile_row']['age_min']?>">
+		<input type="hidden" name="wiek_do" data-value="<?=$tplData['selected_profile_row']['age_max']?>">
 		<script>
 			// hidden age values synchronization with visual fields
 			(function(){

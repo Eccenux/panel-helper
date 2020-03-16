@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div>
-		<label>Dzielnica</label>
+		<label>Region</label>
 		<div>
 			<select name="miejsce" class="combobox" data-keep-empty="1">
 				<option value="">dowolna (&mdash;)</option>

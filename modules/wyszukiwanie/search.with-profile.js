@@ -1,3 +1,8 @@
+/* global DrawHistoryValue, selected_profile_id, search_profiles */
+
+//
+// Fill options of select/combobox
+//
 var profile_select = document.querySelector('#search [name=profil]');
 search_profiles.forEach(function(profile){
 	var value = profile.id;
@@ -16,4 +21,12 @@ search_profiles.forEach(function(profile){
 	}
 	nel.innerHTML = text;
 	profile_select.appendChild(nel);
+});
+
+//
+// Select profile.
+//
+$(profile_select).change(function() {
+	var baseUrl = location.href.replace(/&profil=[0-9]*/, '');
+	location.href = `${baseUrl}&profil=${this.value}`;
 });

@@ -56,6 +56,7 @@ $.widget( "custom.combobox", {
 				this._trigger( "select", event, {
 					item: ui.item.option
 				});
+				this.element.trigger("change");
 			},
 
 			autocompletechange: "_removeIfInvalid"

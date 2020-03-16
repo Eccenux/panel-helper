@@ -28,7 +28,7 @@ var drawHistory = new DrawHistory({'':''
 					, value: form.plec.value
 					, shortValue: DrawHistoryValue.firstLetter
 				}),
-				new DrawHistoryValue({label: 'Dzielnica'
+				new DrawHistoryValue({label: 'Region'
 					, value: form.miejsce.value
 					, shortValue: DrawHistoryValue.shortWords
 				}),
