@@ -1,3 +1,6 @@
+<script>
+	var search_profiles = <?= json_encode($tplData['search_profiles'])?>;
+</script>
 <form id="search" method="post" action="" class="draw-history-profile-form">
 	<section class="profile-chooser">
 		<div>

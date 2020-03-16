@@ -3,7 +3,9 @@
 
 	require_once ('./inc/dbConnect.php');
 	require_once ('./inc/db/profile.php');
+	require_once ('./inc/db/searchProfile.php');
 	$dbProfile = new dbProfile();
+	$dbSearchProfile = new dbSearchProfile();
 
 	//
 	// Przetwarzanie danych
@@ -12,6 +14,14 @@
 
 	// spr. liczników
 	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
+	$dbSearchProfile->pf_getRecords($tplData['search_profiles'], array(), array(
+		'group_name',
+		'sex',
+		'region',
+		'age_min',
+		'age_max',
+		'education',
+	));
 
 	// wrong group check
 	$tplData['wrong-group'] = false;
