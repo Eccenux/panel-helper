@@ -7,6 +7,9 @@
 	$dbProfile = new dbProfile();
 	$dbSearchProfile = new dbSearchProfile();
 
+	// wybrany profil
+	$profil = empty($_GET['profil']) ? 0 : intval($_GET['profil']);
+
 	//
 	// Przetwarzanie danych
 	//
@@ -27,8 +30,14 @@
 	// profile pre-parse
 	foreach ($tplData['search_profiles'] as &$sp_row)
 	{
+		// domyślnie pierwszy profil
+		if ($profil < 1) {
+			$profil = $sp_row['id'];
+		}
+		// wykształcenie
 		$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
 	}
+	$tplData['selected_profile_id'] = $profil;
 
 	// wrong group check
 	$tplData['wrong-group'] = false;

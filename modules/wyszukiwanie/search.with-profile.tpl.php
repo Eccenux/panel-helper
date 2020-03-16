@@ -1,5 +1,6 @@
 <script>
 	var search_profiles = <?= json_encode($tplData['search_profiles'])?>;
+	var selected_profile_id = <?= intval($tplData['selected_profile_id'])?>;
 </script>
 <form id="search" method="post" action="" class="draw-history-profile-form">
 	<section class="profile-chooser">
@@ -17,6 +18,7 @@
 			var profile_select = document.querySelector('#search [name=profil]');
 			search_profiles.forEach(function(profile){
 				var value = profile.id;
+				var selected = (profile.id == selected_profile_id);
 				var short = {
 					sex : DrawHistoryValue.firstLetter(profile.sex),
 					region : DrawHistoryValue.shortWords(profile.region),
@@ -26,6 +28,9 @@
 				var text = `(${profile.id}) [${profile.group_name}] ${short.sex}, ${short.region}, ${short.age}, ${short.education}`;
 				var nel = document.createElement('option');
 				nel.setAttribute('value', value);
+				if (selected) {
+					nel.setAttribute('selected', 'selected');
+				}
 				nel.innerHTML = text;
 				profile_select.appendChild(nel);
 			});
