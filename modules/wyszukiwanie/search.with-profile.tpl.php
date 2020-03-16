@@ -14,31 +14,12 @@
 			</select>
 		</div>
 		<!-- fill profile selector -->
-		<script>
-			var profile_select = document.querySelector('#search [name=profil]');
-			search_profiles.forEach(function(profile){
-				var value = profile.id;
-				var selected = (profile.id == selected_profile_id);
-				var short = {
-					sex : DrawHistoryValue.firstLetter(profile.sex),
-					region : DrawHistoryValue.shortWords(profile.region),
-					age : DrawHistoryValue.range(profile.age_min, profile.age_max),
-					education : DrawHistoryValue.firstLetter(profile.education_long),
-				};
-				var text = `(${profile.id}) [${profile.group_name}] ${short.sex}, ${short.region}, ${short.age}, ${short.education}`;
-				var nel = document.createElement('option');
-				nel.setAttribute('value', value);
-				if (selected) {
-					nel.setAttribute('selected', 'selected');
-				}
-				nel.innerHTML = text;
-				profile_select.appendChild(nel);
-			});
-		</script>
-		<!-- TODO: wypełnianie `option` wg faktycznych profili (w JS, czy w PHP?) -->
 		<!-- TODO: po wybraniu profilu wypełnianie `profile-options` 
 			(mogę zrobić z przeładowaniem strony; to nie będę potrzebował danych profili w JS) -->
 	</section>
+	<script>
+		<?php include "search.with-profile.js" ?>
+	</script>
 	<?php /*
 	<?php foreach ($tplData['search_profiles'] as $sp_row) { ?>
 		$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
