@@ -59,39 +59,43 @@
 		}
 	?>
 	<section class="profile-options">
-		<?=search_valueOrIgnore($tplData, "Płeć", "plec", $tplData['selected_profile_row']['sex'])?>
+		<?php if (empty($tplData['selected_profile_row'])) { ?>
+			<p>Wybierz profil.</p>
+		<?php } else { ?>
+			<?=search_valueOrIgnore($tplData, "Płeć", "plec", $tplData['selected_profile_row']['sex'])?>
 
-		<?=search_valueOrIgnore($tplData, "Region", "miejsce", $tplData['selected_profile_row']['region'])?>
+			<?=search_valueOrIgnore($tplData, "Region", "miejsce", $tplData['selected_profile_row']['region'])?>
 
-		<?=search_valueOrIgnore($tplData, "Wiek", "wiek", $tplData['selected_profile_row']['age_range'])?>
-		<input type="hidden" name="wiek_od" data-value="<?=$tplData['selected_profile_row']['age_min']?>">
-		<input type="hidden" name="wiek_do" data-value="<?=$tplData['selected_profile_row']['age_max']?>">
-		<script>
-			// hidden age values synchronization with visual fields
-			(function(){
-				let ageFrom = document.querySelector('#search [name=wiek_od]');
-				let ageTo = document.querySelector('#search [name=wiek_do]');
-				function setupHiddenAge(){
-					// visual field value
-					let value = $('#search [name=wiek]:checked').val();
-					// ignore
-					if (value.length === 0) {
-						ageFrom.value = "";
-						ageTo.value = "";
-					// reset
-					} else {
-						ageFrom.value = ageFrom.getAttribute('data-value');
-						ageTo.value = ageTo.getAttribute('data-value');
+			<?=search_valueOrIgnore($tplData, "Wiek", "wiek", $tplData['selected_profile_row']['age_range'])?>
+			<input type="hidden" name="wiek_od" data-value="<?=$tplData['selected_profile_row']['age_min']?>">
+			<input type="hidden" name="wiek_do" data-value="<?=$tplData['selected_profile_row']['age_max']?>">
+			<script>
+				// hidden age values synchronization with visual fields
+				(function(){
+					let ageFrom = document.querySelector('#search [name=wiek_od]');
+					let ageTo = document.querySelector('#search [name=wiek_do]');
+					function setupHiddenAge(){
+						// visual field value
+						let value = $('#search [name=wiek]:checked').val();
+						// ignore
+						if (value.length === 0) {
+							ageFrom.value = "";
+							ageTo.value = "";
+						// reset
+						} else {
+							ageFrom.value = ageFrom.getAttribute('data-value');
+							ageTo.value = ageTo.getAttribute('data-value');
+						}
+						console.log(`hidden age: ${ageFrom.value}, ${ageTo.value}`);
 					}
-					console.log(`hidden age: ${ageFrom.value}, ${ageTo.value}`);
-				}
-				$('#search [name=wiek]').change(setupHiddenAge);
-				// pre-init hidden
-				setupHiddenAge();
-			})();
-		</script>
+					$('#search [name=wiek]').change(setupHiddenAge);
+					// pre-init hidden
+					setupHiddenAge();
+				})();
+			</script>
 
-		<?=search_valueOrIgnore($tplData, "Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
+			<?=search_valueOrIgnore($tplData, "Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
+		<?php } ?>
 	</section>
 
 	<section class="main-buttons">
