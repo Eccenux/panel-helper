@@ -15,34 +15,47 @@
 	//
 	$tplData = array();
 
+	// search type
+	$tplData['search-type'] = $pv_controller->action == 'w puli' ? 'profile' : 'free';
+
 	// spr. liczników
 	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
-	$dbSearchProfile->pf_getRecords($tplData['search_profiles'], array(), array(
-		'id',
-		'group_name',
-		'sex',
-		'region',
-		'age_min',
-		'age_max',
-		'education',
-	));
 
-	// profile pre-parse
-	foreach ($tplData['search_profiles'] as &$sp_row)
-	{
-		// domyślnie pierwszy profil
-		if ($profil < 1) {
-			$profil = $sp_row['id'];
+	// search-profiles
+	if ($tplData['search-type'] == 'profile') {
+		$dbSearchProfile->pf_getRecords($tplData['search_profiles'], array(), array(
+			'id',
+			'group_name',
+			'sex',
+			'region',
+			'age_min',
+			'age_max',
+			'education',
+		));
+		$hasSearchProfiles = !empty($tplData['search_profiles']);
+		if (!$hasSearchProfiles) {
+			$tplData['search-type'] = 'free';
 		}
-		// wykształcenie
-		$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
-		$sp_row['age_range'] = dbProfile::pf_ageRangeTranslate($sp_row['age_min'], $sp_row['age_max']);
 		
-		if ($profil == $sp_row['id']) {
-			$tplData['selected_profile_row'] = $sp_row;
+		// profile pre-parse
+		if ($hasSearchProfiles) {
+			foreach ($tplData['search_profiles'] as &$sp_row)
+			{
+				// domyślnie pierwszy profil
+				if ($profil < 1) {
+					$profil = $sp_row['id'];
+				}
+				// wykształcenie
+				$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
+				$sp_row['age_range'] = dbProfile::pf_ageRangeTranslate($sp_row['age_min'], $sp_row['age_max']);
+
+				if ($profil == $sp_row['id']) {
+					$tplData['selected_profile_row'] = $sp_row;
+				}
+			}
+			$tplData['selected_profile_id'] = $profil;
 		}
 	}
-	$tplData['selected_profile_id'] = $profil;
 
 	// wrong group check
 	$tplData['wrong-group'] = false;
@@ -50,9 +63,6 @@
 	{
 		$tplData['wrong-group'] = true;
 	}
-
-	// search type
-	$tplData['search-type'] = $pv_controller->action == 'w puli' ? 'profile' : 'free';
 	
 	// wypełnienie pól wyboru
 	$pv_ograniczeniaStats = array();
