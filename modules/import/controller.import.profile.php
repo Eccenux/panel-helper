@@ -27,10 +27,14 @@
 		$saveStatus = $helper->save(function($record, $rowState, $fileId) use ($dbSearchProfile) {
 			return ImportHelper::insRecord($dbSearchProfile, $record, $rowState, $fileId);
 		});
+		// cleanup if saved...
 		if ($saveStatus) {
+			// remove previous records
 			if (!empty($_POST['overwrite']) && $_POST['overwrite'] === 'y') {
 				$dbSearchProfile->pf_delRecords(array('csv_file' => array('!=', $helper->fileId)));
 			}
+			// re-number ids (to start from 1)
+			//$dbSearchProfile->pf_renumberIds();
 		}
 		$tplData['parserInfo'] = $helper->infoBuild();
 	}

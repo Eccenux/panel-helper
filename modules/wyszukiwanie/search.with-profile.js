@@ -4,7 +4,8 @@
 // Fill options of select/combobox
 //
 var profile_select = document.querySelector('#search [name=profil]');
-search_profiles.forEach(function(profile){
+search_profiles.forEach(function(profile, index){
+	//var value = profile.id;
 	var value = profile.id;
 	var selected = (profile.id == selected_profile_id);
 	var short = {
@@ -13,7 +14,7 @@ search_profiles.forEach(function(profile){
 		age : DrawHistoryValue.range(profile.age_min, profile.age_max),
 		education : DrawHistoryValue.firstLetter(profile.education_long),
 	};
-	var text = `(${profile.id}) [${profile.group_name}] ${short.sex}, ${short.region}, ${short.age}, ${short.education}`;
+	var text = `${index+1}. [${profile.group_name}] ${short.sex}, ${short.region}, ${short.age}, ${short.education}`;
 	var nel = document.createElement('option');
 	nel.setAttribute('value', value);
 	if (selected) {
@@ -63,6 +64,9 @@ $(profile_select).change(function() {
 	$('.profil-next').click(function(event) {
 		event.preventDefault();
 		var u = getUrlData();
+		if (u.current == 0) {
+			u.current = first.id;
+		}
 		if (u.current != last.id) {
 			u.current++;
 			location.href = `${u.baseUrl}&profil=${u.current}`;
