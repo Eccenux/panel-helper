@@ -217,7 +217,7 @@ abstract class dbBaseClass
 	 *	and column name is without the table alias.
 	 * Number of arrays (rows) depend on the number of actual SQL tables that certain columns are in.
 	 */
-	private function pf_prepareInsertArrays ($pv_alias_val_array, $pv_excludedColumns=array())
+	protected function pf_prepareInsertArrays ($pv_alias_val_array, $pv_excludedColumns=array())
 	{
 		$pv_ret_arr = array();
 		if (!empty($pv_alias_val_array))
@@ -323,6 +323,10 @@ abstract class dbBaseClass
 					elseif (is_string($pv_val))
 					{
 						$pv_ret_arr[] = $pv_column.' '.$pv_sign.' \''.$pv_val.'\'';
+					}
+					elseif (is_null($pv_val))
+					{
+						$pv_ret_arr[] = $pv_column.' '.$pv_sign.' NULL';
 					}
 					else
 					{
@@ -473,7 +477,7 @@ abstract class dbBaseClass
 	 */
 	protected function pf_prepareValue ($pv_alias, $pv_val)
 	{
-		if (!is_integer($pv_val))
+		if (!is_integer($pv_val) && !is_null($pv_val))
 		{
 			if (!empty($this->pv_intColumnsByAlias) && array_search($pv_alias, $this->pv_intColumnsByAlias)!==false)
 			{
@@ -639,6 +643,21 @@ abstract class dbBaseClass
 	}
 
 	/**
+	 * A convenience function to get many stats in one function call.
+	 *
+	 * Same sa {@link pf_getStats()} except that it gets multiple stats into an asoc. array.
+	 *
+	 * Note! For now passes same constrains for each stats.
+	 */
+	public function pf_getStatsMany(&$pv_array, $pv_tplnames, $pv_constraints=array())
+	{
+		foreach ($pv_tplnames as $pv_tplname) {
+			$pv_array[$pv_tplname] = array();
+			$this->pf_getStats($pv_array[$pv_tplname], $pv_tplname, $pv_constraints);
+		}
+	}
+
+	/**
 	 * Returns records in format based on templates that are defined in {@link $pv_sqlStatsTpls}
 	 *
 	 * @note This is just a simplification that allows to quickly get and dump values in a varity of formats.
@@ -720,10 +739,11 @@ abstract class dbBaseClass
 	 * @note For now a single table is supported.
 	 *
 	 * @param array $pv_record Record to be inserted.
+	 * @param bool $pv_returnId If true then ID will be returned uppon success.
 	 * @return int 0 upon error
 	 * @throws Exception If \a pv_tableName was not set.
 	 */
-	public function pf_insRecord($pv_record)
+	public function pf_insRecord($pv_record, $pv_returnId = false)
 	{
 		if (empty($this->pv_tableName))
 		{
@@ -752,6 +772,9 @@ abstract class dbBaseClass
 			return 0;
 		}
 
+		if ($pv_returnId) {
+			return $this->pf_getLastInsertId();
+		}
 		return 1;	// OK :)
 	}
 
@@ -888,6 +911,7 @@ abstract class dbBaseClass
 			$pv_where_sql
 			$pv_order_sql"
 		;
+		//trigger_error ($sql, E_USER_NOTICE);
 		$this->pf_getArrayOfRecords($pv_array, $sql);
 
 		//

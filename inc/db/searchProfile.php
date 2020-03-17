@@ -32,13 +32,13 @@ class dbSearchProfile extends dbBaseClass
 		'dt_change' => 'dt_change',
 
 		'group_name' => 'group_name',
-		'invites_no' => 'invites_no',
 
 		'sex' => 'sex',
 		'age_min' => 'age_min',
 		'age_max' => 'age_max',
 		'region' => 'region',
 		'education' => 'education',
+		'transport' => 'transport',
 
 		'row_state' => 'row_state',
 		'csv_row' => 'csv_row',
@@ -51,7 +51,14 @@ class dbSearchProfile extends dbBaseClass
 	 * @see dbBaseClass->pf_getStats
 	 * @var array
 	 */
-	protected $pv_sqlStatsTpls = array ();
+	protected $pv_sqlStatsTpls = array (
+		// liczba profili na grupę
+		'total' =>
+			'SELECT count(*) as profiles, group_name
+			FROM search_profile
+			WHERE {pv_constraints|(1)}
+			GROUP BY group_name',
+	);
 
 	/**
 	 * Grupy/statusy
