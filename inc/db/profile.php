@@ -30,6 +30,7 @@ class dbProfile extends dbBaseClass
 		'dt' => 'dt',
 		'ankieta_id' => 'ankieta_id',
 		'grupa' => 'grupa',
+		'search_profile_id' => 'search_profile_id',
 		'dt_change' => 'dt_change',
 		
 		'miejsce' => 'miejsce',

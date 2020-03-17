@@ -100,11 +100,21 @@
 			var profileId = $(this).attr('name').replace(/[^0-9]+([0-9]+).*/, '$1');
 			var grupName = $(this).val();
 			var registrationId = $('.profile-id-'+profileId).text();
+			// save to history
 			drawHistory.saveGroupChange(grupName, registrationId, profileId);
-			
+
+			// search profile
+			var searchProfileId = -1;
+			var searchProfileField = document.querySelector('#search [name=profil]');
+			if (searchProfileField && searchProfileField.value > 0) {
+				searchProfileId = searchProfileField.value;
+			}
+
+			// save to db
 			$.ajax(grupaSelectorUrl, {'data':{
 				'grupa' : grupName,
 				'display' : 'raw',
+				'search_profile_id' : searchProfileId,
 				'id': profileId
 			}})
 			.done(function(data) {

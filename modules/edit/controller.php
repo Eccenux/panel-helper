@@ -18,12 +18,13 @@
 		case 'grupa':
 			$grupa = empty($_GET['grupa']) ? '' : $_GET['grupa'];
 			$id = empty($_GET['id']) ? '' : $_GET['id'];
+			$searchProfileId = empty($_GET['search_profile_id']) ? -1 : intval($_GET['search_profile_id']);
 			if (empty($id))
 			{
 				$pv_controller->tpl->setResponseCode(400);
 				$pv_controller->tpl->message = 'Brak identyfikatora!';
 			}
-			if ($dbProfile->pf_setRecords(array('grupa' => $grupa), array('id' => $id)))
+			if ($dbProfile->pf_setRecords(array('grupa' => $grupa, 'search_profile_id' => $searchProfileId), array('id' => $id)))
 			{
 				$pv_controller->tpl->message = 'OK['.$id.']'.$grupa;
 			}
