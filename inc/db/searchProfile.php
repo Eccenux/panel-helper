@@ -46,7 +46,7 @@ class dbSearchProfile extends dbBaseClass
 	);
 
 	/**
-	 * "Szablony" SQL do statystyk/szybkich zapytań.
+	 * Stats "templates" and aggregation queries.
 	 *
 	 * @see dbBaseClass->pf_getStats
 	 * @var array
@@ -61,13 +61,35 @@ class dbSearchProfile extends dbBaseClass
 	);
 
 	/**
-	 * Grupy/statusy
+	 * Aliased names of columns that are to be parsed as integers.
+	 *
+	 * @note All other columns are parsed as string/binary so this is purely optional.
+	 *
 	 * @var array
 	 */
-	public static $pv_grupy = array (
-		'w puli', 'grupa główna', 'zastępcza', 'rezerwowa', 'rez.zast.', 'rezygnacja'
-	);
+	protected $pv_intColumnsByAlias = array('id', 'age_min', 'age_max', 'row_state', 'csv_file');
 
+	/**
+	 * Alised names of columns that are to be excluded when inserting records.
+	 *
+	 * @note For tables that have automatically incremented ids you should add the name of this id column here.
+	 *
+	 * @see pf_insRecord()
+	 * @var array
+	 */
+	protected $pv_insertExcludedCols = array('id');
+
+	/**
+	 * Extra operations on a record to be run in `pf_insRecord`.
+	 *
+	 * @param array $pv_record The record.
+	 */
+	protected function pf_insRecordExtraParse(&$pv_record)
+	{
+		$now = date('Y-m-d H:i:s');
+		$pv_record['dt_create'] = $now;
+		$pv_record['dt_change'] = $now;
+	}
 	/**
 	 * Extra operations on a record to be run in `pf_setRecords`.
 	 *
