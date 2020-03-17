@@ -230,14 +230,16 @@ class CsvParser
 	public static function parseColumnRange($prefix, $value)
 	{
 		$matches = array();
-		preg_match(
-			"#(?P<min>\\d+)(?:"
-			."[^\\d]*\\+"	// no top boundary
-			."|"
-			."[^\\d]+(?P<max>\\d+)"
-			.")#"
-			, $value, $matches
-		);
+		if (!preg_match("#wi.{1,2}cej .+ (?P<min>\\d+)#", $value, $matches)) {
+			preg_match(
+				"#(?P<min>\\d+)(?:"
+				."[^\\d]*\\+"	// no top boundary
+				."|"
+				."[^\\d]+(?P<max>\\d+)"
+				.")#"
+				, $value, $matches
+			);
+		}
 		$ret = array(
 			'state' => CsvRowState::INVALID,
 			'columns' => array(),
