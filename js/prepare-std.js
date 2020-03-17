@@ -13,10 +13,15 @@ var LOG = new Logger('PanelHelper');
 		$(".buttonset,[data-type='buttonset']").buttonset();
 		$('[type="radio"],[type="checkbox"],[type="submit"],[type="button"]').button();
 		$('button').each(function(){
+			// attributes to options
 			var options = {};
 			var icon = this.getAttribute('data-icon');
 			if (icon && icon.length) {
 				options['icons'] = { primary: "ui-icon-" + icon };
+			}
+			var icon = this.getAttribute('data-icon-right');
+			if (icon && icon.length) {
+				options['icons'] = { secondary: "ui-icon-" + icon };
 			}
 			$(this).button(options);
 		});

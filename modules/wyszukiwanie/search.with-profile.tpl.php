@@ -12,11 +12,13 @@
 						value="1">(1) m., PRZ. WIE. 25-39, w.</option>
 				-->
 			</select>
+			<p>
+				<button class="profil-prev" data-icon="triangle-1-w">Poprzedni</button>
+				<button class="profil-next" data-icon-right="triangle-1-e">Następny</button>
+			</p>
 		</div>
-		<!-- fill profile selector -->
-		<!-- TODO: po wybraniu profilu wypełnianie `profile-options` 
-			(mogę zrobić z przeładowaniem strony; to nie będę potrzebował danych profili w JS) -->
 	</section>
+	<!-- fill profile selector etc -->
 	<script>
 		<?php include "search.with-profile.js" ?>
 	</script>
