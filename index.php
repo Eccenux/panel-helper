@@ -23,6 +23,10 @@
 	require_once './inc/dirHelper.php';
 	require_once './inc/visitLogger.php';
 
+	// setup performance check
+	include './inc/Ticks.php';
+	$ticks = new cTicks();
+
 	//
 	// Display mode and other params
 	//

@@ -9,10 +9,10 @@
 <section>
 	<label>Nadpisać dane?</label>
 	<div class="buttonset">
-		<input type="radio" name="overwrite" id="import-overwrite-y" value="y"
+		<input type="radio" name="overwrite" id="import-overwrite-y" value="y" checked="checked"
 			><label for="import-overwrite-y">Tak, skasuj poprzednie dane</label>
-		<input type="radio" name="overwrite" id="import-overwrite-n" value="n" checked="checked"
-			><label for="import-overwrite-n">Nie, dopisz dane</label>
+		<input type="radio" name="overwrite" id="import-overwrite-n" value="n"
+			><label for="import-overwrite-n">Nie, dopisz dane (niezalecane)</label>
 	</div>
 </section>
 

@@ -28,3 +28,22 @@ CREATE TABLE IF NOT EXISTS `search_profile` (
 	PRIMARY KEY (`id`),
 	KEY `csv_file` (`csv_file`)
 );
+
+/**
+    Pliki Ÿród³owe (CSV).
+*/
+DROP TABLE IF EXISTS file;
+CREATE TABLE file (
+    id int UNSIGNED NOT NULL AUTO_INCREMENT,
+    
+    `dt_create`   DATETIME,
+    `dt_change`   DATETIME,
+
+    `type`        varchar(20),    -- 'profile' / 'personal' (?)
+    `column_map`  text,            -- column mapping e.g. 'sex:2,\nage:3,\nregion:1,\n...'
+    `name`        varchar(200),
+
+    `contents`    LONGTEXT,
+    
+    PRIMARY KEY (id)
+);
