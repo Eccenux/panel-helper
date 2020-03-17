@@ -4,6 +4,7 @@
 	require_once ('./inc/dbConnect.php');
 	require_once ('./inc/db/profile.php');
 	require_once ('./inc/db/searchProfile.php');
+	require_once ('./modules/import/CsvParser.php');
 	$dbProfile = new dbProfile();
 	$dbSearchProfile = new dbSearchProfile();
 
@@ -23,15 +24,20 @@
 
 	// search-profiles
 	if ($tplData['search-type'] == 'profile') {
-		$dbSearchProfile->pf_getRecords($tplData['search_profiles'], array(), array(
-			'id',
-			'group_name',
-			'sex',
-			'region',
-			'age_min',
-			'age_max',
-			'education',
-		));
+		$dbSearchProfile->pf_getRecords($tplData['search_profiles']
+			, array(
+				'row_state' => CsvRowState::OK
+			)
+			, array(
+				'id',
+				'group_name',
+				'sex',
+				'region',
+				'age_min',
+				'age_max',
+				'education',
+			)
+		);
 		$hasSearchProfiles = !empty($tplData['search_profiles']);
 		if (!$hasSearchProfiles) {
 			$tplData['search-type'] = 'free';
