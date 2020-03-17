@@ -231,8 +231,24 @@ class ImportHelper
 						. "Dane zostały zaimportowane."
 					. "</div>"
 				;
+				// weird total info
 				if (!empty($totalSuspicious)) {
 					$html .= "$totalSuspicious";
+				}
+				// dump data
+				if (!empty($rowsCount['invalid'])) {
+					$html .= "<h3>Niepoprawne dane</h3>";
+					//$html .= "<pre>".var_export($parser->rows[CsvRowState::INVALID], true)."</pre>";
+					ob_start();
+					ModuleTemplate::printArray($parser->rows[CsvRowState::INVALID]);
+					$html .= ob_get_clean();
+				}
+				if (!empty($rowsCount['warning'])) {
+					$html .= "<h3>Częściowo niepoprawne dane</h3>";
+					//$html .= "<pre>".var_export($parser->rows[CsvRowState::WARNING], true)."</pre>";
+					ob_start();
+					ModuleTemplate::printArray($parser->rows[CsvRowState::WARNING]);
+					$html .= ob_get_clean();
 				}
 			break;
 		}

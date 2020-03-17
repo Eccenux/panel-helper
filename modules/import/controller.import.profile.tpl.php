@@ -16,7 +16,7 @@ Liczba profili:
 
 <?php if (!empty($tplData['parserInfo'])) { ?>
 	<?=$tplData['parserInfo']?>
-	<input type="button" onclick="history.go(-1)" value="Wróć" />
+	<p><input type="button" onclick="location.href=location.href" value="Wróć" /></p>
 <?php } else { ?>
 	<form id="import-form" method="post" action="" enctype="multipart/form-data">
 		<?php include 'import.form.tpl.php'; ?>
