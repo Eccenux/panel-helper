@@ -1,3 +1,5 @@
+/* global DrawHistoryValue, localforage, randomApi, eventHistorySaveUrl */
+
 /**
  * Init helper with config.
  *

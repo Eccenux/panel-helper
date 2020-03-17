@@ -1,3 +1,5 @@
+/* global drawHistory */
+
 /**
  * History item.
  *
