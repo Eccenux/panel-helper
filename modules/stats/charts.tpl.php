@@ -66,6 +66,7 @@
 <!-- wykresy -->
 <div style='float:left; width:570px;'>
 	<h2>Dane z rejestracji / losowania</h2>
+	<p>Dane dla wszystkich osób wylosowanych do wybranej grupy (lub grup).</p>
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats)
 		{
@@ -87,6 +88,7 @@
 </div>
 <div style='float:left; width:570px; margin-left: 2em;'>
 	<h2>Ogólne dane statystyczne</h2>
+	<p>Dane globalne przeliczone na <?=PEOPLE_IN_MAIN_GROUP?> osób.</p>
 	<?php
 		foreach($pv_wzorzecData as $statName=>$stats)
 		{

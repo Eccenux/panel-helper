@@ -36,6 +36,9 @@
 	$dbProfile->pf_getStats($tplData['stats']['wiek'], 'wiek', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['transport'], 'transport', $pv_ograniczeniaStats);
 
+	// liczniki grup
+	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
+
 	switch ($pv_controller->action)
 	{
 		default:

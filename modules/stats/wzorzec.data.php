@@ -1,7 +1,7 @@
 <?php
 // rescale to expected total
 function reScaleData($fraction) {
-	$total = 75;
+	$total = PEOPLE_IN_MAIN_GROUP; // __zakładana__ liczba osób w grupie głównej
 	return round($fraction * $total, 1);
 }
 
