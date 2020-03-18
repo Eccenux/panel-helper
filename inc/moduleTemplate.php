@@ -224,7 +224,7 @@ class ModuleTemplate
 					{
 						echo '<td>'. $columnExtraTransformationArray[$originalName]($value) .'</td>';
 					}
-					else if ($dateRows[$column] && !empty($value))
+					else if (isset($dateRows[$column]) && $dateRows[$column] && !empty($value))
 					{
 						echo '<td>'. date('Y-m-d H:i:s', $value) .'</td>';
 					}
