@@ -37,6 +37,7 @@
 			//$dbSearchProfile->pf_renumberIds();
 		}
 		$tplData['parserInfo'] = $helper->infoBuild();
+		$tplData['parser-rows'] = $helper->getBrokenRecords($dbSearchProfile);
 	}
 	
 	// get

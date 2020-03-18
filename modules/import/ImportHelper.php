@@ -4,6 +4,9 @@
  */
 class ImportHelper
 {
+	/**
+	 * @var CsvParser
+	 */
 	public $parser = null;
 	/**
 	 * Id of the saved file. Can be used as a reference.
@@ -71,15 +74,22 @@ class ImportHelper
 		if ($rowState === CsvRowState::OK) {
 			$record['csv_file'] = $fileId;
 			if (!$dbClass->pf_insRecord($record)) {
-				$rowState = CsvRowState::INVALID;	// set to invalid to re-attempt saving as invalid
+				// re-attempt saving as fully invalid
+				$invalidRecord = array(
+					'row_state' => CsvRowState::INVALID,
+					'csv_file' => $fileId,
+					'csv_row' => $record['csv_row'],
+				);
+				return $dbClass->pf_insRecord($invalidRecord);
 			}
 		}
-		if ($rowState !== CsvRowState::OK) {
+		else if ($rowState !== CsvRowState::OK) {
 			$invalidRecord = array(
 				'row_state' => $rowState,
 				'csv_file' => $fileId,
 				'csv_row' => $record['csv_row'],
 			);
+			$invalidRecord = array_merge($invalidRecord, $record);	// merge with partially parsed data
 			return $dbClass->pf_insRecord($invalidRecord);
 		}
 		return true;
@@ -235,21 +245,6 @@ class ImportHelper
 				if (!empty($totalSuspicious)) {
 					$html .= "$totalSuspicious";
 				}
-				// dump data
-				if (!empty($rowsCount['invalid'])) {
-					$html .= "<h3>Niepoprawne dane</h3>";
-					//$html .= "<pre>".var_export($parser->rows[CsvRowState::INVALID], true)."</pre>";
-					ob_start();
-					ModuleTemplate::printArray($parser->rows[CsvRowState::INVALID]);
-					$html .= ob_get_clean();
-				}
-				if (!empty($rowsCount['warning'])) {
-					$html .= "<h3>Częściowo niepoprawne dane</h3>";
-					//$html .= "<pre>".var_export($parser->rows[CsvRowState::WARNING], true)."</pre>";
-					ob_start();
-					ModuleTemplate::printArray($parser->rows[CsvRowState::WARNING]);
-					$html .= ob_get_clean();
-				}
 			break;
 		}
 
@@ -266,6 +261,44 @@ class ImportHelper
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Get broken records.
+	 *
+	 * Note! This assumes records were already inserted to DB.
+	 *
+	 * @param dbBaseClass $dbClass DB class to be used to get records (assumes it was used with insRecord).
+	 * @param int $fileId Defaults to surrent file (just parsed).
+	 * @return array Records groupped by state: array('INVALID'=>., 'WARNING'=>.).
+	 */
+	public function getBrokenRecords(&$dbClass, $fileId = null) {
+		if (is_null($fileId)) {
+			$fileId = $this->fileId;
+		}
+		$records = array();
+		$pv_columns = array_filter($dbClass->pf_getColumnAliases(), function($name) {
+			if ($name == 'dt_create'
+				|| $name == 'dt_change'
+				|| $name == 'row_state'
+			) {
+				return false;
+			}
+			return true;
+		});
+		if (!empty($this->parser->rows[CsvRowState::INVALID])) {
+			$dbClass->pf_getRecords($records['INVALID'], array(
+				'row_state' => CsvRowState::INVALID,
+				'csv_file' => array('=', $fileId),
+			), $pv_columns);
+		}
+		if (!empty($this->parser->rows[CsvRowState::WARNING])) {
+			$dbClass->pf_getRecords($records['WARNING'], array(
+				'row_state' => CsvRowState::WARNING,
+				'csv_file' => array('=', $fileId),
+			), $pv_columns);
+		}
+		return $records;
 	}
 
 }

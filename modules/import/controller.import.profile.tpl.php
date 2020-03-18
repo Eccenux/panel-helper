@@ -16,6 +16,18 @@ Liczba profili:
 
 <?php if (!empty($tplData['parserInfo'])) { ?>
 	<?=$tplData['parserInfo']?>
+
+	<?php if (!empty($tplData['parser-rows'])) { ?>
+		<?php if (!empty($tplData['parser-rows']['INVALID'])) { ?>
+			<h3>Niepoprawne dane</h3>
+			<?php ModuleTemplate::printArray($tplData['parser-rows']['INVALID'])?>
+		<?php } ?>
+		<?php if (!empty($tplData['parser-rows']['WARNING'])) { ?>
+			<h3>Częściowo niepoprawne dane</h3>
+			<?php ModuleTemplate::printArray($tplData['parser-rows']['WARNING'])?>
+		<?php } ?>
+	<?php } ?>
+
 	<p><input type="button" onclick="location.href=location.href" value="Wróć" /></p>
 <?php } else { ?>
 	<form id="import-form" method="post" action="" enctype="multipart/form-data">

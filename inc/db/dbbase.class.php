@@ -147,6 +147,14 @@ abstract class dbBaseClass
 	
 	// <editor-fold defaultstate="collapsed" desc="alias helpers">
 	/**
+	 * Get column aliases defined for the table.
+	 */
+	public function pf_getColumnAliases()
+	{
+		return array_keys($this->pv_aliasNames2colNames);
+	}
+
+	/**
 	 * Returns a name of a column based on its alias.
 	 *
 	 * @param string $pv_alias Column alias.
