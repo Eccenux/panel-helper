@@ -54,16 +54,16 @@ $pv_wzorzecData = array(
 			"value" => reScaleData(41.61/100),
 		),
 		array (
-			"title" => "zbiorkom",
-			"value" => reScaleData(27.74/100),
+			"title" => "pieszo",
+			"value" => reScaleData(24.32/100),
 		),
 		array (
 			"title" => "rower",
 			"value" => reScaleData(6.33/100),
 		),
 		array (
-			"title" => "pieszo",
-			"value" => reScaleData(24.32/100),
+			"title" => "zbiorkom",
+			"value" => reScaleData(27.74/100),
 		),
 	),
 );

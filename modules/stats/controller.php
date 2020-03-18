@@ -38,10 +38,10 @@
 
 	switch ($pv_controller->action)
 	{
-		case 'wykresy':
+		default:
 			$pv_controller->tpl->file = 'charts.tpl.php';
 		break;
-		default:
+		case 'tabele':
 			$pv_controller->tpl->file = 'stats.tpl.php';
 		break;
 	}

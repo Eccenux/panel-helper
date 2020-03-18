@@ -56,11 +56,16 @@
 <script type="text/javascript" src="js/gfa-charts/js/charts/colorGenerator.js"></script>
 <script type="text/javascript" src="js/gfa-charts/js/charts/charts.js?0331"></script>
 
-<script type="text/javascript" src="modules_public/wizualizacje/wzorzec/summaryData.js?0649"></script>
+<p>Wybierz grupę lub grupy by porównać dane z losowania (z bazy) z ogólnymi danymi statystycznymi.
+	Ogólne dane statystyczne są przeliczone wg przewidzianej wielkości grupy głównej (nie są to procenty tylko liczba osób).</p>
+
+<p>Przed losowaniem można sprawdzić wszystkie dane z rejestracji (bez wyboru grup).
+	Dzięki temu można określić, czy przy danej wielkości panelu
+	jest w ogóle możliwe wypełnienie poszczególnych parametrów statystycznych.</p>
 
 <!-- wykresy -->
 <div style='float:left; width:570px;'>
-	<h2>Dane z losowania</h2>
+	<h2>Dane z rejestracji / losowania</h2>
 	<?php
 		foreach($tplData['stats'] as $statName=>$stats)
 		{
