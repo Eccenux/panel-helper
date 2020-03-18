@@ -18,7 +18,7 @@ form#search .profile-chooser {
 }
 /* extra space for profile display */
 form#search .profile-chooser .custom-combobox-input {
-	width: 220px;
+	width: 250px;
 }
 /* bold label */
 form#search .profile-chooser > div > label {

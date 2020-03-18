@@ -22,10 +22,6 @@
 	<script>
 		<?php include "search.with-profile.js" ?>
 	</script>
-	<?php /*
-	<?php foreach ($tplData['search_profiles'] as $sp_row) { ?>
-		$sp_row['education_long'] = dbProfile::pf_wyksztalcenieTranslate($sp_row['education']);
-	<?php } */?>
 
 	<?php
 		/**
@@ -94,7 +90,12 @@
 				})();
 			</script>
 
-			<?=search_valueOrIgnore($tplData, "Wykształcenie", "wyksztalcenie", "w", "wyższe")?>
+			<?=search_valueOrIgnore($tplData, "Wykształcenie", "wyksztalcenie"
+					, $tplData['selected_profile_row']['education'], $tplData['selected_profile_row']['education_long'])?>
+
+			<?=search_valueOrIgnore($tplData, "Transport", "transport", $tplData['selected_profile_row']['transport'])?>
+
+			<?php /* var_export($tplData['selected_profile_row']) */ ?>
 		<?php } ?>
 	</section>
 

@@ -11,10 +11,13 @@ search_profiles.forEach(function(profile, index){
 	var short = {
 		sex : DrawHistoryValue.firstLetter(profile.sex),
 		region : DrawHistoryValue.shortWords(profile.region),
-		age : DrawHistoryValue.range(profile.age_min, profile.age_max),
+		//age : DrawHistoryValue.range(profile.age_min, profile.age_max),
 		education : DrawHistoryValue.firstLetter(profile.education_long),
 	};
-	var text = `${index+1}. [${profile.group_name}] ${short.sex}, ${short.region}, ${short.age}, ${short.education}`;
+	var text = `${index+1}. [${profile.group_name}]
+		${short.sex}, ${short.region}, ${profile.age_range},
+		${short.education}, ${profile.transport}
+	`.replace(/\s+/g, ' ');
 	var nel = document.createElement('option');
 	nel.setAttribute('value', value);
 	if (selected) {

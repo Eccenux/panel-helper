@@ -34,6 +34,7 @@
 	$dbProfile->pf_getStats($tplData['stats']['wyksztalcenie'], 'wyksztalcenie', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['plec'], 'plec', $pv_ograniczeniaStats);
 	$dbProfile->pf_getStats($tplData['stats']['wiek'], 'wiek', $pv_ograniczeniaStats);
+	$dbProfile->pf_getStats($tplData['stats']['transport'], 'transport', $pv_ograniczeniaStats);
 
 	switch ($pv_controller->action)
 	{

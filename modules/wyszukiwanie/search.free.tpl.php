@@ -79,6 +79,22 @@
 			<label for="wyksztalcenie_i">ignoruj  </label>
 		</div>
 	</div>
+	<div>
+		<label>Transport</label>
+		<div class="buttonset">
+		<? foreach ($tplData['transport'] as $i=>$row) { ?>
+			<input id="transport_<?=$i?>" type="radio" name="transport" value="<?=$row['transport']?>"
+						<?=($row['transport'] == $tplData['prev']['transport']) ? 'checked' : ''?>
+					>
+			<label for="transport_<?=$i?>"><?=$row['transport']?>
+				(<?=$row['licznik']?>)</label>
+		<? } ?>
+			<input id="transport_i" type="radio" name="transport" value=""
+					   <?=empty($tplData['prev']['transport']) ? 'checked' : ''?>
+				   >
+			<label for="transport_i">ignoruj  </label>
+		</div>
+	</div>
 </section>
 
 	<section class="main-buttons">

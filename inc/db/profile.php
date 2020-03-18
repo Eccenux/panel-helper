@@ -37,6 +37,7 @@ class dbProfile extends dbBaseClass
 		'plec' => 'plec',
 		'wiek' => 'wiek',
 		'wyksztalcenie' => 'wyksztalcenie',
+		'transport' => 'transport',
 	);
 
 	/**
@@ -65,6 +66,12 @@ class dbProfile extends dbBaseClass
 			FROM profile
 			WHERE {pv_constraints|(1)}
 			GROUP BY wyksztalcenie
+			ORDER BY 1, 2',
+		'transport' =>
+			'SELECT transport, count(transport) as licznik
+			FROM profile
+			WHERE {pv_constraints|(1)}
+			GROUP BY transport
 			ORDER BY 1, 2',
 		'plec' =>
 			'SELECT plec as `płeć`, count(plec) as licznik

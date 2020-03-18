@@ -18,6 +18,11 @@ var drawHistory = new DrawHistory({'':''
 		if (!form) {
 			return null;
 		}
+		// guard for missing fields
+		if (!form.plec || !form.miejsce || !form.wiek_od || !form.wyksztalcenie || !form.transport) {
+			console.warn('drawHistory config unsuccessful');
+			return null;
+		}
 		// get long value of the education status
 		var wyksztalcenie = $(form.wyksztalcenie).filter(':checked').attr('data-longValue');
 		if (!wyksztalcenie) {
@@ -40,7 +45,11 @@ var drawHistory = new DrawHistory({'':''
 				new DrawHistoryValue({label: 'Wykształcenie'
 					, value: wyksztalcenie
 					, shortValue: DrawHistoryValue.firstLetter
-				})
+				}),
+				new DrawHistoryValue({label: 'Transport'
+					, value: form.transport.value
+					, shortValue: DrawHistoryValue.firstLetter
+				}),
 			]
 		};
 	}
