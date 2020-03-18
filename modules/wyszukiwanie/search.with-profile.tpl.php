@@ -98,10 +98,12 @@
 		<?php } ?>
 	</section>
 
+	<?php if (!empty($tplData['selected_profile_row'])) { ?>
 	<section class="main-buttons">
 		<button type="submit" name="search" value="search" data-icon="search">Szukaj</button>
 		<button type="reset" class="reset-button" data-icon="refresh">Wyczyść opcje i odśwież</button>
 	</section>
+	<?php } ?>
 </form>
 <script>
 $("form#search .reset-button").click(function(){
