@@ -24,7 +24,7 @@ body {
 		"foot foot"
 	;
 	grid-template-columns: 160px auto;
-	grid-template-rows: 90px auto min-content;
+	grid-template-rows: 100px auto min-content;
 }
 #container #header { grid-area: head; }
 #container #menu { grid-area: menu; }
@@ -34,9 +34,14 @@ body {
 /* main elements */
 #header
 {
-	height: 90px;
-	background-image: url(../images/logo.gda.back.png);
-	background-repeat: repeat-x;
+	height: 100px;
+/*	background-image: url(../images/logo.gda.back.png);
+	background-repeat: repeat-x;*/
+/*	background-color: #ebf1f5;*/
+	background-color: white;
+	border-top: 10px solid black;
+/*	border-bottom: 10px solid black;*/
+	box-sizing: border-box;
 	color: white;
 	text-shadow: 2px 1px 2px black;
 }
@@ -47,10 +52,12 @@ body {
 #logo
 {
 	float:left;
-	background-image:url(../images/logo.gda.front.png);
+	background-image:url(../images/logo.wro.front.svg);
 	background-repeat:no-repeat;
-	height: 90px;
-	width: 280px;
+	background-size:contain;
+	margin-left: 5px;
+	height: 80px;
+	width: 480px;
 }
 #stage
 {
@@ -60,6 +67,7 @@ body {
 	margin: .5em;
 	padding: .2em .4em;
 	border-radius: .4em;
+	float: right;
 }
 #header p
 {

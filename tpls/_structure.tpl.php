@@ -7,14 +7,14 @@
 	
 	<link rel="icon" type="image/png" href="images/logo.png" />
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0331">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0331">
-	<link rel="stylesheet" type="text/css" media="screen" href="css/draw_history.css?0331">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css?0302">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/colors.css?0302">
+	<link rel="stylesheet" type="text/css" media="screen" href="css/draw_history.css?0302">
 	<meta name="author" content="Maciej Jaros">
 	<meta name="copyright" content="Maciej Jaros">
 
 	<!-- jQuery -->
-	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0331" rel="stylesheet">
+	<link type="text/css" href="./js/jquery/css/ui-lightness/jquery-ui-custom.css?0302" rel="stylesheet">
 	<script type="text/javascript" src="./js/jquery/js/jquery-min.js"></script>
 	<script type="text/javascript" src="./js/jquery/js/jquery-ui-custom.min.js"></script>
 	<!-- jQuery UI Combobox -->
@@ -22,15 +22,15 @@
 	<script src="./js/jquery/combobox.js"></script>
 	
 	<!-- jQuery inits and other global stuff -->
-	<script type="text/javascript" src="./js/logger.js?0331"></script>
-	<script type="text/javascript" src="./js/localforage.min.js?0331"></script>
+	<script type="text/javascript" src="./js/logger.js?0302"></script>
+	<script type="text/javascript" src="./js/localforage.min.js?0302"></script>
 	<script type="text/javascript" src="./js/prepare-std.js?2329"></script>
-	<script type="text/javascript" src="./js/DrawHistoryValue.js?0331"></script>
-	<script type="text/javascript" src="./js/DrawHistoryItem.js?0331"></script>
-	<script type="text/javascript" src="./js/DrawHistory.js?0331"></script>
-	<script type="text/javascript" src="./js/sortable.js?0331"></script>
-	<script type="text/javascript" src="./js/random-org/key.js?0331"></script>
-	<script type="text/javascript" src="./js/random-org/RandomApi.js?0331"></script>
+	<script type="text/javascript" src="./js/DrawHistoryValue.js?0302"></script>
+	<script type="text/javascript" src="./js/DrawHistoryItem.js?0302"></script>
+	<script type="text/javascript" src="./js/DrawHistory.js?0302"></script>
+	<script type="text/javascript" src="./js/sortable.js?0302"></script>
+	<script type="text/javascript" src="./js/random-org/key.js?0302"></script>
+	<script type="text/javascript" src="./js/random-org/RandomApi.js?0302"></script>
 
 	<!-- History API: http://balupton.com/projects/jquery-history -->
 	<script type="text/javascript" src="./js/native.history.js"></script>
@@ -96,7 +96,7 @@
 			<?=$pv_page_content?>
 		</div>
 		<div id="footer">
-			<p>Copyright &copy;2014-2019 Maciej Jaros</p>
+			<p>Copyright &copy;2014-2020 Maciej Jaros</p>
 		</div>
 
 		<div id="randomApi-verify-dialog" title="Weryfikacja losowania" style="display: none">
