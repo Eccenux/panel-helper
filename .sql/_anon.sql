@@ -36,6 +36,16 @@ UPDATE profile
 		`ankieta_id`=make_letter_string(7*`id`+1234)
 ;
 
+-- age tweak
+UPDATE profile
+	SET
+		wiek=CASE
+			WHEN wiek <= 24 THEN 21
+			WHEN wiek <= 39 THEN 36
+			WHEN wiek <= 64 THEN 44
+			ELSE 67
+		END
+;
 
 /*
 SELECT * FROM personal;
