@@ -37,7 +37,9 @@
 	$dbProfile->pf_getStats($tplData['stats']['transport'], 'transport', $pv_ograniczeniaStats);
 
 	// liczniki grup
-	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy');
+	$dbProfile->pf_getStats($tplData['grupy_liczniki'], 'grupy', array(
+		'grupa' => array('NOT IN', 'w puli,robocze')
+	));
 
 	switch ($pv_controller->action)
 	{
