@@ -19,12 +19,21 @@
 			$grupa = empty($_GET['grupa']) ? '' : $_GET['grupa'];
 			$id = empty($_GET['id']) ? '' : $_GET['id'];
 			$searchProfileId = empty($_GET['search_profile_id']) ? -1 : intval($_GET['search_profile_id']);
+			
+			$record = array('grupa' => $grupa);
+			// jeśli nie wybrany profil, to go nie zmieniamy
+			// dzięki temu można zmienić przypadkowo wybraną grupę główną na zastępczą i zachować przypisanie do profilu
+			// (to znaczy można to zrobić mimo wybrania swobodnego wyszukiwania)
+			if ($searchProfileId > 0) {
+				$record['search_profile_id'] = $searchProfileId;
+			}
+
 			if (empty($id))
 			{
 				$pv_controller->tpl->setResponseCode(400);
 				$pv_controller->tpl->message = 'Brak identyfikatora!';
 			}
-			if ($dbProfile->pf_setRecords(array('grupa' => $grupa, 'search_profile_id' => $searchProfileId), array('id' => $id)))
+			else if ($dbProfile->pf_setRecords($record, array('id' => $id)))
 			{
 				$pv_controller->tpl->message = 'OK['.$id.']'.$grupa;
 			}
